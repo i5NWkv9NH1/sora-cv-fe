@@ -1,1 +1,2 @@
-export * from "./ThemeSwitch";
+export * from './ThemeSwitch'
+export * from './Temporary'

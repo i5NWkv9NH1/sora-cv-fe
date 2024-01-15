@@ -1,4 +1,4 @@
-<script setup lang="tsx">
+<script setup lang="ts">
 import { ThemeSwitch } from '~/widgets';
 </script>
 
@@ -6,6 +6,7 @@ import { ThemeSwitch } from '~/widgets';
   <VApp>
     <VAppBar>
       <ThemeSwitch />
+      <VBtn to="/templates">简历模板</VBtn>
     </VAppBar>
     <VMain>
       <slot />
