@@ -7,7 +7,7 @@ import {
   VImg,
   VRow
 } from 'vuetify/lib/components/index.mjs'
-import { VTemplate } from '~/components'
+import { VTemplate, VIntro } from '~/components'
 export default defineComponent({
   setup() {
     useSeoMeta({ title: '首页' })
@@ -202,16 +202,12 @@ export default defineComponent({
       return (
         <VRow align={'center'} justify={'space-between'}>
           <VCol>
-            <div class={'d-flex flex-column pa-4'} style={{ gap: '1.25rem' }}>
-              <div class='text-h2'>{state.cover.title}</div>
-              <div class='text-h2 font-weight-bold'>{state.cover.subtitle}</div>
-              <div class='text-subtitle-1 text-surface-4'>
-                {state.cover.caption}
-              </div>
+            <VIntro gap={1.25}>
               <VBtn to={'/signin'} width={'50%'}>
                 创建您的简历
               </VBtn>
-            </div>
+            </VIntro> 
+
           </VCol>
           <VCol class='hidden-md-and-down'>
             <VImg src={state.cover.url} cover />

@@ -22,10 +22,18 @@ export type ITemplate = {
   id: string | number
   title: string
   description: string
-  jobCategory: ITag[]
-  experienceCategory: ITag[]
-  createdAt: string
+  createdAt: string 
   publishedAt: string
   tags: ITag[]
   thumbnailUrl: string
+  jobCategory: ITag[]
+  experienceCategory: ITag[]
+}
+
+export type ISubscribe = {
+  id: string | number
+  name: string
+  price: string | number
+  description: string
+  type: string
 }

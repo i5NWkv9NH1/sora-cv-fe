@@ -4,10 +4,11 @@ import { ThemeSwitch } from '~/widgets';
 
 <template>
   <VApp>
-    <VAppBar>
-      <VAppBarNavIcon to="/" />
+    <VAppBar density='compact' border="4">
+      <VAppBarNavIcon to="/" class="mr-2" />
       <ThemeSwitch />
-      <VBtn to="/templates">简历模板</VBtn>
+      <VBtn to="/templates" class="mr-2">简历模板</VBtn>
+      <VBtn to="/vip" class="mr-2">VIP会员</VBtn>
     </VAppBar>
     <VMain>
       <slot />

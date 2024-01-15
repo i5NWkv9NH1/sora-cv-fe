@@ -10,7 +10,7 @@ const props = defineProps<Props>()
 
 <template>
   <VCard class="position-relative" width="100%" hover>
-    <div class="position-absolute pa-4" style={{ top: 0, right: 0 }}>
+    <div class="position-absolute pa-4" :style="{top: '0', right: '0'}">
       <VChip color="warning" rounded="lg" size="small">
         VIP
       </VChip>
@@ -21,17 +21,17 @@ const props = defineProps<Props>()
       <VImg :src="props.item.thumbnailUrl" class="rounded-lg" />
     </VCardText>
     <VCardActions>
-      <VBtn :to="`/editor?templateId=${props.item.id}`" variant="tonal" rounded="lg">
+      <VBtn :to="`/editor?templateId=${props.item.id}`" variant="tonal">
         使用模板
       </VBtn>
-      <VBtn :to="`/templates/${props.item.id}`" variant="tonal" rounded="lg">
+      <VBtn :to="`/templates/${props.item.id}`" variant="tonal">
         查看模板
       </VBtn>
     </VCardActions>
-    <!-- <VCardActions>
-      <VChip v-for="tag in props.item.tags" :key="tag.id" class="mr-1" rounded="lg">
+    <VCardActions>
+      <VChip v-for="tag in props.item.tags" :key="tag.id" class="mr-2">
         {{ tag.name }}
       </VChip>
-    </VCardActions> -->
+    </VCardActions>
   </VCard>
 </template>

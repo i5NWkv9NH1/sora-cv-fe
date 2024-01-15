@@ -1,21 +1,23 @@
 <script setup lang="tsx">
-const props = withDefaults(defineProps<{ title: string }>(), {
-  title: '热门简历模板'
+const props = withDefaults(defineProps<{ title: string; titleCenter: boolean; hideTag: boolean }>(), {
+  title: '热门简历模板',
+  titleCenter: false,
+  hideTag: false
 })
 
-function Headline(props: { title: string }) {
+function Headline(props: { title: string; titleCenter: boolean; hideTag: boolean }) {
   return (
-    <div class={'text-h4 font-weight-bold'}>
-      <span class={'text-primary mr-2'}>#</span>
-      {props.title}
+    <div class={['text-h4', 'font-weight-bold',  {'text-center': props.titleCenter }]}>
+      {!props.hideTag && <span class={'text-primary mr-2'}>#</span>}
+            {props.title}
     </div>
   )
 }
 </script>
 
 <template>
-  <div class="d-flex flex-column fluid" style="gap: 1.25rem; width: 100%">
-    <Headline :title="title" />
+  <div class="d-flex flex-column" style="gap: 1.25rem; width: 100%">
+    <Headline :title="title" :titleCenter="titleCenter" :hideTag="hideTag" />
     <slot />
   </div>
 </template>

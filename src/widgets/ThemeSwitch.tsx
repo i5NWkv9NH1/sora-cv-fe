@@ -1,4 +1,4 @@
-import { VBtn, VList, VListItem, VMenu } from 'vuetify/lib/components/index.mjs'
+import { VBtn, VList, VListItem, VMenu, VIcon } from 'vuetify/lib/components/index.mjs'
 import { useTheme } from 'vuetify/lib/framework.mjs'
 
 export const ThemeSwitch = defineComponent({
@@ -14,7 +14,9 @@ export const ThemeSwitch = defineComponent({
         transition={'slide-y-transition'}
         v-slots={{
           activator: ({ props }) => (
-            <VBtn {...props} icon={'mdi-theme-light-dark'} />
+            <VBtn {...props} icon>
+              <VIcon>mdi-theme-light-dark</VIcon>
+            </VBtn>
           ),
           default: () => (
             <VList density={'compact'} nav>

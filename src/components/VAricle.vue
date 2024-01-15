@@ -19,7 +19,8 @@ const props = withDefaults(defineProps<Props>(), {
         view: 108,
         like: 1
       },
-      thumbnailUrl: 'https://www.nicecv.cn/api/web/uploads/202311202136248781b8480.jpg'
+      thumbnailUrl: 'https://www.nicecv.cn/api/web/uploads/202311202136248781b8480.jpg',
+      tags: []
     }
   },
 })
@@ -28,12 +29,15 @@ const props = withDefaults(defineProps<Props>(), {
 
 <template>
   <VHover v-slot="{ isHovering, props }">
-    <VCard width="100%" v-bind="props" hover>
+    <VCard width="100%" v-bind="props" :to="`/articles/${item.id}`" hover>
       <VRow class="fill-height" no-gutters>
         <VCol cols="12" lg="6" md="6">
           <VImg class="position-relative fill-height" transition="slide-y-transition" eager cover>
             <img :src="item.thumbnailUrl" class="fill-height" :style="{ width: '100%' }" />
-            <VOverlay :model-value="isHovering" contained class="fill-height">
+            <VOverlay :model-value="isHovering" contained eager class="fill-height pa-2" scrim="black" transition="slide-y-transition">
+                <div class="d-flex flex-wrap" style="gap: 1rem">
+                  <VAvatar v-for="i in 4" :key="i" color="primary" rounded="lg"  />
+                </div>
             </VOverlay>
           </VImg>
         </VCol>

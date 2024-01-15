@@ -27,7 +27,6 @@ export default defineComponent({
       ]
     })
     useSeoMeta({ title: '登录' })
-    useTheme().global.name.value = 'dark'
 
     const store = useUserStore()
 

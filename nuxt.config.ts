@@ -8,7 +8,7 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'zh-CN'
       },
-      titleTemplate: '%s - 奈思简历 | NiceCV',
+      titleTemplate: '%s - 奈思简历 NiceCV',
       meta: []
     }
   },

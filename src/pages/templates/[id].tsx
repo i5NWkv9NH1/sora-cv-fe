@@ -11,7 +11,7 @@ import {
   VSkeletonLoader
 } from 'vuetify/lib/components/index.mjs'
 import { useDisplay } from 'vuetify/lib/framework.mjs'
-import { VArticle, VSection } from '~/components'
+import { VArticle, VSection, VTemplate } from '~/components'
 import { templateData } from '~/data'
 import type { IArticle, IUIState } from '~/types'
 import { UIStateEmpty, UIStateError } from '~/widgets'
@@ -27,10 +27,9 @@ export default defineComponent({
     const uiState = ref<IUIState>('ok')
     const carousel = ref(0)
 
-    const documentTitle = computed(() => `简历 | ${template.value.file_name}`)
     const { mobile } = useDisplay()
 
-    useSeoMeta({ title: documentTitle.value })
+    useSeoMeta({ title: `${template.value.title}` })
 
     //* SSR
     function TextIntro() {
@@ -157,11 +156,25 @@ export default defineComponent({
           case 'ok':
             return (
               <>
-                {recommend.value.data.map((item) => (
-                  <VCol cols={12} lg={4}>
-                    <VCard>123</VCard>
-                  </VCol>
-                ))}
+                {recommend.value.data.map((item) => {
+                  const tags = item.style_category.map(tag => {
+                    return { id: tag.category_id, name: tag.name }
+                  })
+                  const _item = {
+                    id: item.goods_id,
+                    title: item.goods_name,
+                    description: item.title,
+                    thumbnailUrl: item.goods_image,
+                    publishedAt: item.publish_time,
+                    createdAt: item.publish_time,
+                    tags
+                  }
+                  return (
+                    <VCol cols={12} lg={4}>
+                      <VTemplate item={_item} />
+                    </VCol>
+                  )
+                })}
               </>
             )
           default:
