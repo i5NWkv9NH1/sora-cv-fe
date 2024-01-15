@@ -5,5 +5,6 @@ useSeoMeta({ title: '我的简历' })
 <template>
   <VContainer>
     <div class="text-h4 font-weight-bold">我的简历</div>
+    <VBtn to="/signin">Sign in</VBtn>
   </VContainer>
 </template>

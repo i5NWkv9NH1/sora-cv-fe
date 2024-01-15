@@ -1,7 +1,13 @@
 import { defineStore } from 'pinia'
 
-export const useUserStore = defineStore('user', () => {
-  const state = reactive({})
+export const useUserStore = defineStore(
+  'user',
+  () => {
+    const state = reactive({
+      token: ''
+    })
 
-  return { state }
-})
+    return { state }
+  },
+  { persist: true }
+)

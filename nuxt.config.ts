@@ -21,6 +21,7 @@ export default defineNuxtConfig({
       })
     },
     '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
     '@vueuse/nuxt'
   ],
   pinia: {
