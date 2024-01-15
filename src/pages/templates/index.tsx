@@ -12,6 +12,8 @@ import {
   VRow,
   VSkeletonLoader
 } from 'vuetify/lib/components/index.mjs'
+import type { UIState } from '~/types'
+import { UIStateEmpty, UIStateError } from '~/widgets'
 
 type QueryKey = 'category' | 'date'
 
@@ -28,7 +30,7 @@ export default defineComponent({
     })
     const totalSize = computed(() => 5000)
     const totalPageSize = computed(() => Math.ceil(totalSize.value / 9))
-    const uiState = ref<'ok' | 'loading' | 'empty' | 'error'>('loading')
+    const uiState = ref<UIState>('loading')
     const loading = computed(() => uiState.value === 'loading')
     const filters = ref([
       {
@@ -93,9 +95,9 @@ export default defineComponent({
     function UIStateWrapper() {
       switch (uiState.value) {
         case 'error':
-          return <div class={'text-h4 text-error'}>Error</div>
+          return <UIStateError />
         case 'empty':
-          return <div class={'text-h4 text-warning'}>Empty</div>
+          return <UIStateEmpty />
         case 'loading':
           return (
             <>

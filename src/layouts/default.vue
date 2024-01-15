@@ -5,6 +5,7 @@ import { ThemeSwitch } from '~/widgets';
 <template>
   <VApp>
     <VAppBar>
+      <VAppBarNavIcon to="/" />
       <ThemeSwitch />
       <VBtn to="/templates">简历模板</VBtn>
     </VAppBar>

@@ -16,9 +16,7 @@ function Headline(props: { title: string }) {
 <template>
   <div class="d-flex flex-column fluid" style="gap: 1.25rem; width: 100%">
     <Headline :title="title" />
-    <VRow>
-      <slot />
-    </VRow>
+    <slot />
   </div>
 </template>
 

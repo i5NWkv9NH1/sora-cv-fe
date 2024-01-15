@@ -211,15 +211,15 @@ export const templateData = {
       create_time: '2023-06-19 22:50:59'
     },
     image: [
-      {
-        id: 37034,
-        goods_id: 10022,
-        image_id: 10183,
-        file_path:
-          'https://www.nicecv.cn/api/web/uploads/20231110180328b47d71240.jpg',
-        file_name: '20231110180328b47d71240.jpg',
-        file_url: ''
-      },
+      // {
+      //   id: 37034,
+      //   goods_id: 10022,
+      //   image_id: 10183,
+      //   file_path:
+      //     'https://www.nicecv.cn/api/web/uploads/20231110180328b47d71240.jpg',
+      //   file_name: '20231110180328b47d71240.jpg',
+      //   file_url: ''
+      // },
       {
         id: 37035,
         goods_id: 10022,
@@ -871,6 +871,190 @@ export const templateData = {
             file_url: ''
           }
         ]
+      }
+    ]
+  },
+  articles: {
+    total: 9,
+    per_page: 4,
+    current_page: 1,
+    last_page: 3,
+    data: [
+      {
+        article_id: 10012,
+        article_title: '专业技能书写指南',
+        article_tags: '10571,10572,10573,10574,10581',
+        article_tags_text: null,
+        show_type: 10,
+        category_id: 10010,
+        image_id: 10220,
+        article_content:
+          '<p>编写个人简历时，在专业技能部分，应该突出你拥有的与目标职位相关的技能。以下是一些编写专业技能部分的建议：</p><ul><li><p>关联技能与职位要求： 首先，仔细审视目标职位的要求和描述。将你拥有的技能与这些要求对应起来，并在简历中突出展示这些技能。确保强调的技能与所申请的职位密切相关。</p></li><li><p>分类技能： 将你的专业技能分成不同的类别。例如，可以将其分为技术技能（如编程语言、软件应用）、沟通技能（如演讲、写作）、领导能力、团队合作能力等。这样可以更清晰地展示你的广泛技能组合。</p></li><li><p>具体而非泛泛： 用具体的词语和例子来描述你的技能。举例说明你擅长的工具、技术或方法，并且最好附上相关的成就或项目经验，这样能更具有说服力。</p></li><li><p>关键词和术语： 在列出技能时，使用与行业相关的关键词和术语。这能够吸引招聘人员的注意，并确保你的简历通过筛选软件（如果有使用）。</p></li><li><p>量化技能： 尽量使用量化的数据来突出你的技能。例如，你可以提及项目完成所带来的效益、节省的成本、提高的效率等具体数字或百分比。</p></li><li><p>根据优先级排列： 将最重要、最与职位相关的技能放在技能部分的前面。这样能够在招聘人员浏览简历时首先引起他们的注意。</p></li><li><p>不要夸大或虚假陈述： 要诚实地列出你真正拥有的技能。不要夸大或编造技能，因为一旦你进入面试环节，你需要能够证明你所列出的技能。</p></li><p>以下是一个范例：</p><p>专业技能：</p><li>编程语言：熟练掌握Python、JavaScript和Java，并在多个项目中应用</li><li>数据分析与可视化：熟悉使用Pandas、Matplotlib和Tableau进行数据处理和可视化</li><li>项目管理：具备敏捷项目管理经验，曾成功领导团队完成XYZ项目，提前两周交付并节省20%的成本</li><li>跨部门协作：擅长跨团队合作，与市场营销团队合作推出新产品，带来了30%的销售增长</li><li>沟通技巧：出色的口头和书面沟通能力，撰写过行业报告和技术文档，获得内部赞誉与表彰</li></ul><div>如果你是一名设计师，你的专业技能对于获得理想的工作至关重要。以下是你可以在简历中突出展示的设计领域专业技能：<ul><li><p>设计软件技能： 列举你熟练掌握的设计软件和工具。例如：Adobe Creative Suite（Photoshop、Illustrator、InDesign）、Sketch、Figma、AutoCAD、SolidWorks等。指出你对这些工具的熟练程度和在实际项目中的应用经验。</p></li><li><p>设计技能与流程： 强调你在设计领域的专业技能，如UI/UX设计、平面设计、品牌设计、产品设计、动画制作等。特别强调你的专业方向和擅长的设计领域。</p></li><li><p>创意和审美能力： 提及你在创意方面的天赋和审美观，例如良好的色彩感知、排版能力、视觉沟通技巧等。</p></li><li><p>项目经验和作品集： 除了列出技能，也可以通过提供在线作品集或链接来展示你的设计能力。这些作品应该涵盖不同类型的项目，突出你的创意、执行和解决问题的能力。</p></li><li><p>用户体验（UX）和用户界面（UI）设计： 如果你在这两个领域有经验，一定要强调。说明你如何设计用户友好的界面和流畅的用户体验，以及你在设计过程中使用的方法和工具。</p></li><li><p>团队合作与沟通： 强调你在团队工作中的能力，与其他部门合作的经验以及良好的沟通能力。设计师通常需要与客户、开发团队和其他利益相关者进行沟通，这是一个重要的技能。</p></li><li><p>持续学习和趋势跟踪： 提到你对设计行业趋势的关注和持续学习的态度。设计行业不断发展变化，能够展现你对新技术和创新的敏感度会增加你的竞争力。</p></li><p>以下是一个设计师简历中专业技能部分的示例：</p><p>专业技能：</p><li>Adobe Creative Suite（Photoshop、Illustrator、InDesign）熟练操作，经常运用于品牌设计和平面设计项目</li><li>UI/UX设计：精通Sketch和Figma，设计并优化多个用户界面和用户体验，提高了产品的易用性和吸引力</li><li>创意思维：拥有良好的审美观和创意解决问题的能力，通过设计有效传达客户需求和品牌形象</li><li>团队合作与沟通：与开发团队和客户紧密合作，良好的沟通能力促进了项目的顺利进行和成果的达成</li><li>技术趋势：保持对设计工具和趋势的敏感，不断学习和尝试新的设计方法和技术</li></ul><p>以上示例可以根据你的个人经验和所申请的职位进行调整和定制，确保突出展示你在设计领域的专业技能和价值。</p><p><br/></p></div><p>记住，在编写个人简历时，要让内容简洁明了，突出重点，以吸引招聘人员的关注，并使其能快速了解你的关键技能。</p><p><br/></p>',
+        article_sort: 100,
+        article_status: 1,
+        virtual_views: 178,
+        actual_views: 106,
+        dian_zan: 1,
+        seo_desc:
+          '编写个人简历时，在专业技能部分，应该突出你拥有的与目标职位相关的技能。以下是一些编写专业技能部分的建议：关联技能与职位要求： 首先，仔细审视目标职位的要求和描述。将你拥有的技能与这些要求对应起来，并在简历中突出展示这些技能。确保强调的技能与所申请的职位密切相关。分类技能： 将你的专业技能分成不同的类别。',
+        image: {
+          file_id: 10220,
+          storage: 'local',
+          group_id: 0,
+          file_url: '',
+          file_name: '202311202136248781b8480.jpg',
+          file_size: 78163,
+          file_type: 'image',
+          extension: 'jpg',
+          is_user: 0,
+          is_recycle: 0,
+          is_delete: 0,
+          file_path:
+            'https://www.nicecv.cn/api/web/uploads/202311202136248781b8480.jpg'
+        },
+        category: {
+          category_id: 10010,
+          name: '简历指南',
+          url: 'guide',
+          sort: 1,
+          wxapp_id: 10001,
+          create_time: '2023-09-01 15:39:13',
+          update_time: '2023-12-24 10:15:41'
+        },
+        show_views: 284,
+        view_time: '2023-11-20'
+      },
+      {
+        article_id: 10011,
+        article_title: '工作经历书写指南',
+        article_tags: '10575,10576,10577,10578',
+        article_tags_text: null,
+        show_type: 10,
+        category_id: 10010,
+        image_id: 10219,
+        article_content:
+          '<p><span style="text-wrap: nowrap;">写工作经历时，关键是清晰、有条理地展示你在过去的职位中取得的成就和所做的贡献。以下是写简历工作经历部分的一些建议：</span></p><p><span style="text-wrap: nowrap;"><br/></span></p><p><span style="text-wrap: nowrap;">1. 格式和排列：</span></p><p><span style="text-wrap: nowrap;">倒叙排列： 从最近的工作开始写起，按时间倒序排列。</span></p><p><span style="text-wrap: nowrap;">明确标题： 包括公司名称、职位名称、工作地点和时间范围。例如：“公司名称 - 职位名称 | 工作地点 | 时间范围”。</span></p><p><span style="text-wrap: nowrap;">2. 工作描述：</span></p><p><span style="text-wrap: nowrap;">使用动词强调成就： 描述你在该职位中承担的责任和取得的成就。使用动词强调你的行动和贡献，如“负责”、“协助”、“领导”、“实施”等。</span></p><p><span style="text-wrap: nowrap;">量化成果： 使用具体数据和数字来量化你的成就，例如销售增长率、节省的成本、项目完成时间等。</span></p><p><span style="text-wrap: nowrap;">3. 突出重点：</span></p><p><span style="text-wrap: nowrap;">重点突出： 强调与目标职位相关的工作经历和成就。将你最相关和最具有说服力的经历放在最前面。</span></p><p><span style="text-wrap: nowrap;">关联职责和技能： 将工作描述与你所获得的技能、经验直接联系起来，突出你在该职位中所学到的技能和成长。</span></p><p><span style="text-wrap: nowrap;">4. 使用例句的结构：</span></p><p><span style="text-wrap: nowrap;">情境 + 行动 + 结果： 使用 STAR 法则（Situation, Task, Action, Result）来组织你的工作描述，描述清楚工作情境、你采取的行动和取得的结果。</span></p><p><span style="text-wrap: nowrap;">5. 举例：</span></p><p><span style="text-wrap: nowrap;">公司名称 - 职位名称 | 工作地点 | 时间范围</span></p><p><span style="text-wrap: nowrap;">- 描述你在该职位中承担的主要责任和任务，使用动词突出你的行动和成果。</span></p><p><span style="text-wrap: nowrap;">- 强调你所取得的成就和影响，最好用具体的数据和百分比来说明。</span></p><p><span style="text-wrap: nowrap;">- 突出强调与目标职位相关的技能和经验，使其更具吸引力。</span></p><p><span style="text-wrap: nowrap;">举例：</span></p><p><span style="text-wrap: nowrap;">ABC设计公司 - 高级UI/UX设计师 | 纽约，美国 | 2019年至今</span></p><p><span style="text-wrap: nowrap;">- 领导跨部门团队，设计并优化了公司核心产品的用户界面，提高了用户满意度20%。</span></p><p><span style="text-wrap: nowrap;">- 重构了设计流程，缩短了产品开发周期30%，使产品更快地投放市场。</span></p><p><span style="text-wrap: nowrap;">- 设计了新的用户导航系统，增加了平均用户停留时间和转化率10%。</span></p><p><span style="text-wrap: nowrap;"><br/></span></p><p><span style="text-wrap: nowrap;">注：这是一个简单的范例，实际的工作描述应根据个人经验和取得的成就进行具体展示，并与所申请的职位相关联。</span></p><p><span style="text-wrap: nowrap;">记住，工作经历部分需要清晰、简洁地表达你的职责和成就，使招聘人员能够清楚地了解你在过去的工作中所取得的成绩和价值。</span></p>',
+        article_sort: 100,
+        article_status: 1,
+        virtual_views: 0,
+        actual_views: 92,
+        dian_zan: 0,
+        seo_desc:
+          '写工作经历时，关键是清晰、有条理地展示你在过去的职位中取得的成就和所做的贡献。以下是写简历工作经历部分的一些建议：1. 格式和排列：倒叙排列： 从最近的工作开始写起，按时间倒序排列。明确标题： 包括公司名称、职位名称、工作地点和时间范围。例如：“公司名称 - 职位名称 | 工作地点 | 时间范围”。2.',
+        image: {
+          file_id: 10219,
+          storage: 'local',
+          group_id: 0,
+          file_url: '',
+          file_name: '202311202126158eecc9171.jpg',
+          file_size: 93910,
+          file_type: 'image',
+          extension: 'jpg',
+          is_user: 0,
+          is_recycle: 0,
+          is_delete: 0,
+          file_path:
+            'https://www.nicecv.cn/api/web/uploads/202311202126158eecc9171.jpg'
+        },
+        category: {
+          category_id: 10010,
+          name: '简历指南',
+          url: 'guide',
+          sort: 1,
+          wxapp_id: 10001,
+          create_time: '2023-09-01 15:39:13',
+          update_time: '2023-12-24 10:15:41'
+        },
+        show_views: 92,
+        view_time: '2023-11-20'
+      },
+      {
+        article_id: 10010,
+        article_title: '教育经历书写指南',
+        article_tags: null,
+        article_tags_text: null,
+        show_type: 10,
+        category_id: 10010,
+        image_id: 10127,
+        article_content:
+          '<h3>学校在小城市，在简历上怎么写?</h3><p>在小城市毕业的同学如果在简历上只写了城市可能会让HR产生疑惑，可以在后面加上所在国家，示例：墨尔本，澳大利亚，但需要确保整份简历的每一段经历上标注地点的格式统一。</p><h3>高中教育经历需要写吗？</h3><p></p><p>高中经历一般建议不写，过于久远的教育经历并不具有参考价值，大学之前的学历都建议不写。</p><p>如果是大一或者大二，并且高中非常知名，可以考虑填写高中教育经历。</p><p>GPA 一定要写吗？</p><p></p><p>GPA 不错的话，当然写在简历上，尤其是工作经验不多的学生和职场新人。</p><p>不同学校，不同国家，不同专业，对于什么才是一个“高”的 GPA 定义都不太一样。 比较常见的说法：</p><p>文科/文理学院的 GPA 在 3.6 以上属于比较“高”；<br/>理科/工程学院的 GPA 在 3.2 以上属于比较“高”。<br/></p><p>每个学院、学校都会统计自己学生的平均 GPA ，你可以根据对比大致算出自己的水平。如果你的 GPA 看起来比较低但实际上在整个专业中排名很靠前，可以写一个括号注明，比如：GPA:3.0 (全专业前 10%)。</p><p>如果 GPA 真的不算出彩（3.0 以下）可以不放在简历上。但是有些公司会要求提供毕业时成绩单，还是可以看到的。</p><p>尽管 GPA 是衡量人才的重要指标，但不代表 GPA 不高就找不到好工作，还有很多维度会综合衡量，比如通过工作经验和活动经历中出色的表现来体现个人能力。</p><p>哪些考试成绩可以写在教育部分？</p><p></p><p>SAT/ACT/GRE/GMAT/LSAT这类硬性入学考试成绩可列，托福/雅思等语言成绩建议放在“其他”模块当中的【语言】部分进行描述。</p><p>除非考试成绩突出，否则一般不建议写上这些考试的成绩，成绩的写法应该为：你的分数/总分，</p><p>示例: SAT：1500/1600</p><p>哪些荣誉奖项值得写？</p><p></p><p>在教育经历下面写的奖项，一般建议知名度高、比较难获得的奖学金或奖项，与学术相关的奖项，以及与所申请行业相关的奖项，比如：国家奖学金，XX学科奖学金，XX商业大赛前20名。</p><p>一些活动类的奖项如：摄影大赛一等奖，马拉松比赛第一名等，建议放在活动或兴趣爱好中。</p><p>荣誉奖项建议筛选含金量较高的来写，且尽量不要超过一行。</p><p>哪些相关课程值得写？</p><p></p><div data-v-6904731f=""><div data-v-6904731f=""><p>相关课程属于简历上内容不足时的“填充物”，已经参加工作不必写相关课程；就读研究生的不必写本科相关课程；有较多实习经历了不必写相关课程。</p><p>如果要写，建议只写与所申请行业相关的课程，且尽可能展示难度较高的课程（线性代数 &gt; 微积分；犯罪心理学 &gt; 心理学）</p><p>多个教育经历只写最近一个的相关课程即可。</p><p>培训经历可以写在教育经历中吗？</p><p></p><p>培训经历一般不建议写在教育经历中，如果只是在校内进行的培训，可以写在活动版块中。</p><p>一般培训如果有结业证书，建议写在其他模块的【证书栏】中。</p><p>成绩是百分比怎么写比较好？</p><p></p><p>百分比的成绩建议改成 GPA 的格式，可以参考 College Board 的网站How to Convert Your GPA to a 4.0 Scale，了解美国最权威的机构 College Board（美国大学理事会）是如何换算 GPA 的。</p><p>如果是英国成绩的话，直接写 AVG 或者 平均成绩，有 Merit 或者 Distinction 也可以不写成绩，直接写 优等学位 Merit 或 一等成绩 Distinction。</p><p><br/></p><p>如果教育经历只有1个月，时间应该怎么选择？<br/></p><p>教育、工作/实习、活动、项目、奖项等内容如果是一个时间点或者不到1个月的经历，只选择结束时间就可以了，不要出现 9月-9月 这样的写法。</p></div></div>',
+        article_sort: 100,
+        article_status: 1,
+        virtual_views: 0,
+        actual_views: 82,
+        dian_zan: 6,
+        seo_desc:
+          '学校在小城市，在简历上怎么写?在小城市毕业的同学如果在简历上只写了城市可能会让HR产生疑惑，可以在后面加上所在国家，示例：墨尔本，澳大利亚，但需要确保整份简历的每一段经历上标注地点的格式统一。高中教育经历需要写吗？高中经历一般建议不写，过于久远的教育经历并不具有参考价值，大学之前的学历都建议不写。如果是',
+        image: {
+          file_id: 10127,
+          storage: 'local',
+          group_id: 0,
+          file_url: '',
+          file_name: '20230903234028086057012.jpg',
+          file_size: 79095,
+          file_type: 'image',
+          extension: 'jpg',
+          is_user: 0,
+          is_recycle: 0,
+          is_delete: 0,
+          file_path:
+            'https://www.nicecv.cn/api/web/uploads/20230903234028086057012.jpg'
+        },
+        category: {
+          category_id: 10010,
+          name: '简历指南',
+          url: 'guide',
+          sort: 1,
+          wxapp_id: 10001,
+          create_time: '2023-09-01 15:39:13',
+          update_time: '2023-12-24 10:15:41'
+        },
+        show_views: 82,
+        view_time: '2023-09-03'
+      },
+      {
+        article_id: 10009,
+        article_title: '简历照片应该是什么样？',
+        article_tags: '10579,10580',
+        article_tags_text: null,
+        show_type: 10,
+        category_id: 10010,
+        image_id: 10125,
+        article_content:
+          '<p>简历中的照片应该是一张专业、端庄的肖像照。它应该清晰地展示你的头部和肩部。在这张照片中，你应该面带微笑，表情友好自然。</p><p>简历上是否应该放照片？基本上遵守两个规则：</p><p>1. 民企/国企推荐放照片，外企推荐不放照片。</p><p>2. 如果决定放照片，一定要使用证件照/职业照，一定不要用生活照。</p><p><br/></p><p>简历上的照片应该是什么样的？对于简历照片，我们建议一下几点：\n &nbsp; &nbsp;</p><p>1. 剪裁：头部上方空一定距离，下面要露到肩膀左右，不要剪裁成大头照；</p><p>2. 底色：白色、蓝色或灰色，红色一般不推荐（像结婚照）；</p><p>3. 发型：长发盘起来；短发梳好，尽可能不要遮挡脸部；避免头发凌乱；</p><p>4. 表情：微笑即可，不要特别严肃也不要大笑；</p><p>5. 着装：穿着得体，选择符合职业形象的服装。最好选择正装或商务休闲装，避免过于随意或夸张的服饰。申请严肃的行业（如金融）建议西装（男生配领带；女生不必），互联网行业建议深色衬衫或T恤；</p><p>6. 背景：选择简洁、干净的背景，避免太多杂乱的元素或强烈的颜色。最好选择单色背景或者淡雅的背景；</p><p>7. 姿势：应该是正面或稍微侧面的头部照片，不要选择过于艺术性的角度或姿势；</p><p>8. 照片质量：照片应该是高清晰度和良好曝光的。确保照片的质量和光线使你的面容清晰可见；</p><p>9. 自然光线：最好在自然光线下拍摄照片，避免使用强烈的闪光灯或光线，以确保面部轮廓清晰。</p><p><br/></p><p>是否有好的和不好的头像案例对比？可参考下面的图片：</p><p></p><p><img src="https://admin.nicecv.cn/web/uploads/20230901154842f49164867.png"/></p><p><br/></p>',
+        article_sort: 100,
+        article_status: 1,
+        virtual_views: 0,
+        actual_views: 56,
+        dian_zan: 0,
+        seo_desc:
+          '简历中的照片应该是一张专业、端庄的肖像照。它应该清晰地展示你的头部和肩部。在这张照片中，你应该面带微笑，表情友好自然。简历上是否应该放照片？基本上遵守两个规则：1. 民企/国企推荐放照片，外企推荐不放照片。2. 如果决定放照片，一定要使用证件照/职业照，一定不要用生活照。简历上的照片应该是什么样的？对于',
+        image: {
+          file_id: 10125,
+          storage: 'local',
+          group_id: 0,
+          file_url: '',
+          file_name: '2023090115530167b738721.jpg',
+          file_size: 108958,
+          file_type: 'image',
+          extension: 'jpg',
+          is_user: 0,
+          is_recycle: 0,
+          is_delete: 0,
+          file_path:
+            'https://www.nicecv.cn/api/web/uploads/2023090115530167b738721.jpg'
+        },
+        category: {
+          category_id: 10010,
+          name: '简历指南',
+          url: 'guide',
+          sort: 1,
+          wxapp_id: 10001,
+          create_time: '2023-09-01 15:39:13',
+          update_time: '2023-12-24 10:15:41'
+        },
+        show_views: 56,
+        view_time: '2023-09-03'
       }
     ]
   }
