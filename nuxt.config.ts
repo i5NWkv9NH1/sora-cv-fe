@@ -12,7 +12,10 @@ export default defineNuxtConfig({
       meta: []
     }
   },
-  css: [],
+  css: ['~/assets/styles/main.scss'],
+  imports: {
+    dirs: []
+  },
   modules: [
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {

@@ -1,6 +1,7 @@
-export type UIState = 'ok' | 'loading' | 'empty' | 'error'
+export type IUIState = 'ok' | 'loading' | 'empty' | 'error'
 
-export type Article = {
+export type IArticle = {
+  id: string | number
   title: string
   subtitle: string
   createdAt: string
@@ -12,12 +13,19 @@ export type Article = {
   thumbnailUrl: string
 }
 
-export type Template = {
+export type ITag = {
+  id: string | number
+  name: string
+}
+
+export type ITemplate = {
+  id: string | number
   title: string
   description: string
-  jobCategory: []
-  experienceCategory: []
+  jobCategory: ITag[]
+  experienceCategory: ITag[]
   createdAt: string
   publishedAt: string
-  tags: []
+  tags: ITag[]
+  thumbnailUrl: string
 }

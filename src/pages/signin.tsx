@@ -21,9 +21,6 @@ export default defineComponent({
         (to, from) => {
           const store = useUserStore()
           if (store.state.token) {
-            // if (from.path) {
-            //   return navigateTo({ path: from.path })
-            // }
             return navigateTo({ path: '/creator' })
           }
         }
@@ -103,11 +100,11 @@ export default defineComponent({
 
     function WeChatQRCode() {
       return (
-        <VSheet class={'d-flex flex-column justify-center pa-8'} rounded={'xl'}>
+        <VSheet class={'d-flex flex-column justify-center pa-8'}>
           <div class='text-h6 font-weight-bold text-warning'>
             使用微信扫码快捷登录
           </div>
-          <div class={'pa-4 border-4 rounded-xl'}>
+          <div class={'pa-4 border-4 position-relative'}>
             <VImg src={qrcode.value} />
           </div>
           <div class={''}>
@@ -130,14 +127,11 @@ export default defineComponent({
       return (
         <VRow style={{ flex: 'none', width: '100%' }} justify={'center'}>
           <VCol cols={10} lg={8} md={10} sm={10} class={'pa-0'}>
-            <VSheet
-              class={'d-flex flex-column justify-center pa-8 my-4'}
-              rounded={'xl'}
-            >
+            <VSheet class={'d-flex flex-column justify-center pa-8 my-4'}>
               <div class='text-h6 font-weight-bold text-warning'>
                 使用手机验证码登录
               </div>
-              <VForm class={'pa-4 border-4 rounded-xl'}>
+              <VForm class={'pa-4 border-4'}>
                 <VTextField
                   v-model={form.phone.value}
                   rules={form.phone.rule}

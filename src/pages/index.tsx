@@ -1,18 +1,13 @@
 import {
   VBtn,
   VCard,
-  VCardActions,
-  VCardItem,
-  VCardSubtitle,
   VCardText,
-  VCardTitle,
-  VChip,
   VCol,
   VContainer,
   VImg,
-  VRow,
-  VSheet
+  VRow
 } from 'vuetify/lib/components/index.mjs'
+import { VTemplate } from '~/components'
 export default defineComponent({
   setup() {
     useSeoMeta({ title: '首页' })
@@ -233,8 +228,8 @@ export default defineComponent({
           <Headline title={'简要介绍'} />
           <VRow>
             {state.intros.map((item, index) => (
-              <VCol cols={12} lg={4} key={item.title}>
-                <VCard color={item.color} rounded={'xl'} flat>
+              <VCol cols={12} lg={4} md={4} sm={6} key={item.title}>
+                <VCard color={item.color} flat>
                   <VCardText>
                     <div
                       class={
@@ -267,50 +262,8 @@ export default defineComponent({
           <Headline title={'热门简历模板'} />
           <VRow>
             {state.templates.map((template) => (
-              <VCol cols={12} lg={4} key={template.id}>
-                <VCard class={'relative'} width={'100%'} hover>
-                  <VCardTitle class={'font-weight-bold'}>
-                    {template.title}
-                  </VCardTitle>
-                  <VCardSubtitle>{template.description}</VCardSubtitle>
-                  <VCardText>
-                    <VImg src={template.thumbnailUrl} />
-                  </VCardText>
-                  <VCardActions>
-                    <VBtn to={'/signin'} color={'primary'} variant={'tonal'}>
-                      使用模板
-                    </VBtn>
-                    <VBtn to={'/signin'} color={'warning'} variant={'tonal'}>
-                      查看模板
-                    </VBtn>
-                  </VCardActions>
-                  <VCardActions>
-                    {template.tags.map((tag) => (
-                      <VChip class={'mr-1'} key={tag.id} rounded={'xl'}>
-                        {tag.name}
-                      </VChip>
-                    ))}
-                  </VCardActions>
-                  {/* <VCardText>
-                    <div class={'d-flex flex-column'} style={{ gap: '1rem' }}>
-                      <div class={'text-h6 font-weight-bold'}>{template.title}</div>
-                      <div class={'text-caption'}>{template.description}</div>
-
-                      <VImg src={template.thumbnailUrl} />
-                      <div class={'d-flex'}>
-                        <VBtn to={'/signin'}>使用模板</VBtn>
-                        <VBtn to={'/signin'}>查看模板</VBtn>
-                      </div>
-                      <div class={'d-flex'}>
-                        {template.tags.map(tag => (
-                          <div class={'text-caption'} key={tag.id}>
-                            #{tag.name}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </VCardText> */}
-                </VCard>
+              <VCol cols={12} lg={4} md={4} sm={6} key={template.id}>
+                <VTemplate item={template} key={template.id} />
               </VCol>
             ))}
           </VRow>
@@ -329,8 +282,8 @@ export default defineComponent({
           <Headline title={'AI 求职工具'} />
           <VRow>
             {state.ai.map((item) => (
-              <VCol cols={12} lg={4} key={item.id}>
-                <VCard width={'100%'} to={`/ai/${item.id}`} rounded={'xl'} flat>
+              <VCol cols={12} lg={4} md={4} sm={6} key={item.id}>
+                <VCard width={'100%'} to={`/ai/${item.id}`} flat>
                   <VCardText>
                     <div
                       class={'d-flex flex-column text-center pa-4 align-center'}
