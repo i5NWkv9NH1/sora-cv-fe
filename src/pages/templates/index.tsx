@@ -141,7 +141,7 @@ export default defineComponent({
                 return (
                   <VCol cols={12} lg={4} md={4} sm={6}>
                     {/*@ts-ignore*/}
-                    {/* <VTemplate item={_item} key={_item.id} /> */}
+                    <VTemplate item={_item} key={_item.id} />
                     {/*@ts-ignore*/}
                   </VCol>
                 )

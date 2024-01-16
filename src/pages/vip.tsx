@@ -1,5 +1,5 @@
 import { VBtn, VContainer, VRow, VCol, VCard, VHover, VExpansionPanels, VExpansionPanel, VExpansionPanelText,VExpansionPanelTitle,VSheet, VFabTransition, VDivider } from 'vuetify/lib/components/index.mjs'
-import { VSection, VIntro } from '~/components'
+import { VSection, VIntro, NeedVIP } from '~/components'
 import type { ISubscribe } from '~/types'
 
 export default defineComponent({
@@ -10,8 +10,8 @@ export default defineComponent({
 
     const items = ref([
       { id: 1, title: '月度会员', price: '18', type: '月度', description: `<p>无限制访问所有简历模板</p>\n <p>创建和编辑您的简历</p><p>使用ai简历助手</p>`, order: 0, value: 1 },
-      { id: 2, title: '月度会员', price: '98', type: '每年', description: `<p>无限制访问所有简历模板</p>\n <p>创建和编辑无限的简历</p><p>使用ai简历助手</p>`, order: 1, value: 2 },
-      { id: 3, title: '月度会员', price: '198', type: '终身', description: `<p>无限制访问所有简历模板</p>\n <p>创建和编辑您的简历</p><p>AI简历助手无限制使用</p>`, order: 0, value: 3 },
+      { id: 2, title: '年度会员', price: '98', type: '每年', description: `<p>无限制访问所有简历模板</p>\n <p>创建和编辑无限的简历</p><p>使用ai简历助手</p>`, order: 1, value: 2 },
+      { id: 3, title: '终身会员', price: '198', type: '终身', description: `<p>无限制访问所有简历模板</p>\n <p>创建和编辑您的简历</p><p>AI简历助手无限制使用</p>`, order: 0, value: 3 },
     ])
     const selectedPlan = ref(2)
     const faq = ref([
@@ -91,7 +91,7 @@ export default defineComponent({
                       border
                     >
                       <div class={'d-flex flex-column align-center justify-space-between'} style={{ gap: '1.25rem', color: styles.value.color }}>
-                        <div class={'text-h6'}>{item.type}会员</div>
+                        <div class={'text-h6'}>{item.title}</div>
                         <div class={'d-flex align-baseline'}>
                           <div class={'text-h4'}  style={{ fontWeight: 'bolder !important'}}>¥</div>
                           <div class={'text-h2'}  style={{ fontWeight: 'bolder !important'}}>{item.price}</div>
@@ -118,9 +118,11 @@ export default defineComponent({
 
 
 
+
+
     function FAQWrapper() {
       return (
-        <VIntro title={'常见问题'} caption={'常见问题解答'} v-slots={{ prepend: () => <div class={'text-grey'}>FAQ</div>}}>
+        <VIntro title={'常见问题'} caption={'常见问题解答'} center={true} v-slots={{ prepend: () => <div class={'text-grey'}>FAQ</div>}}>
           <VRow>
             <VCol cols={12}>
             {faq.value.map(item => (
@@ -139,6 +141,7 @@ export default defineComponent({
     return () => (
       <VContainer class='fill-height' style='gap: 4rem'>
         <SubscribeWrapper />
+        <NeedVIP />
         <FAQWrapper />
       </VContainer>
     )

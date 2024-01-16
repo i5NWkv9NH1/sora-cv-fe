@@ -7,7 +7,7 @@ import {
   VImg,
   VRow
 } from 'vuetify/lib/components/index.mjs'
-import { VTemplate, VIntro } from '~/components'
+import { VTemplate, VIntro, NeedVIP } from '~/components'
 export default defineComponent({
   setup() {
     useSeoMeta({ title: '首页' })
@@ -147,47 +147,6 @@ export default defineComponent({
             'https://www.nicecv.cn/api/web/uploads/20230816215226f25132063.png'
         }
       ],
-      footer: [
-        {
-          title: '产品',
-          children: [
-            { title: '简历模板', path: '/templates' },
-            { title: 'AI 工具', path: '/ai' }
-          ]
-        },
-        {
-          title: '文章',
-          children: [
-            { title: '求职攻略', path: '/templates' },
-            { title: '面试经验', path: '/ai' },
-            { title: '建立指南', path: '/ai' }
-          ]
-        },
-        {
-          title: '关于我们',
-          children: [
-            { title: '产品介绍', path: '/templates' },
-            { title: '服务协议', path: '/ai' },
-            { title: '隐私条款', path: '/ai' }
-          ]
-        },
-        {
-          title: '服务',
-          children: [
-            { title: '帮助中心', path: '/templates' },
-            { title: '常见问题', path: '/ai' },
-            { title: '成为VIP会员', path: '/ai' }
-          ]
-        },
-        {
-          title: '联系我们',
-          children: [
-            { title: '微信号：Bravesnail' },
-            { title: '公众号：奈斯简历NiceCV' },
-            { title: '小红书：奈斯简历' }
-          ]
-        }
-      ]
     })
 
     function Headline(props: { title: string }) {
@@ -202,7 +161,7 @@ export default defineComponent({
       return (
         <VRow align={'center'} justify={'space-between'}>
           <VCol>
-            <VIntro gap={1.25}>
+            <VIntro gap={1.25} title={'轻松在线制作'} subtitle={'您的精美个人简历'} caption={'节省简历制作的时间，帮助您更好的介绍自己，获得梦想的职位。'}>
               <VBtn to={'/signin'} width={'50%'}>
                 创建您的简历
               </VBtn>
@@ -309,6 +268,7 @@ export default defineComponent({
       <VContainer class='fill-height' style='gap: 4rem'>
         <Cover />
         <Intros />
+        <NeedVIP />
         <Templates />
         <AI />
       </VContainer>

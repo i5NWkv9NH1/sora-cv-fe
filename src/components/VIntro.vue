@@ -8,7 +8,7 @@ const props = withDefaults(defineProps<{ title: string; subtitle: string; captio
   width: '100%'
 })
 
-const classes = computed(() => ['headline', 'text-center', 'mb-10', { 'justify-center': props.center }])
+const classes = computed(() => ['headline', 'mb-10', { 'text-center': props.center }])
 const styles = computed(() => {
   return {
     gap: `${props.gap}rem`,
@@ -26,7 +26,7 @@ const styles = computed(() => {
       </div>
       <div class='text-h3 font-weight-bold  my-4'>{{props.title}}</div>
       <div class='text-h3'>{{props.subtitle}}</div>
-      <div class='text-subtitle-1'>
+      <div class='text-subtitle-1 my-4'>
         {{ props.caption }}
       </div>
     </div>
