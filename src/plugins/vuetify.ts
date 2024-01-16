@@ -2,6 +2,7 @@ import '@mdi/font/css/materialdesignicons.css'
 
 import { createVuetify } from 'vuetify'
 import { md3 } from 'vuetify/blueprints'
+import * as directives from 'vuetify/directives'
 import 'vuetify/styles'
 
 const defaults = {
@@ -34,7 +35,8 @@ export default defineNuxtPlugin((app) => {
     ssr: true,
     // ssr: false,
     // blueprint: md3,
-    defaults
+    defaults,
+    directives
   })
   app.vueApp.use(vuetify)
 })

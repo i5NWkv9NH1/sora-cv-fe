@@ -38,6 +38,7 @@ export const UserProfileMenu = defineComponent({
       <VMenu
         offset={10}
         transition={'slide-y-transition'}
+        width={180}
         v-slots={{
           default: () => (
             <VList density={'compact'} variant={'text'} nav>
@@ -72,7 +73,13 @@ export const UserProfileMenu = defineComponent({
             </VList>
           ),
           activator: ({ isActive, props }) => (
-            <VAvatar class={'mr-2'} image={store.state.avatarUrl} {...props} />
+            <VAvatar
+              class={'mr-4'}
+              image={store.state.avatarUrl}
+              {...props}
+              rounded={'xl'}
+              density={'compact'}
+            />
           )
         }}
       />

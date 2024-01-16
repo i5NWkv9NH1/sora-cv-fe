@@ -28,10 +28,10 @@ const store = usePreferencesStore()
       :location="store.alert.location" />
     <VAppBar density="compact">
       <ThemeSwitch />
-      <UserProfileMenu />
       <VSpacer />
+      <UserProfileMenu />
     </VAppBar>
-    <VNavigationDrawer width="180">
+    <VNavigationDrawer>
       <template #append>
         <VList nav density="compact">
           <VListItem :prepend-icon="`mdi-lightbulb-question-outline`" title="帮助中心" to="/" exact />

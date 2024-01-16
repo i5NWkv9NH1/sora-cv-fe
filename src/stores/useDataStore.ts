@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { templateListData } from '~/data'
 import type { IOrder } from '~/types'
 
 export const useDataStore = defineStore(
@@ -38,7 +39,22 @@ export const useDataStore = defineStore(
           price: 18.0,
           status: 2
         }
-      ] as IOrder[]
+      ] as IOrder[],
+      templateList: templateListData.map((item) => {
+        const tags = item.style_category.map((_tag) => {
+          return {
+            id: _tag.category_id,
+            name: _tag.name
+          }
+        })
+        return {
+          id: item.goods_id,
+          title: item.goods_name,
+          description: item.selling_point,
+          tags,
+          thumbnailUrl: item.goods_image
+        }
+      })
     })
 
     return { state }
