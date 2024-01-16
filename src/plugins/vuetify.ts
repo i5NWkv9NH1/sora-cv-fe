@@ -33,7 +33,7 @@ export default defineNuxtPlugin((app) => {
     // ... your configuration
     ssr: true,
     // ssr: false,
-    blueprint: md3,
+    // blueprint: md3,
     defaults
   })
   app.vueApp.use(vuetify)

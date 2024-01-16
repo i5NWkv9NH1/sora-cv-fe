@@ -12,10 +12,16 @@ export const useUserStore = defineStore(
       name: '用户_1807',
       phoneNumebr: '',
       phone: false,
-      wechat: true
+      wechat: true,
+      isVip: true
     })
 
-    return { state }
+    function logout() {
+      state.value.token = ''
+      navigateTo('/signin')
+    }
+
+    return { state, logout }
   },
   { persist: true }
 )

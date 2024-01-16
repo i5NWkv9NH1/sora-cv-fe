@@ -8,6 +8,7 @@ import {
 } from 'vuetify/components'
 import { useDataStore } from '~/stores'
 import type { IOrder, IUIState } from '~/types'
+import { UIStateEmpty, UIStateError } from '~/widgets'
 
 export default defineComponent({
   setup() {
@@ -67,6 +68,10 @@ export default defineComponent({
 
     function UIStateWrapper() {
       switch (uiState.value) {
+        case 'empty':
+          return <UIStateEmpty />
+        case 'error':
+          return <UIStateError />
         // case 'loading':
         // return <VSkeletonLoader type={'table'} />
         case 'loading':
@@ -111,16 +116,7 @@ export default defineComponent({
 
     return () => (
       <VContainer>
-        <VRow>
-          <VCol>
-            <div class={'text-h4'}>订单中心</div>
-          </VCol>
-        </VRow>
-        <VRow justify={'center'}>
-          <VCol cols={12} lg={12}>
-            <UIStateWrapper />
-          </VCol>
-        </VRow>
+        <UIStateWrapper />
       </VContainer>
     )
   }

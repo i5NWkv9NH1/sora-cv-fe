@@ -67,13 +67,15 @@ const state = reactive({
           </VCol>
           <VCol cols="12" lg="10" md="10">
             <VRow justify="space-between" no-gutters>
-              <VCol cols="6" lg="2" md="3" sm="3"  v-for="item in state.footer" :key="item.title">
-                <div class="text-subtitle-1">{{item.title}}</div>
+              <VCol cols="6" lg="2" md="3" sm="3" v-for="item in state.footer" :key="item.title">
+                <div class="text-subtitle-1">{{ item.title }}</div>
                 <div class="text-caption text-blue-grey-darken-4" v-for="route in item.children" :key="route.title">
                   <VHover>
-                    <template v-slot:default="{isHovering, props}">
-                      <NuxtLink :to="route.path" :class="['text-decoration-none', isHovering ? 'text-info' : 'text-blue-grey-darken-1']" v-bind="props">
-                      {{route.title}}</NuxtLink>
+                    <template v-slot:default="{ isHovering, props }">
+                      <NuxtLink :to="route.path && route.path"
+                        :class="['text-decoration-none', isHovering ? 'text-info' : 'text-blue-grey-darken-1']"
+                        v-bind="props">
+                        {{ route.title }}</NuxtLink>
                     </template>
                   </VHover>
                 </div>

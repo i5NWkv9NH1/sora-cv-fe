@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { usePreferencesStore } from '~/stores';
-import { ThemeSwitch } from '~/widgets'
+import { ThemeSwitch, UserProfileMenu } from '~/widgets'
 
 const list = ref([
   {
@@ -26,8 +26,10 @@ const store = usePreferencesStore()
   <VApp>
     <VSnackbar v-model="store.alert.status" :text="store.alert.message" :timeout="store.alert.delay"
       :location="store.alert.location" />
-    <VAppBar>
+    <VAppBar density="compact">
       <ThemeSwitch />
+      <UserProfileMenu />
+      <VSpacer />
     </VAppBar>
     <VNavigationDrawer>
       <template #append>

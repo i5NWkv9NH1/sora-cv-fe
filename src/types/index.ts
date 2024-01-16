@@ -56,4 +56,5 @@ export type IUser = {
   wechat: boolean
   avatarUrl: string
   token: string
+  isVip: boolean
 }
