@@ -6,10 +6,10 @@ import 'vuetify/styles'
 
 const defaults = {
   global: {
-    ripple: false,
+    ripple: false
   },
   VChip: {
-    rounded: 'lg',
+    rounded: 'lg'
   },
   VBtn: {
     rounded: 'lg'
@@ -21,6 +21,9 @@ const defaults = {
     rounded: 'lg'
   },
   VSheet: {
+    rounded: 'lg'
+  },
+  VAvatar: {
     rounded: 'lg'
   }
 }

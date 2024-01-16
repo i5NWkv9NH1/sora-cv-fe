@@ -1,5 +1,6 @@
-import { VBtn, VContainer, VRow, VCol, VCard, VHover, VExpansionPanels, VExpansionPanel, VExpansionPanelText,VExpansionPanelTitle,VSheet, VFabTransition, VDivider } from 'vuetify/lib/components/index.mjs'
-import { VSection, VIntro, NeedVIP } from '~/components'
+import { VBtn, VCard, VCol, VContainer, VDivider, VExpansionPanel, VExpansionPanelText,VExpansionPanelTitle,VExpansionPanels, VFabTransition, VHover, VRow, VSheet } from 'vuetify/lib/components/index.mjs'
+import { useTheme } from 'vuetify/lib/framework.mjs'
+import { NeedVIP, VIntro, VSection } from '~/components'
 import type { ISubscribe } from '~/types'
 
 export default defineComponent({
@@ -9,7 +10,7 @@ export default defineComponent({
     const store = useUserStore()
 
     const items = ref([
-      { id: 1, title: '月度会员', price: '18', type: '月度', description: `<p>无限制访问所有简历模板</p>\n <p>创建和编辑您的简历</p><p>使用ai简历助手</p>`, order: 0, value: 1 },
+      {  id: 1, title: '月度会员', price: '18', type: '月度', description: `<p>无限制访问所有简历模板</p>\n <p>创建和编辑您的简历</p><p>使用ai简历助手</p>`, order: 0, value: 1 },
       { id: 2, title: '年度会员', price: '98', type: '每年', description: `<p>无限制访问所有简历模板</p>\n <p>创建和编辑无限的简历</p><p>使用ai简历助手</p>`, order: 1, value: 2 },
       { id: 3, title: '终身会员', price: '198', type: '终身', description: `<p>无限制访问所有简历模板</p>\n <p>创建和编辑您的简历</p><p>AI简历助手无限制使用</p>`, order: 0, value: 3 },
     ])
@@ -56,37 +57,33 @@ export default defineComponent({
                           bgColor: '#fed7aa',
                           color: '#000000'
                         }
-                      } else {
+                      }
                         return {
                           bgColor: '#fed7aa',
                           color: '#000000'
                         }
-                      }
-                    } else {
+                    }
                         if(isDark) {
                           return {
                             bgColor: '#111827',
                             color: '#fed7aa'
                           }
-                        } else {
+                        }
                           return {
                             bgColor: '#111827',
                             color: '#fed7aa'
-                          }}
-                        }
+                          }
                   })
 
                   return (
                     <VSheet
-                      {...props}    
+                      {...props}
                       key={item.id}
+                      //@ts-ignore
                       onClick={() => {selectedPlan.value = item.value }}
-                      style={{
-                        transition: 'all .2s ease-in'
-                      }}
                       class={'pa-8'}
                       color={styles.value.bgColor}
-                      style={{ border: '4px solid #111827'}}
+                      style={{ border: '4px solid #111827', transition: 'all .2s ease-in'}}
                       rounded={'xl'}
                       border
                     >
@@ -97,19 +94,19 @@ export default defineComponent({
                           <div class={'text-h2'}  style={{ fontWeight: 'bolder !important'}}>{item.price}</div>
                         </div>
                         <div class={'text-body-1 font-weight-black'}>{item.type}</div>
-                        <div class={'d-flex flex-column align-center text-body-2'} style={{ gap: '.5rem' }} v-html={item.description } /> 
+                        <div class={'d-flex flex-column align-center text-body-2'} style={{ gap: '.5rem' }} v-html={item.description } />
                         <div class={'d-flex'}>
                           <VBtn  variant={'flat'} color={styles.value.color} size={'large'} active={isHovering}>开通{item.type}会员</VBtn>
                         </div>
                       </div>
-                    </VSheet> 
+                    </VSheet>
                   )
                 }}} />
               </VCol>
             )
           })}
         </VRow>
-), 
+),
             prepend: () => <div class={'text-grey'}>NiceCV PRO</div>
           }}
         />

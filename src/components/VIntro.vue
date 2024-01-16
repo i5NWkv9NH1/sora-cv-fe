@@ -1,5 +1,5 @@
 <script setup lang="tsx">
-const props = withDefaults(defineProps<{ title: string; subtitle: string; caption: string; center: string; gap: number; width: string | number }>(), {
+const props = withDefaults(defineProps<{ title: string; subtitle: string; caption: string; center: boolean; gap: number; width: string | number }>(), {
   title: '',
   subtitle: '',
   caption: '',
@@ -24,8 +24,8 @@ const styles = computed(() => {
       <div class="prepend my-4">
         <slot name="prepend" />
       </div>
-      <div class='text-h3 font-weight-bold  my-4'>{{props.title}}</div>
-      <div class='text-h3'>{{props.subtitle}}</div>
+      <div class='text-h3 font-weight-bold  my-4'>{{ props.title }}</div>
+      <div class='text-h3'>{{ props.subtitle }}</div>
       <div class='text-subtitle-1 my-4'>
         {{ props.caption }}
       </div>

@@ -16,7 +16,9 @@
     "enabled": true,
     "rules": {
       "recommended": true,
-      "style": {},
+      "style": {
+        "noUnusedTemplateLiteral": "off"
+      },
       "suspicious": {
         "noExplicitAny": "off"
       }

@@ -157,7 +157,7 @@ export default defineComponent({
             return (
               <>
                 {recommend.value.data.map((item) => {
-                  const tags = item.style_category.map(tag => {
+                  const tags = item.style_category.map((tag) => {
                     return { id: tag.category_id, name: tag.name }
                   })
                   const _item = {
@@ -171,6 +171,7 @@ export default defineComponent({
                   }
                   return (
                     <VCol cols={12} lg={4}>
+                      {/* @ts-ignore */}
                       <VTemplate item={_item} />
                     </VCol>
                   )

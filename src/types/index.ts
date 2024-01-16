@@ -22,7 +22,7 @@ export type ITemplate = {
   id: string | number
   title: string
   description: string
-  createdAt: string 
+  createdAt: string
   publishedAt: string
   tags: ITag[]
   thumbnailUrl: string
@@ -36,4 +36,24 @@ export type ISubscribe = {
   price: string | number
   description: string
   type: string
+}
+
+export type IOrder = {
+  id: string | number
+  name: string | number
+  createdAt: string
+  pay: number
+  price: string | number
+  status: number
+}
+
+export type IUser = {
+  id: string | number
+  username: string
+  name: string
+  phone: boolean
+  phoneNumebr: string
+  wechat: boolean
+  avatarUrl: string
+  token: string
 }
