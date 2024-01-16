@@ -31,7 +31,7 @@ const store = usePreferencesStore()
       <UserProfileMenu />
       <VSpacer />
     </VAppBar>
-    <VNavigationDrawer>
+    <VNavigationDrawer width="180">
       <template #append>
         <VList nav density="compact">
           <VListItem :prepend-icon="`mdi-lightbulb-question-outline`" title="帮助中心" to="/" exact />

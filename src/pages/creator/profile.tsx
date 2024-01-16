@@ -185,7 +185,7 @@ export default defineComponent({
                 <VImg src={store.state.avatarUrl}>
                   <VOverlay
                     v-model={isHovering}
-                    transition={'slide-y-transition'}
+                    transition={'fab-transition'}
                     eager
                     contained
                     location={'center center'}

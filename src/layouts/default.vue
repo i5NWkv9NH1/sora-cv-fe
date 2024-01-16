@@ -37,9 +37,9 @@ const state = reactive({
     {
       title: '联系我们',
       children: [
-        { title: '微信号：Bravesnail' },
-        { title: '公众号：奈斯简历NiceCV' },
-        { title: '小红书：奈斯简历' }
+        { title: '微信号：Bravesnail', path: '' },
+        { title: '公众号：奈斯简历NiceCV', path: '' },
+        { title: '小红书：奈斯简历', path: '' }
       ]
     }
   ]
@@ -48,7 +48,7 @@ const state = reactive({
 
 <template>
   <VApp>
-    <VAppBar density='compact' border="4">
+    <VAppBar>
       <VAppBarNavIcon to="/" class="mr-2" />
       <ThemeSwitch />
       <VBtn to="/templates" class="mr-2">简历模板</VBtn>

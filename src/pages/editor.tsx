@@ -1,21 +1,17 @@
-import {
-	VContainer
-} from 'vuetify'
+import { VContainer } from 'vuetify/components'
 
-import {
-	VIntro
-} from '~/components'
+import { VIntro } from '~/components'
 
 export default defineComponent({
-	setup() {
-		definePageMeta({ layout: 'editor'})
+  setup() {
+    definePageMeta({ layout: 'editor' })
 
-		return () => (
-			<>
-				<div>
-					<VIntro />
-				</div>
-			</>
-		)
-	}
+    return () => (
+      <>
+        <div>
+          <VIntro />
+        </div>
+      </>
+    )
+  }
 })
