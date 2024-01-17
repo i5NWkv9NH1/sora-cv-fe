@@ -86,6 +86,7 @@ export const ResumeForm = defineComponent({
           <VSheet class={'form'} rounded={false}
             style={{
               overflow: 'scroll',
+              minHeight: `calc(100vh - ${height.value * 2}px)`,
               maxHeight: `calc(100vh - ${height.value * 2}px)`
             }}
           >
