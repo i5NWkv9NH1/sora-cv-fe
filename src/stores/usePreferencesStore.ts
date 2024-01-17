@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { Density } from '~/types'
+import type { PreviewOption, Density, PreviewSize } from '~/types'
 
 export const usePreferencesStore = defineStore(
   'preferences',
@@ -24,6 +24,11 @@ export const usePreferencesStore = defineStore(
           return 64
       }
     })
+    const previewSize = ref<PreviewSize>('A4')
+
+    function updatePreviewSize(value: PreviewSize) {
+      previewSize.value = value
+    }
 
     function toggleAlert(
       { message, color, delay } = {
@@ -40,7 +45,7 @@ export const usePreferencesStore = defineStore(
       alert.value.color = color
       alert.value.delay = delay
     }
-    return { alert, density, height, toggleAlert }
+    return { alert, density, height, toggleAlert, previewSize, updatePreviewSize }
   },
   { persist: true }
 )

@@ -1,6 +1,6 @@
 import type { SlotsType } from "vue"
 import { renderSlot } from "vue"
-import { VBtn, VCard, VContainer, VIcon, VSheet, VSkeletonLoader, VSlideXTransition, VToolbar } from "vuetify/lib/components/index.mjs"
+import { VBtn, VCard, VContainer, VIcon, VSheet, VSkeletonLoader, VSlideXReverseTransition, VSlideXTransition, VSlideYTransition, VToolbar } from "vuetify/lib/components/index.mjs"
 import { previewSizeOptionsData } from "~/data"
 import type { IUIState, PreviewOption, PreviewSize } from "~/types"
 import './Preview.scss'
@@ -8,8 +8,7 @@ import './Preview.scss'
 //* A4
 export function A4Preview() {
   return (
-    <>
-      {Array.from({ length: 20 }).map(_ => <h1>1</h1>)}</>
+    <h1>A4</h1>
   )
 }
 //* PHONE
@@ -21,34 +20,31 @@ export function PhonePreview() {
 
 //* 工具栏
 export const PreviewToolbar = defineComponent({
-  props: ['modelValue'],
-  emits: ['update:modelValue'],
-  setup(props, { emit }) {
-    const density = ref<any>('default')
+  setup() {
     const previewSizeOptions = ref<PreviewOption[]>()
     const uiState = ref<IUIState>('ok')
     previewSizeOptions.value = previewSizeOptionsData
+    const { previewSize, density } = storeToRefs(usePreferencesStore())
+    const { updatePreviewSize } = usePreferencesStore()
 
     function Ok() {
       return (
         <VToolbar
           density={density.value}
         >
-          {previewSizeOptions.value!.map(btn => {
-            const isActive = computed(() => props.modelValue === btn.value)
+          {previewSizeOptions.value!.map(item => {
+            const isActive = computed(() => previewSize.value === item.value)
             return (
               <VBtn
-                //@ts-ignore
-                onClick={() => {
-                  console.log('from toolbar', btn.value)
-                  emit('update:modelValue', btn.value)
-                }}
-                key={btn.id}
-                active={isActive.value}
+                class={'mr-2'}
+                key={item.id}
                 variant={isActive.value ? 'tonal' : 'flat'}
+                active={isActive.value}
+                //@ts-ignore
+                onClick={() => updatePreviewSize(item.value)}
               >
-                {btn.icon && <VIcon start>{btn.icon}</VIcon>}
-                <span>{btn.label}</span>
+                {item.icon && <VIcon start>{item.icon}</VIcon>}
+                <span>{item.label}</span>
               </VBtn>
             )
           })}
@@ -75,14 +71,11 @@ export const PreviewToolbar = defineComponent({
 //* 提供切换
 //TODO 增加动画
 export const PreviewSizeWrapper = defineComponent({
-  props: ['previewSize'],
-  setup(props) {
-    const { height } = storeToRefs(usePreferencesStore())
-
-    const { previewSize } = toRefs<{ previewSize: PreviewSize }>(props)
+  setup() {
+    const { height, previewSize } = storeToRefs(usePreferencesStore())
     const uiState = ref<IUIState>('ok')
 
-    const Wrapper = (props: any, { slots }: { slots: SlotsType }) => (
+    const Wrapper = (_: any, { slots }: { slots: SlotsType }) => (
       <VSheet
         class={'preview'}
         rounded={false}
@@ -92,7 +85,11 @@ export const PreviewSizeWrapper = defineComponent({
           maxHeight: `calc(100vh - ${height.value * 2}px)`
         }}
       >
-        {renderSlot(slots, 'default')}
+        <VContainer>
+          <VSlideYTransition>
+            {renderSlot(slots, 'default')}
+          </VSlideYTransition>
+        </VContainer>
       </VSheet>
     )
 
@@ -110,7 +107,7 @@ export const PreviewSizeWrapper = defineComponent({
               </Wrapper>
             case 'PHONE':
               return <Wrapper>
-                <A4Preview />
+                <PhonePreview />
               </Wrapper>
             default: <Wrapper>
               <A4Preview />
@@ -123,15 +120,10 @@ export const PreviewSizeWrapper = defineComponent({
 
 //* 整体容器
 export function ResumePreview() {
-  const previewSize = ref<PreviewSize>('A4')
-
   return (
     <>
-      <PreviewToolbar v-model={previewSize.value} onUpdate:modelValue={(e: PreviewSize) => {
-        console.log('ResumePreview', e)
-        previewSize.value = e
-      }} />
-      <PreviewSizeWrapper previewSize={previewSize.value} />
+      <PreviewToolbar />
+      <PreviewSizeWrapper />
     </>
   )
 

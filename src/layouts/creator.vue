@@ -19,13 +19,12 @@ const list = ref([
   }
 ])
 
-const store = usePreferencesStore()
+const { alert, density } = storeToRefs(usePreferencesStore())
 </script>
 
 <template>
   <VApp>
-    <VSnackbar v-model="store.alert.status" :text="store.alert.message" :timeout="store.alert.delay"
-      :location="store.alert.location" />
+    <VSnackbar v-model="alert.status" :text="alert.message" :timeout="alert.delay" :location="alert.location" />
     <VAppBar density="compact">
       <ThemeSwitch />
       <VSpacer />
@@ -33,7 +32,7 @@ const store = usePreferencesStore()
     </VAppBar>
     <VNavigationDrawer>
       <template #append>
-        <VList nav density="compact">
+        <VList density="compact" nav>
           <VListItem :prepend-icon="`mdi-lightbulb-question-outline`" title="帮助中心" to="/" exact />
         </VList>
       </template>

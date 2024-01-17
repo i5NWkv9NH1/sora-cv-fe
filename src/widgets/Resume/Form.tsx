@@ -13,8 +13,7 @@ export const ResumeForm = defineComponent({
     //#region state
     //TODO store
     const appBarHeight = ref(64);
-    const density = ref<any>('default')
-
+    const { density } = storeToRefs(usePreferencesStore())
     //* tab
     const current = ref(1);
     const tabs = ref<ResumeTab[]>();
