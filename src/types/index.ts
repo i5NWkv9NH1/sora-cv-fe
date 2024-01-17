@@ -103,6 +103,7 @@ export type IUser = {
 }
 
 
+export type PreviewSize = 'A4' | 'PHONE'
 export type PreviewOption = { id: number; label: string; value: 'A4' | 'PHONE'; icon: string }
 export type ResumeTab = {
   id: number | string,
@@ -116,3 +117,4 @@ export type ResumeWindow = {
   key: number | string
   component: JSXComponent
 }
+export type Density = null | 'default' | 'comfortable' | 'compact';

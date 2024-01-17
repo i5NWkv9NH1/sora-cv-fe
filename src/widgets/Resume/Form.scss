@@ -1,11 +1,18 @@
 $appBarHeight: 64px;
+$tabHeight: 52px;
 
-.resume-form {
-  max-height: calc(100vh - $appBarHeight);
+.form {
+  // min-height: calc(100vh - $appBarHeight - $tabHeight);
+  // max-height: calc(100vh - $appBarHeight - $tabHeight);
+  overflow-y: scroll;
 
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
 }
-.resume-form::-webkit-scrollbar {
-  display: none;  /* Safari and Chrome */
+
+.form::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
 }

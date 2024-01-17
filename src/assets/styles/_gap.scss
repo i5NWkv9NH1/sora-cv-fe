@@ -1,0 +1,7 @@
+$gap: 10;
+
+@for $i from 1 through $gap {
+  .gap-#{$i} {
+    gap: ($i * 4)px;
+  }
+}

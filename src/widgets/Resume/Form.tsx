@@ -8,21 +8,12 @@ import './Form.scss'
 
 
 //* 左栏表格容器
-export const ResumeFormWrapper2 = defineComponent({
-  async setup() {
+export const ResumeForm = defineComponent({
+  setup() {
     //#region state
     //TODO store
     const appBarHeight = ref(64);
-    const density = ref<any>('compact')
-    //TODO css
-    const stlyes = computed<StyleValue>(() => {
-      //* 减去 AppBar
-      //* 在layouts/creator.vue
-      return {
-        'max-height': `cacl(100vh - 64px)`,
-        overflowY: 'scroll'
-      };
-    });
+    const density = ref<any>('default')
 
     //* tab
     const current = ref(1);
@@ -36,16 +27,16 @@ export const ResumeFormWrapper2 = defineComponent({
       { key: 6, value: 6, component: Test },
     ]);
     const uiState = ref<IUIState>('ok');
+    tabs.value = resumeTabs;
 
     //#endregion
+
+
     //#region api
-    async function fetchData() {
-      await delay(2000);
-      tabs.value = resumeTabs;
-      uiState.value = 'ok';
-    }
-    await fetchData();
+
     //#endregion
+
+
     //#region widgets
     function Tabs() {
       function Loading() {
@@ -86,18 +77,26 @@ export const ResumeFormWrapper2 = defineComponent({
     }
 
     function Window() {
+      const { height } = storeToRefs(usePreferencesStore())
       function Loading() {
         return <VSkeletonLoader type={'paragraph@6'} />;
       }
       function OK() {
         return (
-          <VWindow v-model={current.value}>
-            {windows.value.map(item => (
-              <VWindowItem value={item.value} key={item.key}>
-                <item.component />
-              </VWindowItem>
-            ))}
-          </VWindow>
+          <VSheet class={'form'} rounded={false}
+            style={{
+              overflow: 'scroll',
+              maxHeight: `calc(100vh - ${height.value * 2}px)`
+            }}
+          >
+            <VWindow v-model={current.value}>
+              {windows.value.map(item => (
+                <VWindowItem value={item.value} key={item.key}>
+                  <item.component />
+                </VWindowItem>
+              ))}
+            </VWindow>
+          </VSheet>
         );
       }
 
@@ -110,15 +109,19 @@ export const ResumeFormWrapper2 = defineComponent({
 
     //#endregion
     return () => (
-      <VSheet
-        //* 添加 class 隐藏滚动条
-        class={'resume-formf fill-height'}
-        style={stlyes.value}
-        rounded={'xl'}
-      >
+      // <VSheet
+      //   //* 添加 class 隐藏滚动条
+      //   class={'form fill-height'}
+      //   style={stlyes.value}
+      // >
+      //   <Tabs />
+      //   <Window />
+      // </VSheet>
+      <>
         <Tabs />
         <Window />
-      </VSheet>
+      </>
     );
   }
 });
+export const ResumeFormWrapper2 = ResumeForm

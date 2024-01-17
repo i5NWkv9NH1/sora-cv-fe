@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { templateListData } from '~/data'
 import { transformField, transformFields } from '~/helpers'
-import type { IOrder, ITemplate } from '~/types'
+import type { IOrder, ITemplate, IUIState } from '~/types'
 
 export const useDataStore = defineStore(
   'data',
@@ -44,8 +44,13 @@ export const useDataStore = defineStore(
       defaultTemplate: transformField(templateListData[0]),
       templateList: transformFields(templateListData)
     })
+    const pages = reactive({
+      editor: {
+        uiState: 'loading' as IUIState
+      }
+    })
 
-    return { state }
+    return { state, pages }
   },
   { persist: true }
 )

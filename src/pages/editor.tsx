@@ -33,10 +33,10 @@ import {
   VWindow,
   VWindowItem
 } from 'vuetify/lib/components/index.mjs'
-import { nationListData, templateListData } from '~/data'
+import { templateListData } from '~/data'
 import type { ITemplate, IUIState, PreviewOption, ResumeTab } from '~/types'
 import { UIStateEmpty, UIStateError } from '~/widgets'
-import {  ResumeFormWrapper2,  } from '~/widgets/Resume'
+import { ResumeFormWrapper2, ResumePreview, } from '~/widgets/Resume'
 
 type IQuery = {
   templateId: string | number
@@ -65,7 +65,7 @@ export default defineComponent({
     //* 表格数据
     //#region 表格数据
     const gender = ref()
-    const nations = ref(nationListData)
+    const nations = ref()
     const maritals = ref()
     const dutys = ref()
     //#endregion
@@ -112,8 +112,7 @@ export default defineComponent({
               </VTab>
             ))}
           </VTabs> */}
-          <ResumeFormTabs
-          />
+
           <VWindow v-model={tab.value}>
             <VWindowItem value={1}>
               <VContainer fluid>
@@ -720,7 +719,8 @@ export default defineComponent({
             />
           </VCol> */}
           <VCol cols={12} lg={7} md={7} class='hidden-xs'>
-            <ResumePreviewWrapper />
+            {/* <ResumePreviewWrapper /> */}
+            <ResumePreview />
           </VCol>
         </VRow>
       )

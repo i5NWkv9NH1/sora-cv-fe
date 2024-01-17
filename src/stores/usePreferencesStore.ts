@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import type { Density } from '~/types'
 
 export const usePreferencesStore = defineStore(
   'preferences',
@@ -9,6 +10,19 @@ export const usePreferencesStore = defineStore(
       delay: 1000,
       color: 'primary',
       location: 'top center' as any
+    })
+    const density = ref<Density>('default')
+    const height = computed(() => {
+      switch (density.value) {
+        case 'default':
+          return 64
+        case 'compact':
+          return 48
+        case 'comfortable':
+          return 56
+        default:
+          return 64
+      }
     })
 
     function toggleAlert(
@@ -26,7 +40,7 @@ export const usePreferencesStore = defineStore(
       alert.value.color = color
       alert.value.delay = delay
     }
-    return { alert, toggleAlert }
+    return { alert, density, height, toggleAlert }
   },
   { persist: true }
 )

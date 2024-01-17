@@ -3174,7 +3174,7 @@ export const templateData = {
   }
 }
 
-export const nationListData = [
+export const nationData = [
   { "code": "01", "nation": "汉族" },
   {
     "code": "02",
