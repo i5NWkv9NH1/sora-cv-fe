@@ -26,7 +26,10 @@ const defaults = {
   },
   VAvatar: {
     rounded: 'lg'
-  }
+  },
+  VTab: {
+    rounded: 'lg'
+  },
 }
 
 export default defineNuxtPlugin((app) => {

@@ -1,0 +1,11 @@
+$appBarHeight: 64px;
+
+.resume-form {
+  max-height: calc(100vh - $appBarHeight);
+
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.resume-form::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}

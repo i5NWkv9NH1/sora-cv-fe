@@ -5,7 +5,7 @@ import { ThemeSwitch, UserProfileMenu } from '~/widgets'
 const list = ref([
   {
     id: 1, routes: [
-      { name: '我的简历', path: '/creator/', icon: 'mdi-view-list-outline' },
+      { name: '我的简历', path: '/creator', icon: 'mdi-view-list-outline' },
       { name: '模板中心', path: '/creator/templates', icon: 'mdi-database-outline' },
       { name: '收藏夹', path: '/creator/favorites', icon: 'mdi-heart-outline' },
       { name: '回收站', path: '/creator/recycle', icon: 'mdi-trash-can-outline' },

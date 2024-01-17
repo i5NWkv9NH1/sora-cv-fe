@@ -16,6 +16,24 @@ export default defineNuxtConfig({
   imports: {
     dirs: []
   },
+  experimental: {
+    componentIslands: true
+  },
+  routeRules: {
+    '/': {
+      prerender: true
+    },
+    '/api/**': {
+      cors: true
+    },
+    '/editor/**': {
+      ssr: false
+    },
+    '/creator/**': {
+      ssr: false,
+      swr: 3600
+    }
+  },
   modules: [
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {

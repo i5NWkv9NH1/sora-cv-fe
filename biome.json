@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "files": {
-    "ignore": ["node_modules/**"]
+    "ignore": ["node_modules/**", ".nuxt/**", "src/data/**"]
   },
   "formatter": {
     "indentStyle": "space",
@@ -17,7 +17,8 @@
     "rules": {
       "recommended": true,
       "style": {
-        "noUnusedTemplateLiteral": "off"
+        "noUnusedTemplateLiteral": "off",
+        "noNonNullAssertion": "off"
       },
       "suspicious": {
         "noExplicitAny": "off"

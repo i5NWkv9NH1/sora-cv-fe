@@ -1,109 +1,109 @@
-//@ts-nocheck
-
 import {
   VBtn,
   VCard,
+  VCardActions,
   VCardText,
+  VCardTitle,
   VCol,
-  VImg,
+  VContainer,
+  VDialog,
+  VIcon,
   VRow,
-  VSheet
+  VSpacer,
+  VWindow,
+  VWindowItem
 } from 'vuetify/lib/components/index.mjs'
 
-export function Cover(state) {
-  return (
-    <VRow align={'center'} justify={'space-between'}>
-      <VCol>
-        <div class='text-h3'>{state.cover.title}</div>
-        <div class='text-h4 font-weight-bold'>{state.cover.subtitle}</div>
-        <div class='text-subtitle-1 text-surface-4'>{state.cover.caption}</div>
-        <VBtn variant={'text'} to={'/signin'}>
-          创建您的简历
-        </VBtn>
-      </VCol>
-      <VCol>
-        <VImg src={state.cover.url} cover />
-      </VCol>
-    </VRow>
-  )
-}
-export function Intros(state) {
-  return (
-    <VRow>
-      {state.intros.map((item) => (
-        <VCol cols={12} lg={4} key={item.title}>
-          <VCard color={item.color}>
-            <VCardText>
-              <VImg src={item.thumbnailUrl} />
-              <div class={'text-h6 font-weight-bold'}>{item.title}</div>
-              <div class={'text-subtitle-1'}>{item.subtitle}</div>
-            </VCardText>
-          </VCard>
-        </VCol>
-      ))}
-    </VRow>
-  )
-}
-export function Templates(state) {
-  return (
-    <>
-      <div>
-        <div class={'text-h4 font-weight-bold'}>热门简历模板</div>
-        <VRow>
-          {state.templates.map((template) => (
-            <VCol cols={12} lg={4} key={template.id}>
-              <VCard class={'relative'} width={'100%'}>
-                <VCardText>
-                  <div class={'d-flex flex-column'}>
-                    <div class={'text-h6 font-weight-bold'}>
-                      {template.title}
-                    </div>
-                    <div class={'text-caption'}>{template.description}</div>
-                    <VImg src={template.thumbnailUrl} />
-                    <div class={'d-flex'}>
-                      <VBtn to={'/signin'}>使用模板</VBtn>
-                      <VBtn to={'/signin'}>查看模板</VBtn>
-                    </div>
-                    <div class={'d-flex'}>
-                      {template.tags.map((tag) => (
-                        <div class={'text-caption'} key={tag.id}>
-                          #{tag.name}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </VCardText>
-              </VCard>
-            </VCol>
-          ))}
-        </VRow>
-        <div class={'d-flex'}>
-          <VBtn to={'/templates'}>查看全部模板</VBtn>
-        </div>
-      </div>
-    </>
-  )
-}
-export function AI(state) {
-  return (
-    <div>
-      <div class={'text-h6 font-weight-bold'}>热门 AI 求职工具</div>
+export const CreateTemplateStep1 = defineComponent({
+  setup(props, ctx) {
+    return () => (
       <VRow>
-        {state.ai.map((item) => (
-          <VCol cols={12} lg={4} key={item.id}>
-            <VCard width={'100%'} to={`/ai/${item.id}`}>
-              <VCardText>
-                <VImg src={item.thumbnailUrl} />
-                <div class={'text-h6 font-weight-bold'}>{item.name}</div>
-                <div class={'text-subtitle-1'}>{item.description}</div>
-              </VCardText>
-            </VCard>
-          </VCol>
+        {Array.from({ length: 10 }).map((_) => (
+          <VCol>1</VCol>
         ))}
       </VRow>
-      <div class={'d-flex'}>
-        <VBtn to={'/ai'}>查看所有工具</VBtn>
-      </div>
-    </div>
-  )
-}
+    )
+  }
+})
+export const CreateTemplateStep2 = defineComponent({
+  setup(props, ctx) {
+    return () => (
+      <VRow>
+        {Array.from({ length: 10 }).map((_) => (
+          <VCol>2</VCol>
+        ))}
+      </VRow>
+    )
+  }
+})
+
+export const CreateTemplateStepper = defineComponent({
+  setup(props, ctx) {
+    const step = ref(1)
+    const stepperActions = ref([
+      { id: 1, label: '下一步', icon: '', value: 1 },
+      { component: true },
+      { id: 2, label: '返回', icon: '', value: 2 }
+    ])
+
+    return () => (
+      <VCard>
+        <VCardTitle>创建新的模板</VCardTitle>
+        <VCardText>
+          <VWindow v-model={step.value}>
+            <VWindowItem value={1}>
+              <CreateTemplateStep1 />
+            </VWindowItem>
+            <VWindowItem value={2}>
+              <CreateTemplateStep2 />
+            </VWindowItem>
+          </VWindow>
+        </VCardText>
+        <VCardActions>
+          {stepperActions.value.map((item) => {
+            if (item.component) {
+              return <VSpacer />
+            }
+            const isActive = computed(() => step.value === item.value)
+
+            return (
+              <VBtn
+                //@ts-ignore
+                onClick={() => {
+                  step.value = item.value!
+                }}
+                disabled={!isActive.value}
+                variant={isActive ? 'tonal' : 'flat'}
+              >
+                {item.icon && <VIcon start>{item.icon}</VIcon>}
+                <span>{item.label}</span>
+              </VBtn>
+            )
+          })}
+        </VCardActions>
+      </VCard>
+    )
+  }
+})
+
+export const CreateTemplateDiaglog = defineComponent({
+  setup(props, ctx) {
+    const dialog = ref(false)
+    return () => (
+      <VDialog
+        v-model={dialog.value}
+        transition={'slide-y-transition'}
+        fullscreen
+      >
+        {/* 全屏高度 + 垂直居中 */}
+        <VContainer class={'fill-height'}>
+          <VRow>
+            <VCol cols={12}>
+              <CreateTemplateStepper />
+            </VCol>
+          </VRow>
+        </VContainer>
+      </VDialog>
+    )
+  }
+})

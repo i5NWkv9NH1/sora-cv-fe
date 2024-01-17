@@ -1,42 +1,32 @@
 import {
   VAvatar,
-  VDialog,
-  VFabTransition,
-  VForm,
-  VSheet,
-  VSlideYTransition,
-  VSnackbar,
-  VSpacer
-} from 'vuetify/lib/components/index.mjs'
-import {
   VBtn,
   VCard,
   VCardActions,
+  VCardSubtitle,
   VCardText,
   VCardTitle,
   VCol,
   VContainer,
+  VDialog,
+  VForm,
   VIcon,
   VImg,
-  VList,
-  VListItem,
-  VListItemSubtitle,
-  VListItemTitle,
-  VProgressCircular,
   VRow,
-  VSkeletonLoader,
-  VSlideXReverseTransition,
   VSlideYReverseTransition,
+  VSlideYTransition,
+  VSpacer,
   VTextField,
   VToolbar,
   VTooltip
 } from 'vuetify/lib/components/index.mjs'
+
 import { delay } from '~/helpers'
-import type { IUIState } from '~/types'
+import type { ITemplate, IUIState } from '~/types'
 
 export default defineComponent({
   setup() {
-    useSeoMeta({ title: '我的简历' })
+    useSeoMeta({ title: '我的简历文件' })
     const userStore = useUserStore()
     const dataStore = useDataStore()
     const settingsStore = usePreferencesStore()
@@ -62,7 +52,7 @@ export default defineComponent({
 
     //* components
     //#region components
-    function GridCard({ item }: { item: any }) {
+    function GridCard({ item }: { item: ITemplate }) {
       //* status
       const editStatus = ref(false)
       const downloading = ref(false)
@@ -190,7 +180,6 @@ export default defineComponent({
             loading={downloading.value}
             class={'position-relative myfile'}
             variant={isSelected.value ? 'tonal' : 'elevated'}
-            to={`/editor?${item.id}`}
           >
             {/* border */}
             {(editStatus.value || isSelected.value) && (
@@ -249,18 +238,13 @@ export default defineComponent({
                 ) : (
                   <>
                     <div class={'d-flex align-center'}>
-                      <VAvatar
-                        image={
-                          'https://img.searchemoji.app/emoji-images/apple/1f605.webp'
-                        }
-                        class={'mr-2'}
-                      />
                       <span>{item.title}</span>
                     </div>
                   </>
                 )}
               </VSlideYTransition>
             </VCardTitle>
+            <VCardSubtitle>{item.subtitle}</VCardSubtitle>
             <VCardText>
               <VRow>
                 <VCol cols={12} lg={8} md={6}>
@@ -283,7 +267,8 @@ export default defineComponent({
                       variant={'text'}
                       color={'info'}
                       //@ts-ignore
-                      to={{ path: '/editor', query: { template_id: item.id } }}
+                      to={{ path: '/editor', query: { templateId: item.id } }}
+                      active={false}
                     >
                       编辑简历
                     </VBtn>
@@ -292,7 +277,7 @@ export default defineComponent({
                       color={'info'}
                       disabled={!inputModelValue.value}
                       //@ts-ignore
-                      onClick={async (e: Event) => {
+                      onClick={() => {
                         editStatus.value = !editStatus.value
                       }}
                     >
@@ -384,7 +369,12 @@ export default defineComponent({
     function ViewToolbar() {
       return (
         <VToolbar density={'compact'} color={'transparent'} class={'mb-4'}>
-          <VBtn variant={'elevated'} color={'primary'} size={'large'}>
+          <VBtn
+            variant={'elevated'}
+            color={'primary'}
+            size={'large'}
+            to={{ path: '/editor' }}
+          >
             <VIcon start>mdi-plus</VIcon>
             <span>创建新的简历</span>
           </VBtn>

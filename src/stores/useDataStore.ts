@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { templateListData } from '~/data'
-import type { IOrder } from '~/types'
+import { transformField, transformFields } from '~/helpers'
+import type { IOrder, ITemplate } from '~/types'
 
 export const useDataStore = defineStore(
   'data',
@@ -40,21 +41,8 @@ export const useDataStore = defineStore(
           status: 2
         }
       ] as IOrder[],
-      templateList: templateListData.map((item) => {
-        const tags = item.style_category.map((_tag) => {
-          return {
-            id: _tag.category_id,
-            name: _tag.name
-          }
-        })
-        return {
-          id: item.goods_id,
-          title: item.goods_name,
-          description: item.selling_point,
-          tags,
-          thumbnailUrl: item.goods_image
-        }
-      })
+      defaultTemplate: transformField(templateListData[0]),
+      templateList: transformFields(templateListData)
     })
 
     return { state }

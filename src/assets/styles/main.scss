@@ -1,6 +1,26 @@
+//? vuetify
 // .v-pagination__list {
 //   overflow: scroll;
 // }
+.v-input--density-compact .v-field__input {
+  font-size: .9rem;
+}
+::-webkit-scrollbar {
+  display: none
+}
+
+
+
+.preview {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.preview::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
+//? custom component styles
+//TODO:
 $border-size: 4px;
 
 .myfile {
