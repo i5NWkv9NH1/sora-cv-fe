@@ -1,20 +1,37 @@
-import type { SlotsType } from "vue"
+import type { SlotsType, Component } from "vue"
 import { renderSlot } from "vue"
-import { VBtn, VCard, VContainer, VIcon, VSheet, VSkeletonLoader, VSlideXReverseTransition, VSlideXTransition, VSlideYTransition, VToolbar } from "vuetify/lib/components/index.mjs"
+import { VBtn, VCard, VCol, VContainer, VIcon, VRow, VSheet, VSkeletonLoader, VSlideXReverseTransition, VSlideXTransition, VSlideYTransition, VSpacer, VToolbar } from "vuetify/components"
 import { previewSizeOptionsData } from "~/data"
 import type { IUIState, PreviewOption, PreviewSize } from "~/types"
 import './Preview.scss'
+import { PickColorMenu } from "./Dialog"
 
 //* A4
 export function A4Preview() {
   return (
-    <h1>A4</h1>
+    <VRow>
+      <VCol cols={12}>
+        <VCard rounded={false}>
+          {Array.from({ length: 20 }).map((_) => (
+            <h1>1</h1>
+          ))}
+        </VCard>
+      </VCol>
+    </VRow>
   )
 }
 //* PHONE
 export function PhonePreview() {
   return (
-    <h1>PHONE</h1>
+    <VRow justify={'center'}>
+      <VCol cols={6}>
+        <VCard rounded={false}>
+          {Array.from({ length: 20 }).map((_) => (
+            <h1>1</h1>
+          ))}
+        </VCard>
+      </VCol>
+    </VRow>
   )
 }
 
@@ -26,6 +43,9 @@ export const PreviewToolbar = defineComponent({
     previewSizeOptions.value = previewSizeOptionsData
     const { previewSize, density } = storeToRefs(usePreferencesStore())
     const { updatePreviewSize } = usePreferencesStore()
+    const toolbarDialogs = ref<Component[]>([
+      PickColorMenu
+    ])
 
     function Ok() {
       return (
@@ -48,6 +68,10 @@ export const PreviewToolbar = defineComponent({
               </VBtn>
             )
           })}
+          <VSpacer />
+          {toolbarDialogs.value.map(item => (
+            <item />
+          ))}
         </VToolbar>
       )
     }
@@ -74,6 +98,8 @@ export const PreviewSizeWrapper = defineComponent({
   setup() {
     const { height, previewSize } = storeToRefs(usePreferencesStore())
     const uiState = ref<IUIState>('ok')
+    const previewEl = ref<HTMLElement>()
+    //*
 
     const Wrapper = (_: any, { slots }: { slots: SlotsType }) => (
       <VSheet
@@ -81,14 +107,15 @@ export const PreviewSizeWrapper = defineComponent({
         rounded={false}
         style={{
           overflow: 'scroll',
-          minHeight: `calc(100vh - ${height.value * 2}px)`,
-          maxHeight: `calc(100vh - ${height.value * 2}px)`
+          minHeight: height.value,
+          maxHeight: height.value
         }}
+        ref={previewEl}
       >
         <VContainer>
-          <VSlideYTransition>
+          <VSlideXTransition>
             {renderSlot(slots, 'default')}
-          </VSlideYTransition>
+          </VSlideXTransition>
         </VContainer>
       </VSheet>
     )

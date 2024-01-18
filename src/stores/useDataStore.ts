@@ -1,7 +1,26 @@
 import { defineStore } from 'pinia'
 import { templateListData } from '~/data'
 import { transformField, transformFields } from '~/helpers'
-import type { IOrder, ITemplate, IUIState } from '~/types'
+import type { IOrder, ITemplate, IUIState, PreviewSize } from '~/types'
+
+export type ColorMode = "rgb" | "rgba" | "hsl" | "hsla" | "hex" | "hexa";
+
+export type EditorData = {
+  uiState: IUIState,
+  template: ITemplate | null | undefined
+  picker: {
+    color: string
+    mode: ColorMode
+  }
+  ,
+  modules: any[]
+  previewSize: PreviewSize
+  selectedTemplateId: ITemplate['id'] | undefined,
+  stepper: {
+    status: boolean
+    current: number
+  }
+}
 
 export const useDataStore = defineStore(
   'data',
@@ -44,13 +63,27 @@ export const useDataStore = defineStore(
       defaultTemplate: transformField(templateListData[0]),
       templateList: transformFields(templateListData)
     })
-    const pages = reactive({
-      editor: {
-        uiState: 'loading' as IUIState
+    const editor = reactive<EditorData>({
+      uiState: 'ok',
+      template: null,
+      picker: {
+        color: '#dfdfdf',
+        mode: 'hexa',
+      },
+      modules: [],
+      previewSize: 'A4',
+      selectedTemplateId: undefined,
+      stepper: {
+        status: false,
+        current: 1
       }
     })
 
-    return { state, pages }
+    return { state, editor }
   },
-  { persist: true }
+  {
+    persist: {
+      debug: true
+    }
+  }
 )

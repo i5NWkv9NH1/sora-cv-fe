@@ -25,7 +25,7 @@ const { alert, density } = storeToRefs(usePreferencesStore())
 <template>
   <VApp>
     <VSnackbar v-model="alert.status" :text="alert.message" :timeout="alert.delay" :location="alert.location" />
-    <VAppBar density="compact">
+    <VAppBar :density="density">
       <ThemeSwitch />
       <VSpacer />
       <UserProfileMenu />

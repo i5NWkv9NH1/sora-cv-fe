@@ -8,6 +8,7 @@ export function randomColor() {
   return Math.floor(Math.random() * 16777215).toString(16)
 }
 export function transformField(item: any): ITemplate {
+  const _json = JSON.parse(item.fanwenData)
   return {
     ...item,
     id: item.goods_id,
@@ -32,7 +33,7 @@ export function transformField(item: any): ITemplate {
     model: {
       content: item.fanwen,
       description: item.fanwen_desc,
-      data: item.fanwenData
+      data: _json,
     },
     stats: {
       view: item.goods_view,
@@ -119,7 +120,7 @@ export function transformField(item: any): ITemplate {
           image: _tag.image
         }
       }
-    })
+    }),
   }
 }
 export function transformFields(item: any[]): ITemplate[] {

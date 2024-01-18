@@ -23,5 +23,9 @@ export const useUserStore = defineStore(
 
     return { state, logout }
   },
-  { persist: true }
+  {
+    persist: {
+      debug: true
+    }
+  }
 )

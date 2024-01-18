@@ -2,8 +2,11 @@ import '@mdi/font/css/materialdesignicons.css'
 
 import { createVuetify } from 'vuetify'
 import { md3 } from 'vuetify/blueprints'
+//@ts-ignore
+import { VuetifyDateAdapter } from 'vuetify/lib/composables/date/adapters/vuetify.mjs'
 import * as directives from 'vuetify/directives'
 import 'vuetify/styles'
+
 
 const defaults = {
   global: {
@@ -39,7 +42,10 @@ export default defineNuxtPlugin((app) => {
     // ssr: false,
     // blueprint: md3,
     defaults,
-    directives
+    directives,
+    date: {
+      adapter: VuetifyDateAdapter
+    }
   })
   app.vueApp.use(vuetify)
 })

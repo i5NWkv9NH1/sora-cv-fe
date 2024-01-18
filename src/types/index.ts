@@ -117,4 +117,127 @@ export type ResumeWindow = {
   key: number | string
   component: JSXComponent
 }
+//! settings
+export type Size = 'x-small' | 'small' | 'default' | 'large' | 'x-large'
 export type Density = null | 'default' | 'comfortable' | 'compact';
+export type DensityMode = {
+  label: string
+  value: Density
+  icon?: string
+}
+export type SizeMode = {
+  label: string
+  value: Size
+}
+export type Theme = 'auto' | 'light' | 'dark'
+export type ThemeMode = {
+  label: string;
+  value: Theme
+  icon?: string
+}
+
+
+
+//! form
+export type SkillItem = {
+  name: string
+  description: string
+}
+export type EducationItem = {
+  "id": number,
+  "school": string
+  "major": string
+  "degree": number,
+  "degreeType": number,
+  "college": string
+  "schoolCity": string
+  "schoolTimeFrom": string
+  "schoolTimeTo": string
+  "experienceDesc": string
+}
+export type ProjectItem = {
+  "id": number,
+  "name": string
+  "role": string
+  "department": string
+  "city": string
+  "from": string
+  "to": string
+  "experienceDesc": string
+}
+export type WorkItem = {
+  "id": number,
+  "company": string
+  "job": string
+  "department": string
+  "city": string
+  "workTimeFrom": string
+  "workTimeTo": string
+  "experienceDesc": string
+}
+export type OtherItemType = 'preItemsKey' | "language"
+export type OtherItem = {
+  preItemsKey: OtherItemType
+  isTagItem: boolean
+  label: string
+  value: string | string[]
+}
+
+export type IResume = {
+  id: string | number
+  name: string
+  thumbnailUrl: string
+  previewSize: PreviewSize
+  modules: string[],
+  theme: string
+  themeColor: string
+  fields: {
+    baseInfoName: string
+    educationName: string
+    softwaveSkillsName: string
+    projectName: string
+    //? 经历
+    experienceName: string
+    otherName: string
+  }
+  form: {
+    name: string
+    avatarUrl: string
+    enName: string
+    job: string
+    phone: string
+    email: string
+    city: string
+    birthday: Date
+    gender: number
+    nation: number
+    height: number
+    weight: number
+    marital: number
+    //? 个人状态
+    status: number
+    //? 评价
+    evalaute: string
+    //? 社交媒体
+    social: {
+      linkedin: string
+      wechat: string
+    }
+    //? 期望
+    purpose: {
+      city: string
+      job: string
+      salar: {
+        min: number
+        max: number
+      }
+    }
+    projects: ProjectItem[]
+    others: OtherItem[]
+    experiences: WorkItem[]
+    educations: EducationItem[]
+    softwaveSkills: any[
+    ]
+    skills: SkillItem[]
+  }
+}

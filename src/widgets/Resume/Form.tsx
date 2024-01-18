@@ -1,8 +1,7 @@
 import { defineComponent, ref, type StyleValue } from 'vue';
-import { VContainer, VSheet, VSkeletonLoader, VTab, VTabs, VWindow, VWindowItem } from 'vuetify/components';
+import { VCol, VContainer, VRow, VSheet, VSkeletonLoader, VTab, VTabs, VWindow, VWindowItem } from 'vuetify/components';
 import type { ResumeWindow, IUIState, ResumeTab } from '~/types';
 import { BasicInfo, Test } from './Tab';
-import { delay } from '~/helpers';
 import { resumeTabs } from '~/data';
 import './Form.scss'
 
@@ -13,7 +12,7 @@ export const ResumeForm = defineComponent({
     //#region state
     //TODO store
     const appBarHeight = ref(64);
-    const { density } = storeToRefs(usePreferencesStore())
+    const { density, size } = storeToRefs(usePreferencesStore())
     //* tab
     const current = ref(1);
     const tabs = ref<ResumeTab[]>();
@@ -44,21 +43,30 @@ export const ResumeForm = defineComponent({
         );
       }
       function OK() {
+
         return (
           <VContainer
             //? 对齐 header 的箭头
             class={'pa-2'}
           >
-            <VTabs v-model={current.value} density={density.value} showArrows>
+            {/* <VRow noGutters>
+              <VCol cols={12}>
+
+              </VCol>
+            </VRow> */}
+            {/*//TODO add responvie tabs */}
+            <VTabs v-model={current.value} showArrows>
               {tabs.value!.map(tab => (
                 <VTab
                   class={'mr-4'}
                   value={tab.value}
                   key={tab.value}
                   icon={tab.icon ? tab.icon : false}
-                  v-slots={{
-                    default: () => <span>{tab.name}</span>
-                  }} />
+                  density={density.value}
+                  size={size.value}
+                >
+                  {tab.name}
+                </VTab>
               ))}
             </VTabs>
           </VContainer>
@@ -82,11 +90,13 @@ export const ResumeForm = defineComponent({
       }
       function OK() {
         return (
-          <VSheet class={'form'} rounded={false}
+          <VSheet
+            class={'form'}
+            rounded={false}
             style={{
               overflow: 'scroll',
-              minHeight: `calc(100vh - ${height.value * 2}px)`,
-              maxHeight: `calc(100vh - ${height.value * 2}px)`
+              minHeight: height.value,
+              maxHeight: height.value
             }}
           >
             <VWindow v-model={current.value}>
@@ -124,4 +134,3 @@ export const ResumeForm = defineComponent({
     );
   }
 });
-export const ResumeFormWrapper2 = ResumeForm

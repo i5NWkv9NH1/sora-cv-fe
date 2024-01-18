@@ -1,4 +1,4 @@
-import type { PreviewOption, ResumeTab } from "~/types"
+import type { PreviewOption, ResumeTab, } from "~/types"
 
 export { }
 //? 性别
@@ -199,7 +199,7 @@ export const nationData = [
 //? 预览选项
 export const previewSizeOptionsData: PreviewOption[] = [
   { id: 1, label: 'A4尺寸', value: 'A4', icon: 'mdi-monitor' },
-  { id: 2, label: '手机尺寸', value: 'PHONE', icon: 'mdi-cellphone' }
+  { id: 2, label: '手机尺寸', value: 'PHONE', icon: 'mdi-cellphone' },
 ]
 export const resumeTabs: ResumeTab[] = [
   {

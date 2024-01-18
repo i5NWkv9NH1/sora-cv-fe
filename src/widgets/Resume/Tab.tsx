@@ -1,8 +1,13 @@
-import { VContainer, VRow, VCol, VForm, VTextField, VTextarea, VBtn, VIcon, VAvatar, VSelect, VList, VListItem, VListItemTitle, VListItemSubtitle } from "vuetify/components";
+import { VContainer, VRow, VCol, VForm, VTextField, VTextarea, VBtn, VIcon, VAvatar, VSelect, VList, VListItem, VListItemTitle, VListItemSubtitle, VMenu, VDatePicker } from "vuetify/components";
 import { dutyData, genderData, maritalData, nationData } from "~/data";
+import type { ModelRef } from 'vue'
+import TextFieldDateVue from "~/components/TextFieldDate.vue";
+import { useDate } from "vuetify/lib/framework.mjs";
+
 
 export function BasicInfo() {
   const user = useUserStore()
+  const adapter = useDate()
 
   const density = ref<any>('compact')
   //* 表格数据
@@ -11,6 +16,7 @@ export function BasicInfo() {
   const nations = ref(nationData)
   const maritals = ref(maritalData)
   const dutys = ref(dutyData)
+  const birthday = ref(adapter.parseISO('2019-01-01'))
 
 
   return (
@@ -135,6 +141,36 @@ export function BasicInfo() {
                 placeholder={'Jannarin'}
                 clearable
                 hideDetails
+              />
+            </div>
+          </VCol>
+          <VCol cols={12} lg={6} md={6} sm={6}>
+            <VRow>
+              <VCol cols={12} lg={12}>
+                <div>
+                  <label class='text-subtitle-2'>邮箱</label>
+                  <VTextField
+                    variant={'outlined'}
+                    density={density.value}
+                    rounded={false}
+                    clearIcon={'mdi-close-circle-outline'}
+                    placeholder={'Jannarin@mail.com'}
+                    clearable
+                    hideDetails
+                  />
+                </div>
+              </VCol>
+            </VRow>
+          </VCol>
+        </VRow>
+
+        {/* 出生日期、性别 */}
+        <VRow>
+          <VCol cols={12} lg={6} md={6} sm={6}>
+            <div>
+              <label class='text-subtitle-2'>出生日期</label>
+              <TextFieldDateVue
+                v-model={birthday.value}
               />
             </div>
           </VCol>
