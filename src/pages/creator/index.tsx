@@ -29,15 +29,15 @@ export default defineComponent({
     useSeoMeta({ title: '我的简历文件' })
     const userStore = useUserStore()
     const dataStore = useDataStore()
-    const settingsStore = usePreferencesStore()
+    const { density, size } = storeToRefs(usePreferencesStore())
     const items = ref(dataStore.state.templateList)
     const viewStyle = ref<'grid' | 'list' | 'flow'>('grid')
     const uiState = ref<IUIState>('loading')
     const isSelectedAll = ref(false)
     const toolbarActions = ref([
-      { id: 1, name: '选择', icon: 'mdi-select', action: () => {} },
-      { id: 2, name: '网格', icon: 'mdi-select', action: () => {} },
-      { id: 3, name: '列表', icon: 'mdi-select', action: () => {} }
+      { id: 1, name: '选择', icon: 'mdi-select', action: () => { } },
+      { id: 2, name: '网格', icon: 'mdi-select', action: () => { } },
+      { id: 3, name: '列表', icon: 'mdi-select', action: () => { } }
     ])
 
     //* api
@@ -100,7 +100,7 @@ export default defineComponent({
         await delay(1000)
         downloading.value = false
       }
-      async function copy() {}
+      async function copy() { }
       async function remove() {
         removeConfirm.value = false
         alert('remove')
@@ -218,7 +218,6 @@ export default defineComponent({
                       autofocus
                       validateOn={'lazy input'}
                       color={'primary'}
-                      rounded={'lg'}
                       hint={'修改简历名字'}
                       v-slots={{
                         'append-inner': () => (
@@ -260,8 +259,7 @@ export default defineComponent({
                 </VCol>
                 <VCol cols={12} lg={4} md={6}>
                   <div
-                    class='d-flex flex-column align-start'
-                    style={{ gap: '1rem' }}
+                    class='d-flex flex-column align-start gap-2'
                   >
                     <VBtn
                       variant={'text'}

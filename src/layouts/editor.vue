@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ThemeSwitch, UserProfileMenu } from '~/widgets';
-const { size, sizeMode, density, drawer, densityMode, theme, themeMode } = storeToRefs(usePreferencesStore())
+const { size, sizeMode, density, drawer, densityMode, theme, themeMode, flat } = storeToRefs(usePreferencesStore())
 const { toggleDrawer } = usePreferencesStore()
 
 </script>
 
 <template>
   <VApp>
-    <VAppBar :density="density">
+    <VAppBar :density="density" :flat="flat">
       <VBtn variant="plain" to="/creator">
         <VIcon size="24" start>mdi-chevron-left</VIcon>
         <span>返回我的简历</span>
@@ -50,9 +50,8 @@ const { toggleDrawer } = usePreferencesStore()
             <VMessages messages="自定义主题是明亮还是黑暗的主题，或者两者的结合" active />
           </div>
           <VRadioGroup v-model="density">
-            <VRadio v-for="(item) in densityMode" :key="item.label" :value="item.value"
-              :true-icon="'mdi-check-circle-outline'" :color="item.value === density ? 'primary' : 'default'"
-              :label="item.label" />
+            <VRadio v-for="(item) in densityMode" :key="item.label" :value="item.value" :true-icon="'mdi-check'"
+              :color="item.value === density ? 'primary' : 'default'" :label="item.label" />
           </VRadioGroup>
           <div class="mb-3">
             <VLabel class="mb-2 font-weight-medium">尺寸设置</VLabel>
@@ -63,6 +62,8 @@ const { toggleDrawer } = usePreferencesStore()
               :true-icon="'mdi-check-circle-outline'" :color="item.value === size ? 'primary' : 'default'"
               :label="item.label" />
           </VRadioGroup>
+          <VSwitch v-model="flat" label="启动阴影效果" inset true-icon="mdi-check" false-icon="mdi-close" color="primary"
+            hint="启动!" persistent-hint />
         </div>
       </VContainer>
       <template #append>

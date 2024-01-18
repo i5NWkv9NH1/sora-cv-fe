@@ -7,16 +7,16 @@ const props = withDefaults(defineProps<{ title: string; titleCenter: boolean; hi
 
 function Headline(props: { title: string; titleCenter: boolean; hideTag: boolean }) {
   return (
-    <div class={['text-h4', 'font-weight-bold',  {'text-center': props.titleCenter }]}>
+    <div class={['text-h4', 'font-weight-bold', { 'text-center': props.titleCenter }]}>
       {!props.hideTag && <span class={'text-primary mr-2'}>#</span>}
-            {props.title}
+      {props.title}
     </div>
   )
 }
 </script>
 
 <template>
-  <div class="d-flex flex-column" style="gap: 1.25rem; width: 100%">
+  <div class="d-flex flex-column fill-width gap-4">
     <Headline :title="title" :titleCenter="titleCenter" :hideTag="hideTag" />
     <slot />
   </div>

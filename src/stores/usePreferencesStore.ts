@@ -54,6 +54,8 @@ export const usePreferencesStore = defineStore(
       { label: '暗色', value: 'dark', icon: '' },
     ])
 
+    const flat = ref<boolean>(true)
+
     const previewSize = ref<PreviewSize>('A4')
 
 
@@ -79,7 +81,7 @@ export const usePreferencesStore = defineStore(
       alert.value.color = color
       alert.value.delay = delay
     }
-    return { alert, drawer, density, densityMode, size, sizeMode, theme, themeMode, height, toggleAlert, previewSize, updatePreviewSize, toggleDrawer }
+    return { alert, drawer, density, densityMode, size, sizeMode, theme, themeMode, height, toggleAlert, previewSize, updatePreviewSize, toggleDrawer, flat }
   },
   {
     persist: {

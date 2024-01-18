@@ -4,12 +4,11 @@ import type { ModelRef } from 'vue'
 import TextFieldDateVue from "~/components/TextFieldDate.vue";
 import { useDate } from "vuetify/lib/framework.mjs";
 
-
 export function BasicInfo() {
   const user = useUserStore()
+  const { density, size } = storeToRefs(usePreferencesStore())
   const adapter = useDate()
 
-  const density = ref<any>('compact')
   //* 表格数据
   //#region 表格数据
   const gender = ref(genderData)
@@ -82,15 +81,17 @@ export function BasicInfo() {
 
           <VCol cols={12} lg={6} md={6} sm={6}>
             <VRow align={'end'}>
-              <VCol cols={12} lg={5}>
+              <VCol cols={12} lg={12}>
                 <VAvatar
                   image={user.state.avatarUrl}
-                  // size={'100%'}
-                  size={128}
+                  size={'100%'}
+                  // size={128}
                   density={density.value}
                 />
               </VCol>
-              <VCol cols={12} lg={7}>
+
+
+              {/* <VCol cols={12} lg={7}>
                 <div
                   class={'d-flex flex-wrap justify-start align-start'}
                   style={{ gap: '1rem' }}
@@ -109,9 +110,11 @@ export function BasicInfo() {
                     删除照片
                   </VBtn>
                 </div>
-              </VCol>
+              </VCol> */}
             </VRow>
-            <VRow noGutters>
+
+
+            {/* <VRow noGutters>
               <VCol cols={12}>
                 <VBtn
                   to={'/'}
@@ -124,7 +127,9 @@ export function BasicInfo() {
                   简历照片应该是什么样？
                 </VBtn>
               </VCol>
-            </VRow>
+            </VRow> */}
+
+
           </VCol>
         </VRow>
 

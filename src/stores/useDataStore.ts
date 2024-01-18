@@ -64,7 +64,7 @@ export const useDataStore = defineStore(
       templateList: transformFields(templateListData)
     })
     const editor = reactive<EditorData>({
-      uiState: 'ok',
+      uiState: 'loading',
       template: null,
       picker: {
         color: '#dfdfdf',
@@ -79,7 +79,15 @@ export const useDataStore = defineStore(
       }
     })
 
-    return { state, editor }
+    function updateUiState(value: IUIState) {
+      editor.uiState = value
+    }
+
+    return {
+      state,
+      editor,
+      updateUiState
+    }
   },
   {
     persist: {

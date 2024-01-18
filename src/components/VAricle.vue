@@ -34,10 +34,11 @@ const props = withDefaults(defineProps<Props>(), {
         <VCol cols="12" lg="6" md="6">
           <VImg class="position-relative fill-height" transition="slide-y-transition" eager cover>
             <img :src="item.thumbnailUrl" class="fill-height" :style="{ width: '100%' }" />
-            <VOverlay :model-value="isHovering" contained eager class="fill-height pa-2" scrim="black" transition="slide-y-transition">
-                <div class="d-flex flex-wrap" style="gap: 1rem">
-                  <VAvatar v-for="i in 4" :key="i" color="primary" rounded="lg"  />
-                </div>
+            <VOverlay :model-value="isHovering" contained eager class="fill-height pa-2" scrim="black"
+              transition="slide-y-transition">
+              <div class="d-flex flex-wrap gap-4">
+                <VAvatar v-for="i in 4" :key="i" color="primary" rounded="lg" />
+              </div>
             </VOverlay>
           </VImg>
         </VCol>

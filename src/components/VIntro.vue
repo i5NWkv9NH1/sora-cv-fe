@@ -19,7 +19,7 @@ const styles = computed(() => {
 </script>
 
 <template>
-  <div class="wrapper" style="width: 100%">
+  <div class="wrapper fill-width">
     <div :class="classes" :style="styles">
       <div class="prepend my-4">
         <slot name="prepend" />
