@@ -1,12 +1,10 @@
-<script setup lang="ts">
-import { VOverlay, type VCardTitle } from 'vuetify/lib/components/index.mjs';
+<script setup lang="tsx">
+import { VOverlay, } from 'vuetify/lib/components/index.mjs';
 import type { IArticle } from '~/types';
-
 
 type Props = {
   item: IArticle
 }
-
 const props = withDefaults(defineProps<Props>(), {
   item(props) {
     return {

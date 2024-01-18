@@ -95,7 +95,7 @@ export const ResumeForm = defineComponent({
             rounded={false}
             style={{
               overflow: 'scroll',
-              minHeight: height.value,
+              height: height.value,
               maxHeight: height.value
             }}
           >

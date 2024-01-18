@@ -11,7 +11,6 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, defineProps, defineEmits } from "vue";
 import { useDate } from 'vuetify'
 
 const { label, color, modelValue } = defineProps([

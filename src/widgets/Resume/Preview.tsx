@@ -5,17 +5,23 @@ import { previewSizeOptionsData } from "~/data"
 import type { IUIState, PreviewOption, PreviewSize } from "~/types"
 import './Preview.scss'
 import { PickColorMenu } from "./Dialog"
+import { SortableList } from "./Module"
+import NoSSRVue from "~/components/NoSSR.vue"
+import LazyNoSSRVue from "~/components/LazyNoSSR.vue"
 
 //* A4
 export function A4Preview() {
   return (
     <VRow>
       <VCol cols={12}>
-        <VCard rounded={false}>
+        {/* <VCard rounded={false}>
           {Array.from({ length: 20 }).map((_) => (
             <h1>1</h1>
           ))}
-        </VCard>
+        </VCard> */}
+        <LazyNoSSRVue>
+          <SortableList />
+        </LazyNoSSRVue>
       </VCol>
     </VRow>
   )
@@ -107,7 +113,7 @@ export const PreviewSizeWrapper = defineComponent({
         rounded={false}
         style={{
           overflow: 'scroll',
-          minHeight: height.value,
+          height: height.value,
           maxHeight: height.value
         }}
         ref={previewEl}

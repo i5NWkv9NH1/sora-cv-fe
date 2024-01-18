@@ -1,6 +1,21 @@
-export { default as VSection } from './VSection.vue'
-export { default as VArticle } from './VAricle.vue'
-export { default as VTemplate } from './VTemplate.vue'
-export { default as VIntro } from './VIntro.vue'
-export { default as NeedVIP } from './NeedVIP.vue'
-export { default as TextFieldDate } from './TextFieldDate.vue'
+
+
+import VSection from './VSection.vue'
+import VArticle from './VArticle.vue'
+import VTemplate from './VTemplate.vue'
+import NeedVIP from './NeedVIP.vue'
+import VIntro from './VIntro.vue'
+import TextFieldDate from './TextFieldDate.vue'
+import NoSSR from './NoSSR.vue'
+import LazyNoSSR from './LazyNoSSR.vue'
+
+export {
+  VSection,
+  VArticle,
+  VTemplate,
+  NeedVIP,
+  VIntro,
+  TextFieldDate,
+  NoSSR,
+  LazyNoSSR
+}
