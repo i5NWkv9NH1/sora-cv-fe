@@ -38,7 +38,6 @@ watch(selectedDate, (newDate) => {
 
 watchEffect(() => {
   const date = adapter.toISO(selectedDate.value)
-  console.log(date)
 })
 </script>
 <style>

@@ -19,6 +19,9 @@ export type EditorData = {
   stepper: {
     status: boolean
     current: number
+  },
+  resume: {
+    name: string
   }
 }
 
@@ -76,6 +79,9 @@ export const useDataStore = defineStore(
       stepper: {
         status: false,
         current: 1
+      },
+      resume: {
+        name: '简约Nice的求职简历'
       }
     })
 

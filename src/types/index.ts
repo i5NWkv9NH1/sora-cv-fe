@@ -1,3 +1,4 @@
+import { renderSlot, type SlotsType } from "vue"
 import type { JSXComponent } from "vue"
 
 export type IUIState = 'ok' | 'loading' | 'empty' | 'error'

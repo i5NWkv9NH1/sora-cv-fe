@@ -2,6 +2,7 @@ import { VCard, VList, VListItem } from "vuetify/components"
 import { useSortable } from '@vueuse/integrations/useSortable'
 import Draggable from 'vuedraggable'
 import { TransitionGroup } from "vue"
+import './Module.scss'
 
 type DraggableSlots<T> = {
   element: T
@@ -66,13 +67,12 @@ export const SortableList = defineComponent({
               animation={200}
               v-slots={{
                 item: ({ element, index }: DraggableSlots<any>) => {
-                  return <VListItem title={element.name} color={element.color} prependIcon={'mdi-sort-variant'} key={element.id} active />
+                  return <VListItem class={'sortable-item'} title={element.name} color={element.color} prependIcon={'mdi-sort-variant'} key={element.id} active />
                 }
               }}
             />
           </TransitionGroup>
         </VList>
-
       </VCard>
     )
   }

@@ -1,9 +1,10 @@
-import { defineComponent, ref, type StyleValue } from 'vue';
-import { VCol, VContainer, VRow, VSheet, VSkeletonLoader, VTab, VTabs, VWindow, VWindowItem } from 'vuetify/components';
+import { defineComponent, ref, renderSlot, type SlotsType, type StyleValue } from 'vue';
+import { VCol, VContainer, VRow, VSheet, VSkeletonLoader, VTab, VTabs, VTextField, VWindow, VWindowItem } from 'vuetify/components';
 import type { ResumeWindow, IUIState, ResumeTab } from '~/types';
 import { BasicInfo, Test } from './Tab';
 import { resumeTabs } from '~/data';
 import './Form.scss'
+import type { Component } from 'vue';
 
 
 //* 左栏表格容器
@@ -134,3 +135,37 @@ export const ResumeForm = defineComponent({
     );
   }
 });
+
+export function ResumeNameTextField() {
+  const { editor } = storeToRefs(useDataStore())
+  const { density } = storeToRefs(usePreferencesStore())
+
+  const Wrapper: Component = (_: any, { slots }: { slots: SlotsType }) => (
+    <div class={'flex-4 mx-2'}>
+      {renderSlot(slots, 'default')}
+    </div>
+  )
+
+  const Loading = () => <VSkeletonLoader type={'paragraph'} />
+  const Ok = () => <VTextField
+    v-model={editor.value.resume.name}
+    density={density.value}
+    variant={'solo'}
+    hideSpinButtons
+    hideDetails
+    appendInnerIcon={'mdi-pencil-outline'}
+    singleLine
+  />
+
+  // switch (editor.value.uiState) {
+  //   case 'loading':
+  //     return <Wrapper><Loading /></Wrapper>
+  //   case 'ok':
+  //     return <Wrapper><Ok /></Wrapper>
+  //   default:
+  //     return <Wrapper><Loading /></Wrapper>
+  // }
+  return <Wrapper>
+    <Ok />
+  </Wrapper>
+}

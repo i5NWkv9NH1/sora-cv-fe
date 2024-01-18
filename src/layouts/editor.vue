@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ThemeSwitch, UserProfileMenu } from '~/widgets';
+import { ResumeNameTextField } from '~/widgets/Resume'
 const { size, sizeMode, density, drawer, densityMode, theme, themeMode, flat } = storeToRefs(usePreferencesStore())
+const { editor } = storeToRefs(useDataStore())
 const { toggleDrawer } = usePreferencesStore()
 
 </script>
@@ -13,6 +15,14 @@ const { toggleDrawer } = usePreferencesStore()
         <span>返回我的简历</span>
       </VBtn>
       <VSpacer />
+      <!-- <ResumeNameTextField /> -->
+      <div class="mx-4 flex-4">
+        <VTextField v-model="editor.resume.name" density="compact" variant="solo" append-inner-icon="mdi-pencil-outline"
+          hide-details single-line flat />
+      </div>
+      <VSpacer />
+      <VBtn to="/">帮助</VBtn>
+      <VBtn to="/">分享</VBtn>
       <ThemeSwitch />
       <UserProfileMenu />
       <VBtn @click="toggleDrawer" icon>
