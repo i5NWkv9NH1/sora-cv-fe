@@ -8,31 +8,28 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'zh-CN'
       },
-      titleTemplate: '%s - 奈思简历 NiceCV',
+      titleTemplate: '%s | 奈思简历 NiceCV',
       meta: []
     }
   },
   css: ['~/assets/styles/main.scss'],
-  imports: {
-    dirs: []
-  },
   experimental: {
     componentIslands: true
   },
   routeRules: {
-    '/': {
-      prerender: true
-    },
+    // '/': {
+    //   prerender: true
+    // },
     '/api/**': {
       cors: true
     },
-    '/editor/**': {
-      ssr: false
-    },
-    '/creator/**': {
-      ssr: false,
-      swr: 3600
-    }
+    // '/editor/**': {
+    //   ssr: false
+    // },
+    // '/creator/**': {
+    //   ssr: false,
+    //   swr: 3600
+    // }
   },
   modules: [
     (_options, nuxt) => {
@@ -53,7 +50,7 @@ export default defineNuxtConfig({
       template: {
         transformAssetUrls
       }
-    }
+    },
   },
   build: {
     transpile: ['vuetify']

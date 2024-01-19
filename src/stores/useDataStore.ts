@@ -1,18 +1,18 @@
 import { defineStore } from 'pinia'
 import { templateListData } from '~/data'
 import { transformField, transformFields } from '~/helpers'
-import type { IOrder, ITemplate, IUIState, PreviewSize } from '~/types'
+import type { AI, ColorMode, FAQ, IOrder, ITemplate, IUIState, Intro, PreviewSize, VIP } from '~/types'
 
-export type ColorMode = "rgb" | "rgba" | "hsl" | "hsla" | "hex" | "hexa";
+//* fake data
+import { faqsData, indexPageData, vipsData } from '~/data'
 
-export type EditorData = {
+export type EditorPageState = {
   uiState: IUIState,
   template: ITemplate | null | undefined
   picker: {
     color: string
     mode: ColorMode
-  }
-  ,
+  },
   modules: any[]
   previewSize: PreviewSize
   selectedTemplateId: ITemplate['id'] | undefined,
@@ -23,6 +23,20 @@ export type EditorData = {
   resume: {
     name: string
   }
+}
+export type VIPPageState = {
+  vips: VIP[]
+  faqs: FAQ[]
+}
+export type IndexPageState = {
+  logo: string
+  thumbnailUrl: string
+  title: string
+  subtitle: string
+  caption: string
+  intros: Intro[]
+  templates: ITemplate[]
+  ais: AI[]
 }
 
 export const useDataStore = defineStore(
@@ -66,7 +80,26 @@ export const useDataStore = defineStore(
       defaultTemplate: transformField(templateListData[0]),
       templateList: transformFields(templateListData)
     })
-    const editor = reactive<EditorData>({
+    const indexPageState = reactive<IndexPageState>({
+      logo: indexPageData.logo,
+      thumbnailUrl: indexPageData.thumbnailUrl,
+      title: indexPageData.logo,
+      subtitle: indexPageData.logo,
+      caption: indexPageData.logo,
+      intros: indexPageData.intros,
+      templates: transformFields(indexPageData.templates),
+      ais: indexPageData.ais,
+    })
+    const vipPageState = reactive<VIPPageState>({
+      vips: vipsData,
+      faqs: faqsData
+    })
+    const creatorState = reactive({
+      resumes: [],
+      recycle: [],
+      templates: [],
+    })
+    const editor = reactive<EditorPageState>({
       uiState: 'loading',
       template: null,
       picker: {
@@ -91,7 +124,10 @@ export const useDataStore = defineStore(
 
     return {
       state,
+      indexPageState,
+      vipPageState,
       editor,
+      editorPageState: editor,
       updateUiState
     }
   },

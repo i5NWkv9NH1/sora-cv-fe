@@ -1,13 +1,12 @@
-import type { SlotsType, Component } from "vue"
+import type { Component, SlotsType } from "vue"
 import { renderSlot } from "vue"
 import { VBtn, VCard, VCol, VContainer, VIcon, VRow, VSheet, VSkeletonLoader, VSlideXReverseTransition, VSlideXTransition, VSlideYTransition, VSpacer, VToolbar } from "vuetify/components"
 import { previewSizeOptionsData } from "~/data"
 import type { IUIState, PreviewOption, PreviewSize } from "~/types"
-import './Preview.scss'
-import { PickColorMenu } from "./Dialog"
+import { ClientOnly } from "#components"
 import { SortableList } from "./Module"
-import NoSSRVue from "~/components/NoSSR.vue"
-import LazyNoSSRVue from "~/components/LazyNoSSR.vue"
+import './Preview.scss'
+import { PickColorMenu } from "./Toolbar"
 
 //* A4
 export function A4Preview() {
@@ -19,9 +18,9 @@ export function A4Preview() {
             <h1>1</h1>
           ))}
         </VCard> */}
-        <LazyNoSSRVue>
+        <ClientOnly>
           <SortableList />
-        </LazyNoSSRVue>
+        </ClientOnly>
       </VCol>
     </VRow>
   )
@@ -81,7 +80,7 @@ export const PreviewToolbar = defineComponent({
         </VToolbar>
       )
     }
-    function Loadng() {
+    function Loading() {
       return (
         <VSkeletonLoader type={'chip@4'} />
       )
@@ -90,8 +89,8 @@ export const PreviewToolbar = defineComponent({
     return () => {
       switch (uiState.value) {
         case 'ok': return <Ok />
-        case 'loading': return <Loadng />
-        default: return <Loadng />
+        case 'loading': return <Loading />
+        default: return <Loading />
       }
     }
   }
@@ -130,7 +129,6 @@ export const PreviewSizeWrapper = defineComponent({
 
     return () => {
       switch (uiState.value) {
-        default: return <Wrapper><Loading /></Wrapper>
         case 'loading': return <Wrapper><Loading /></Wrapper>
         case 'ok':
           switch (previewSize.value) {

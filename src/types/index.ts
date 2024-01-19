@@ -1,5 +1,6 @@
-import { renderSlot, type SlotsType } from "vue"
-import type { JSXComponent } from "vue"
+import { type SlotsType, renderSlot } from 'vue'
+import type { JSXComponent } from 'vue'
+export * from './vuetify'
 
 export type IUIState = 'ok' | 'loading' | 'empty' | 'error'
 
@@ -29,7 +30,7 @@ export type ITag = {
     updatedAt: string
     wechat: {
       appId: string
-    },
+    }
     image: unknown
   }
 }
@@ -103,11 +104,15 @@ export type IUser = {
   isVip: boolean
 }
 
-
 export type PreviewSize = 'A4' | 'PHONE'
-export type PreviewOption = { id: number; label: string; value: 'A4' | 'PHONE'; icon: string }
+export type PreviewOption = {
+  id: number
+  label: string
+  value: 'A4' | 'PHONE'
+  icon: string
+}
 export type ResumeTab = {
-  id: number | string,
+  id: number | string
   name: string
   icon: string
   value: number | string
@@ -118,26 +123,6 @@ export type ResumeWindow = {
   key: number | string
   component: JSXComponent
 }
-//! settings
-export type Size = 'x-small' | 'small' | 'default' | 'large' | 'x-large'
-export type Density = null | 'default' | 'comfortable' | 'compact';
-export type DensityMode = {
-  label: string
-  value: Density
-  icon?: string
-}
-export type SizeMode = {
-  label: string
-  value: Size
-}
-export type Theme = 'auto' | 'light' | 'dark'
-export type ThemeMode = {
-  label: string;
-  value: Theme
-  icon?: string
-}
-
-
 
 //! form
 export type SkillItem = {
@@ -145,38 +130,38 @@ export type SkillItem = {
   description: string
 }
 export type EducationItem = {
-  "id": number,
-  "school": string
-  "major": string
-  "degree": number,
-  "degreeType": number,
-  "college": string
-  "schoolCity": string
-  "schoolTimeFrom": string
-  "schoolTimeTo": string
-  "experienceDesc": string
+  id: number
+  school: string
+  major: string
+  degree: number
+  degreeType: number
+  college: string
+  schoolCity: string
+  schoolTimeFrom: string
+  schoolTimeTo: string
+  experienceDesc: string
 }
 export type ProjectItem = {
-  "id": number,
-  "name": string
-  "role": string
-  "department": string
-  "city": string
-  "from": string
-  "to": string
-  "experienceDesc": string
+  id: number
+  name: string
+  role: string
+  department: string
+  city: string
+  from: string
+  to: string
+  experienceDesc: string
 }
 export type WorkItem = {
-  "id": number,
-  "company": string
-  "job": string
-  "department": string
-  "city": string
-  "workTimeFrom": string
-  "workTimeTo": string
-  "experienceDesc": string
+  id: number
+  company: string
+  job: string
+  department: string
+  city: string
+  workTimeFrom: string
+  workTimeTo: string
+  experienceDesc: string
 }
-export type OtherItemType = 'preItemsKey' | "language"
+export type OtherItemType = 'preItemsKey' | 'language'
 export type OtherItem = {
   preItemsKey: OtherItemType
   isTagItem: boolean
@@ -189,7 +174,7 @@ export type IResume = {
   name: string
   thumbnailUrl: string
   previewSize: PreviewSize
-  modules: string[],
+  modules: string[]
   theme: string
   themeColor: string
   fields: {
@@ -237,8 +222,41 @@ export type IResume = {
     others: OtherItem[]
     experiences: WorkItem[]
     educations: EducationItem[]
-    softwaveSkills: any[
-    ]
+    softwaveSkills: any[]
     skills: SkillItem[]
   }
+}
+
+export type VIP = {
+  id: string | number
+  title: string
+  price: string | number
+  type: number
+  description: string
+  order: number
+  value: number
+}
+
+export type FAQ = {
+  id: string | number
+  title: string
+  content: string
+}
+
+export type Intro = {
+  title: string
+  subtitle: string
+  thumbnailUrl: string
+  color: string
+}
+
+export type AI = {
+  id: string | number
+  name: string
+  thumbnailUrl: string
+  description: string
+}
+
+export type FCProps = {
+  slots: SlotsType
 }

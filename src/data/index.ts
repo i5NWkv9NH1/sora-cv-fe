@@ -1,4 +1,7 @@
 export * from './editor'
+export * from './vip'
+export * from './layout'
+export * from './creator'
 
 
 export const templateListData = [
@@ -3174,177 +3177,61 @@ export const templateData = {
   }
 }
 
-export const nationData = [
-  { "code": "01", "nation": "汉族" },
-  {
-    "code": "02",
-    "nation": "蒙古族"
-  }, {
-    "code": "03",
-    "nation": "回族"
-  }, {
-    "code": "04",
-    "nation": "藏族"
-  }, {
-    "code": "05",
-    "nation": "维吾尔族"
-  }, {
-    "code": "06",
-    "nation": "苗族"
-  }, {
-    "code": "07",
-    "nation": "彝族"
-  }, {
-    "code": "08",
-    "nation": "壮族"
-  }, {
-    "code": "09",
-    "nation": "布依族"
-  }, {
-    "code": "10",
-    "nation": "朝鲜族"
-  }, {
-    "code": "11",
-    "nation": "满族"
-  }, {
-    "code": "12",
-    "nation": "侗族"
-  }, {
-    "code": "13",
-    "nation": "瑶族"
-  }, {
-    "code": "14",
-    "nation": "白族"
-  }, {
-    "code": "15",
-    "nation": "土家族"
-  }, {
-    "code": "16",
-    "nation": "哈尼族"
-  }, {
-    "code": "17",
-    "nation": "哈萨克族"
-  }, {
-    "code": "18",
-    "nation": "傣族"
-  }, {
-    "code": "19",
-    "nation": "黎族"
-  }, {
-    "code": "20",
-    "nation": "傈僳族"
-  }, {
-    "code": "21",
-    "nation": "佤族"
-  }, {
-    "code": "22",
-    "nation": "畲族"
-  }, {
-    "code": "23",
-    "nation": "高山族"
-  }, {
-    "code": "24",
-    "nation": "拉祜族"
-  }, {
-    "code": "25",
-    "nation": "水族"
-  }, {
-    "code": "26",
-    "nation": "东乡族"
-  }, {
-    "code": "27",
-    "nation": "纳西族"
-  }, {
-    "code": "28",
-    "nation": "景颇族"
-  }, {
-    "code": "29",
-    "nation": "柯尔克孜族"
-  }, {
-    "code": "30",
-    "nation": "土族"
-  }, {
-    "code": "31",
-    "nation": "达斡尔族"
-  }, {
-    "code": "32",
-    "nation": "仫佬族"
-  }, {
-    "code": "33",
-    "nation": "羌族"
-  }, {
-    "code": "34",
-    "nation": "布朗族"
-  }, {
-    "code": "35",
-    "nation": "撒拉族"
-  }, {
-    "code": "36",
-    "nation": "毛难族"
-  }, {
-    "code": "37",
-    "nation": "仡佬族"
-  }, {
-    "code": "38",
-    "nation": "锡伯族"
-  }, {
-    "code": "39",
-    "nation": "阿昌族"
-  }, {
-    "code": "40",
-    "nation": "普米族"
-  }, {
-    "code": "41",
-    "nation": "塔吉克族"
-  }, {
-    "code": "42",
-    "nation": "怒族"
-  }, {
-    "code": "43",
-    "nation": "乌孜别克族"
-  }, {
-    "code": "44",
-    "nation": "俄罗斯族"
-  }, {
-    "code": "45",
-    "nation": "鄂温克族"
-  }, {
-    "code": "46",
-    "nation": "崩龙族"
-  }, {
-    "code": "47",
-    "nation": "保安族"
-  }, {
-    "code": "48",
-    "nation": "裕固族"
-  }, {
-    "code": "49",
-    "nation": "京族"
-  }, {
-    "code": "50",
-    "nation": "塔塔尔族"
-  }, {
-    "code": "51",
-    "nation": "独龙族"
-  }, {
-    "code": "52",
-    "nation": "鄂伦春族"
-  }, {
-    "code": "53",
-    "nation": "赫哲族"
-  }, {
-    "code": "54",
-    "nation": "门巴族"
-  }, {
-    "code": "55",
-    "nation": "珞巴族"
-  }, {
-    "code": "56",
-    "nation": "基诺族"
-  }, {
-    "code": "97",
-    "nation": "其他"
-  }, {
-    "code": "98",
-    "nation": "外国血统"
-  }]
+export const indexPageData = {
+  logo: 'https://www.nicecv.cn/api/web/uploads/202312231607230d6e51965.png',
+  thumbnailUrl: 'https://www.nicecv.cn/api/web/uploads/20231206093708b10308459.jpg',
+  title: '轻松在线制作',
+  subtitle: '您的精美个人简历',
+  caption: '节省简历制作的时间，帮助您更好的介绍自己，获得梦想的职位。',
+  intros: [
+    {
+      title: '在线制作',
+      subtitle: '直观的编辑和修改简历，所见即所得',
+      thumbnailUrl:
+        'https://www.nicecv.cn/api/web/uploads/202306292153212ff562769.png',
+      color: '#fff1f2'
+    },
+    {
+      title: '精美模板',
+      subtitle: '原创设计的精美模板，满足各种岗位需求',
+      thumbnailUrl:
+        'https://www.nicecv.cn/api/web/uploads/20230629215322085c95436.png',
+      color: '#fff9f4'
+    },
+    {
+      title: '简历助手',
+      subtitle: '内置简历内容ai生成工具，为您节约更多时间',
+      thumbnailUrl:
+        'https://www.nicecv.cn/api/web/uploads/2023062921532161b754059.png',
+      color: '#f2f1ff'
+    }
+  ],
+  templates: [
+    templateListData[0],
+    templateListData[1],
+    templateListData[2],
+  ],
+  ais: [
+    {
+      id: 1,
+      name: 'Resign AI',
+      description: '离职信生成',
+      thumbnailUrl:
+        'https://www.nicecv.cn/api/web/uploads/20230816223216060e58971.png'
+    },
+    {
+      id: 2,
+      name: 'CovLetter AI',
+      description: '求职信生成',
+      thumbnailUrl:
+        'https://www.nicecv.cn/api/web/uploads/20230816215424fd4547943.png'
+    },
+    {
+      id: 3,
+      name: 'Recommend AI',
+      description: '推荐信生成',
+      thumbnailUrl:
+        'https://www.nicecv.cn/api/web/uploads/20230816215226f25132063.png'
+    }
+  ],
+}

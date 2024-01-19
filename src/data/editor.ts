@@ -1,6 +1,4 @@
 import type { PreviewOption, ResumeTab, } from "~/types"
-
-export { }
 //? 性别
 export const genderData = [
   { id: 1, label: '男', value: 1, icon: '' },
@@ -195,7 +193,6 @@ export const nationData = [
     "code": "98",
     "nation": "外国血统"
   }]
-
 //? 预览选项
 export const previewSizeOptionsData: PreviewOption[] = [
   { id: 1, label: 'A4尺寸', value: 'A4', icon: 'mdi-monitor' },

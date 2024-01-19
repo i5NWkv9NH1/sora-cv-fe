@@ -1,5 +1,5 @@
 <template>
-  <v-menu v-model="isMenuOpen" :close-on-content-click="false" transition="slide-y-transition">
+  <v-menu v-model="isMenuOpen" transition="slide-y-transition">
     <template v-slot:activator="{ props }">
       <v-text-field :model-value="formattedDate" readonly v-bind="props" variant="outlined" density="compact"
         placeholder="出生日期" hide-details />

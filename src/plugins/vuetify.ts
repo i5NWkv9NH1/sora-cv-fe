@@ -2,9 +2,9 @@ import '@mdi/font/css/materialdesignicons.css'
 
 import { createVuetify } from 'vuetify'
 import { md3 } from 'vuetify/blueprints'
+import * as directives from 'vuetify/directives'
 //@ts-ignore
 import { VuetifyDateAdapter } from 'vuetify/lib/composables/date/adapters/vuetify.mjs'
-import * as directives from 'vuetify/directives'
 import 'vuetify/styles'
 
 
