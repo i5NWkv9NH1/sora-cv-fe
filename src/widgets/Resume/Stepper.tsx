@@ -9,13 +9,13 @@ import {
   VRow,
   VSpacer,
   VWindow,
-  VWindowItem
+  VWindowItem,
 } from 'vuetify/components'
 
 export function CreateTemplateStep1() {
   return (
     <VRow>
-      {Array.from({ length: 10 }).map((_) => (
+      {Array.from({ length: 10 }).map(_ => (
         <VCol>1</VCol>
       ))}
     </VRow>
@@ -24,7 +24,7 @@ export function CreateTemplateStep1() {
 export function CreateTemplateStep2() {
   return (
     <VRow>
-      {Array.from({ length: 10 }).map((_) => (
+      {Array.from({ length: 10 }).map(_ => (
         <VCol>2</VCol>
       ))}
     </VRow>
@@ -36,7 +36,7 @@ export function CreateTemplateStepper() {
   const stepperActions = ref([
     { id: 1, label: '返回', icon: 'mdi-chevron-left', value: 1 },
     { component: true },
-    { id: 2, label: '下一步', icon: 'mdi-chevron-right', value: 2 }
+    { id: 2, label: '下一步', icon: 'mdi-chevron-right', value: 2 },
   ])
 
   return (
@@ -54,16 +54,16 @@ export function CreateTemplateStepper() {
       </VCardText>
       <VCardActions>
         {stepperActions.value.map((item) => {
-          if (item.component) {
+          if (item.component)
             return <VSpacer />
-          }
+
           const isActive = computed(
-            () => editor.value.stepper.current === item.value
+            () => editor.value.stepper.current === item.value,
           )
 
           return (
             <VBtn
-              //@ts-ignore
+              // @ts-expect-error
               onClick={() => {
                 editor.value.stepper.current = item.value!
               }}

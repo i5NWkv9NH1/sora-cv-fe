@@ -1,4 +1,4 @@
-import { VBtn, VList, VListItem, VMenu, VIcon } from 'vuetify/lib/components/index.mjs'
+import { VBtn, VIcon, VList, VListItem, VMenu } from 'vuetify/lib/components/index.mjs'
 import { useTheme } from 'vuetify/lib/framework.mjs'
 
 export const ThemeSwitch = defineComponent({
@@ -11,7 +11,7 @@ export const ThemeSwitch = defineComponent({
     return () => (
       <VMenu
         offset={10}
-        transition={'slide-y-transition'}
+        transition="slide-y-transition"
         v-slots={{
           activator: ({ props }) => (
             <VBtn {...props} icon>
@@ -19,13 +19,13 @@ export const ThemeSwitch = defineComponent({
             </VBtn>
           ),
           default: () => (
-            <VList density={'compact'} nav>
-              <VListItem onClick={() => handle('light')} title={'light'} />
-              <VListItem onClick={() => handle('dark')} title={'dark'} />
+            <VList density="compact" nav>
+              <VListItem onClick={() => handle('light')} title="light" />
+              <VListItem onClick={() => handle('dark')} title="dark" />
             </VList>
-          )
+          ),
         }}
       />
     )
-  }
+  },
 })

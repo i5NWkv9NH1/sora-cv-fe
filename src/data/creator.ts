@@ -1,14 +1,14 @@
 export const creatorData = {
   resumes: [],
   recycle: [],
-  templates: []
+  templates: [],
 }
 
-export type Form = {
+export interface Form {
   name: string
 }
 
-export type Resume = {
+export interface Resume {
   id: string
   name: string
 

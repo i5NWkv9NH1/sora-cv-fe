@@ -6,22 +6,22 @@ export default defineNuxtConfig({
     head: {
       charset: 'utf-8',
       htmlAttrs: {
-        lang: 'zh-CN'
+        lang: 'zh-CN',
       },
       titleTemplate: '%s | 奈思简历 NiceCV',
-      meta: []
-    }
+      meta: [],
+    },
   },
   css: ['~/assets/styles/main.scss'],
   experimental: {
-    componentIslands: true
+    componentIslands: true,
   },
   routeRules: {
     // '/': {
     //   prerender: true
     // },
     '/api/**': {
-      cors: true
+      cors: true,
     },
     // '/editor/**': {
     //   ssr: false
@@ -40,20 +40,20 @@ export default defineNuxtConfig({
     },
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
-    '@vueuse/nuxt'
+    '@vueuse/nuxt',
   ],
   pinia: {
-    storesDirs: ['src/stores/**']
+    storesDirs: ['src/stores/**'],
   },
   vite: {
     vue: {
       template: {
-        transformAssetUrls
-      }
+        transformAssetUrls,
+      },
     },
   },
   build: {
-    transpile: ['vuetify']
+    transpile: ['vuetify'],
   },
-  devtools: { enabled: false }
+  devtools: { enabled: false },
 })

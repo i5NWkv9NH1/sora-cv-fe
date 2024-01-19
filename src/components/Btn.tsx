@@ -1,4 +1,5 @@
-import { renderSlot } from 'vue';
+import { renderSlot } from 'vue'
+
 // import { makeBorderProps } from 'vuetify/composables/border.mjs'
 // import { makeComponentProps } from 'vuetify/composables/component.mjs'
 // import { makeDensityProps } from 'vuetify/composables/density.mjs'
@@ -14,27 +15,26 @@ import { renderSlot } from 'vue';
 // import { makeTagProps } from 'vuetify/composables/tag.mjs'
 // import { makeThemeProps } from 'vuetify/composables/theme.mjs'
 // import { makeVariantProps } from 'vuetify/composables/variant.mjs'
-import { VBtn } from 'vuetify/lib/components/index.mjs';
+import { VBtn } from 'vuetify/lib/components/index.mjs'
 
-
-export const VBtnToggleSymbol = Symbol.for('vuetify:v-btn-toggle');
-export const IconValue = [String, Function, Object, Array];
+export const VBtnToggleSymbol = Symbol.for('vuetify:v-btn-toggle')
+export const IconValue = [String, Function, Object, Array]
 export default defineComponent({
   props: {
     onClick: {
-      type: Function
+      type: Function,
     },
   },
   setup(_, { slots }) {
     return () => (
-      //@ts-ignore
+      // @ts-expect-error
       <VBtn
-        //@ts-ignore
+        // @ts-expect-error
         onClick={_.onClick}
         {..._}
       >
         {renderSlot(slots, 'default')}
       </VBtn>
     )
-  }
+  },
 })

@@ -24,11 +24,11 @@ export function transformField(item: any): ITemplate {
     status: item.goods_status.value,
     download: {
       url: '',
-      password: item.download_password
+      password: item.download_password,
     },
     file: {
       name: item.file_name,
-      quantity: item.file_quantity
+      quantity: item.file_quantity,
     },
     model: {
       content: item.fanwen,
@@ -37,12 +37,12 @@ export function transformField(item: any): ITemplate {
     },
     stats: {
       view: item.goods_view,
-      like: item.goods_sales
+      like: item.goods_sales,
     },
     thumbnails: item.image.map((_item: any) => {
       return {
         id: _item.image_id,
-        src: _item.file_path
+        src: _item.file_path,
       }
     }),
     styleCategory: item.style_category.map((_tag: any) => {
@@ -58,10 +58,10 @@ export function transformField(item: any): ITemplate {
           createdAt: _tag.create_time,
           updatedAt: _tag.update_time,
           wechat: {
-            appId: _tag.wxapp_id
+            appId: _tag.wxapp_id,
           },
-          image: _tag.image
-        }
+          image: _tag.image,
+        },
       }
     }),
     experienceCategory: item.profession_category.map((_tag: any) => {
@@ -77,10 +77,10 @@ export function transformField(item: any): ITemplate {
           createdAt: _tag.create_time,
           updatedAt: _tag.update_time,
           wechat: {
-            appId: _tag.wxapp_id
+            appId: _tag.wxapp_id,
           },
-          image: _tag.image
-        }
+          image: _tag.image,
+        },
       }
     }),
     jobCategory: item.job_category.map((_tag: any) => {
@@ -96,10 +96,10 @@ export function transformField(item: any): ITemplate {
           createdAt: _tag.create_time,
           updatedAt: _tag.update_time,
           wechat: {
-            appId: _tag.wxapp_id
+            appId: _tag.wxapp_id,
           },
-          image: _tag.image
-        }
+          image: _tag.image,
+        },
       }
     }),
     tags: item.style_category.map((_tag: any) => {
@@ -115,16 +115,16 @@ export function transformField(item: any): ITemplate {
           createdAt: _tag.create_time,
           updatedAt: _tag.update_time,
           wechat: {
-            appId: _tag.wxapp_id
+            appId: _tag.wxapp_id,
           },
-          image: _tag.image
-        }
+          image: _tag.image,
+        },
       }
     }),
   }
 }
 export function transformFields(item: any[]): ITemplate[] {
   return templateListData
-    .filter((item) => item.goods_id !== 10022)
+    .filter(item => item.goods_id !== 10022)
     .map(item => transformField(item))
 }

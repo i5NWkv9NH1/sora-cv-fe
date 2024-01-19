@@ -1,6 +1,6 @@
 import { VBtn, VContainer, VIcon } from 'vuetify/components'
 
-type PageProps = {
+interface PageProps {
   toggle: () => void
 }
 
@@ -8,10 +8,10 @@ function Page({ toggle }: PageProps) {
   return (
     <VContainer>
       <VBtn
-        //@ts-ignore
+        // @ts-expect-error
         onClick={toggle}
         icon
-        color={'primary'}
+        color="primary"
       >
         <VIcon>sort-variant</VIcon>
       </VBtn>
@@ -27,5 +27,5 @@ export default defineComponent({
     const { drawer } = storeToRefs(usePreferencesStore())
     const toggle = () => { drawer.value = !drawer.value }
     return () => <Page toggle={toggle} />
-  }
+  },
 })

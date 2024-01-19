@@ -4,7 +4,6 @@ import { QueryFilter } from '~/refator'
 import { mockTemplateFilters, } from '~/mocks'
 import type { TemplateQuery, TempateQueryKey, TemplateFilter } from '~/mocks'
 
-
 // * your data
 const filters = ref<TemplateFilter[]>()
 const query = ref<TemplateQuery>({
@@ -26,9 +25,9 @@ watch(query, (newQuery) => {
 </template>
  -->
 <script setup lang="tsx">
-import type { PropType } from 'vue';
 import type { TemplateCategory } from '~/mocks'
-import type { Variant } from '~/types';
+import type { Variant } from '~/types'
+
 // const props = defineProps({
 //   // ? 查询值
 //   modelValue: {
@@ -47,7 +46,7 @@ import type { Variant } from '~/types';
 //   }
 // })
 
-type Props = {
+interface Props {
   modelValue?: number
   title?: string
   items?: TemplateCategory[]
@@ -61,7 +60,7 @@ const props = withDefaults(defineProps<Props>(), {
     { id: 1, name: '标签 1', value: 1, icon: '' },
     { id: 2, name: '标签 2', value: 2, icon: '' },
   ],
-  variant: 'text'
+  variant: 'text',
 })
 const emits = defineEmits(['update:modelValue'])
 const selectedQuery = ref(props.modelValue)
@@ -82,9 +81,13 @@ console.log(props)
       {{ title }}
     </div>
     <div class="d-flex">
-      <VBtn v-for="query in items" :key="query.id" :active="selectedQuery === query.value"
-        @click="selectedQuery = query.value" :variant="variant" class="mr-2">
-        <VIcon v-if="query.icon">{{ query.icon }}</VIcon>
+      <VBtn
+        v-for="query in items" :key="query.id" :active="selectedQuery === query.value"
+        :variant="variant" class="mr-2" @click="selectedQuery = query.value"
+      >
+        <VIcon v-if="query.icon">
+          {{ query.icon }}
+        </VIcon>
         <span>{{ query.name }}</span>
       </VBtn>
     </div>

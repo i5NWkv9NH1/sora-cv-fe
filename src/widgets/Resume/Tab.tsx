@@ -1,8 +1,7 @@
-import { VContainer, VRow, VCol, VForm, VTextField, VTextarea, VBtn, VIcon, VAvatar, VSelect, VList, VListItem, VListItemTitle, VListItemSubtitle, VMenu, VDatePicker } from "vuetify/components";
-import { dutyData, genderData, maritalData, nationData } from "~/data";
-import type { ModelRef } from 'vue'
-import TextFieldDateVue from "~/components/TextFieldDate.vue";
-import { useDate } from "vuetify/lib/framework.mjs";
+import { VAvatar, VCol, VContainer, VForm, VList, VListItem, VRow, VSelect, VTextField, VTextarea } from 'vuetify/components'
+import { useDate } from 'vuetify/lib/framework.mjs'
+import { dutyData, genderData, maritalData, nationData } from '~/data'
+import TextFieldDateVue from '~/components/TextFieldDate.vue'
 
 export function BasicInfo() {
   const user = useUserStore()
@@ -10,13 +9,12 @@ export function BasicInfo() {
   const adapter = useDate()
 
   //* 表格数据
-  //#region 表格数据
+  // #region 表格数据
   const gender = ref(genderData)
   const nations = ref(nationData)
   const maritals = ref(maritalData)
   const dutys = ref(dutyData)
   const birthday = ref(adapter.parseISO('2019-01-01'))
-
 
   return (
     <VContainer fluid>
@@ -29,13 +27,13 @@ export function BasicInfo() {
             <VRow>
               <VCol cols={12} lg={6}>
                 <div>
-                  <label class='text-subtitle-2'>姓名</label>
+                  <label class="text-subtitle-2">姓名</label>
                   <VTextField
-                    variant={'outlined'}
+                    variant="outlined"
                     density={density.value}
                     rounded={false}
-                    clearIcon={'mdi-close-circle-outline'}
-                    placeholder={'Jannarin'}
+                    clearIcon="mdi-close-circle-outline"
+                    placeholder="Jannarin"
                     clearable
                     hideDetails
                   />
@@ -43,13 +41,13 @@ export function BasicInfo() {
               </VCol>
               <VCol cols={12} lg={6}>
                 <div>
-                  <label class='text-subtitle-2'>英文名</label>
+                  <label class="text-subtitle-2">英文名</label>
                   <VTextField
-                    variant={'outlined'}
+                    variant="outlined"
                     density={density.value}
                     rounded={false}
-                    clearIcon={'mdi-close-circle-outline'}
-                    placeholder={'Jannarin'}
+                    clearIcon="mdi-close-circle-outline"
+                    placeholder="Jannarin"
                     clearable
                     hideDetails
                   />
@@ -62,13 +60,13 @@ export function BasicInfo() {
             <VRow>
               <VCol cols={12}>
                 <div>
-                  <label class='text-subtitle-2'>当前职位</label>
+                  <label class="text-subtitle-2">当前职位</label>
                   <VTextField
-                    variant={'outlined'}
+                    variant="outlined"
                     density={density.value}
                     rounded={false}
-                    clearIcon={'mdi-close-circle-outline'}
-                    placeholder={'Jannarin'}
+                    clearIcon="mdi-close-circle-outline"
+                    placeholder="Jannarin"
                     clearable
                     hideDetails
                   />
@@ -80,16 +78,15 @@ export function BasicInfo() {
           {/* 第一第二行 列 */}
 
           <VCol cols={12} lg={6} md={6} sm={6}>
-            <VRow align={'end'}>
+            <VRow align="end">
               <VCol cols={12} lg={12}>
                 <VAvatar
                   image={user.state.avatarUrl}
-                  size={'100%'}
+                  size="100%"
                   // size={128}
                   density={density.value}
                 />
               </VCol>
-
 
               {/* <VCol cols={12} lg={7}>
                 <div
@@ -113,7 +110,6 @@ export function BasicInfo() {
               </VCol> */}
             </VRow>
 
-
             {/* <VRow noGutters>
               <VCol cols={12}>
                 <VBtn
@@ -129,7 +125,6 @@ export function BasicInfo() {
               </VCol>
             </VRow> */}
 
-
           </VCol>
         </VRow>
 
@@ -137,13 +132,13 @@ export function BasicInfo() {
         <VRow>
           <VCol cols={12} lg={6} md={6} sm={6}>
             <div>
-              <label class='text-subtitle-2'>电话</label>
+              <label class="text-subtitle-2">电话</label>
               <VTextField
-                variant={'outlined'}
+                variant="outlined"
                 density={density.value}
                 rounded={false}
-                clearIcon={'mdi-close-circle-outline'}
-                placeholder={'Jannarin'}
+                clearIcon="mdi-close-circle-outline"
+                placeholder="Jannarin"
                 clearable
                 hideDetails
               />
@@ -153,13 +148,13 @@ export function BasicInfo() {
             <VRow>
               <VCol cols={12} lg={12}>
                 <div>
-                  <label class='text-subtitle-2'>邮箱</label>
+                  <label class="text-subtitle-2">邮箱</label>
                   <VTextField
-                    variant={'outlined'}
+                    variant="outlined"
                     density={density.value}
                     rounded={false}
-                    clearIcon={'mdi-close-circle-outline'}
-                    placeholder={'Jannarin@mail.com'}
+                    clearIcon="mdi-close-circle-outline"
+                    placeholder="Jannarin@mail.com"
                     clearable
                     hideDetails
                   />
@@ -173,7 +168,7 @@ export function BasicInfo() {
         <VRow>
           <VCol cols={12} lg={6} md={6} sm={6}>
             <div>
-              <label class='text-subtitle-2'>出生日期</label>
+              <label class="text-subtitle-2">出生日期</label>
               <TextFieldDateVue
                 v-model={birthday.value}
               />
@@ -183,17 +178,17 @@ export function BasicInfo() {
             <VRow>
               <VCol cols={12} lg={12}>
                 <div>
-                  <label class='text-subtitle-2'>性别</label>
+                  <label class="text-subtitle-2">性别</label>
                   <VSelect
-                    variant={'outlined'}
+                    variant="outlined"
                     density={density.value}
                     rounded={false}
-                    clearIcon={'mdi-close-circle-outline'}
-                    placeholder={'性别'}
-                    itemValue={'value'}
-                    itemTitle={'label'}
+                    clearIcon="mdi-close-circle-outline"
+                    placeholder="性别"
+                    itemValue="value"
+                    itemTitle="label"
                     items={gender.value}
-                    class={'text-subtitle-1'}
+                    class="text-subtitle-1"
                     clearable
                     hideDetails
                     v-slots={{
@@ -207,7 +202,7 @@ export function BasicInfo() {
                             />
                           </VList>
                         )
-                      }
+                      },
                     }}
                   />
                 </div>
@@ -222,15 +217,15 @@ export function BasicInfo() {
             <VRow>
               <VCol cols={12} lg={12}>
                 <div>
-                  <label class='text-subtitle-2'>民族</label>
+                  <label class="text-subtitle-2">民族</label>
                   <VSelect
-                    variant={'outlined'}
+                    variant="outlined"
                     density={density.value}
                     rounded={false}
-                    clearIcon={'mdi-close-circle-outline'}
-                    placeholder={'性别'}
-                    itemValue={'code'}
-                    itemTitle={'nation'}
+                    clearIcon="mdi-close-circle-outline"
+                    placeholder="性别"
+                    itemValue="code"
+                    itemTitle="nation"
                     items={nations.value}
                     clearable
                     hideDetails
@@ -245,7 +240,7 @@ export function BasicInfo() {
                             />
                           </VList>
                         )
-                      }
+                      },
                     }}
                   />
                 </div>
@@ -256,14 +251,14 @@ export function BasicInfo() {
             <VRow>
               <VCol cols={12} lg={6}>
                 <div>
-                  <label class='text-subtitle-2'>身高（cm）</label>
+                  <label class="text-subtitle-2">身高（cm）</label>
                   <VTextField
-                    variant={'outlined'}
+                    variant="outlined"
                     density={density.value}
                     rounded={false}
-                    clearIcon={'mdi-close-circle-outline'}
-                    placeholder={'身高厘米'}
-                    type={'number'}
+                    clearIcon="mdi-close-circle-outline"
+                    placeholder="身高厘米"
+                    type="number"
                     clearable
                     hideDetails
                     hideSpinButtons
@@ -272,14 +267,14 @@ export function BasicInfo() {
               </VCol>
               <VCol cols={12} lg={6}>
                 <div>
-                  <label class='text-subtitle-2'>体重（cm）</label>
+                  <label class="text-subtitle-2">体重（cm）</label>
                   <VTextField
-                    variant={'outlined'}
+                    variant="outlined"
                     density={density.value}
-                    type={'number'}
+                    type="number"
                     rounded={false}
-                    clearIcon={'mdi-close-circle-outline'}
-                    placeholder={'身高厘米'}
+                    clearIcon="mdi-close-circle-outline"
+                    placeholder="身高厘米"
                     clearable
                     hideDetails
                     hideSpinButtons
@@ -296,15 +291,15 @@ export function BasicInfo() {
             <VRow>
               <VCol cols={12}>
                 <div>
-                  <label class='text-subtitle-2'>婚姻状况</label>
+                  <label class="text-subtitle-2">婚姻状况</label>
                   <VSelect
-                    variant={'outlined'}
+                    variant="outlined"
                     density={density.value}
                     rounded={false}
-                    clearIcon={'mdi-close-circle-outline'}
-                    itemValue={'value'}
-                    placeholder={'婚姻状况'}
-                    itemTitle={'label'}
+                    clearIcon="mdi-close-circle-outline"
+                    itemValue="value"
+                    placeholder="婚姻状况"
+                    itemTitle="label"
                     items={maritals.value}
                     clearable
                     hideDetails
@@ -319,7 +314,7 @@ export function BasicInfo() {
                             />
                           </VList>
                         )
-                      }
+                      },
                     }}
                   />
                 </div>
@@ -330,17 +325,17 @@ export function BasicInfo() {
             <VRow>
               <VCol cols={12}>
                 <div>
-                  <label class='text-subtitle-2'>
+                  <label class="text-subtitle-2">
                     现居城市
-                    <span class='text-error'>（待更新）</span>
+                    <span class="text-error">（待更新）</span>
                   </label>
                   <VTextField
-                    variant={'outlined'}
+                    variant="outlined"
                     density={density.value}
                     rounded={false}
-                    clearIcon={'mdi-close-circle-outline'}
-                    placeholder={'现居城市（待更新）'}
-                    type={'number'}
+                    clearIcon="mdi-close-circle-outline"
+                    placeholder="现居城市（待更新）"
+                    type="number"
                     clearable
                     hideDetails
                     hideSpinButtons
@@ -357,15 +352,15 @@ export function BasicInfo() {
             <VRow>
               <VCol cols={12}>
                 <div>
-                  <label class='text-subtitle-2'>
+                  <label class="text-subtitle-2">
                     微信号（Wechat）
                   </label>
                   <VTextField
-                    variant={'outlined'}
+                    variant="outlined"
                     density={density.value}
                     rounded={false}
-                    clearIcon={'mdi-close-circle-outline'}
-                    placeholder={'微信号'}
+                    clearIcon="mdi-close-circle-outline"
+                    placeholder="微信号"
                     clearable
                     hideDetails
                   />
@@ -377,13 +372,13 @@ export function BasicInfo() {
             <VRow>
               <VCol cols={12}>
                 <div>
-                  <label class='text-subtitle-2'>Linkedin</label>
+                  <label class="text-subtitle-2">Linkedin</label>
                   <VTextField
-                    variant={'outlined'}
+                    variant="outlined"
                     density={density.value}
                     rounded={false}
-                    clearIcon={'mdi-close-circle-outline'}
-                    placeholder={'Linkedin'}
+                    clearIcon="mdi-close-circle-outline"
+                    placeholder="Linkedin"
                     clearable
                     hideDetails
                   />
@@ -397,13 +392,11 @@ export function BasicInfo() {
         <VRow>
           <VCol cols={12}>
             <div>
-              <label class='text-subtitle-2'>自我评价</label>
+              <label class="text-subtitle-2">自我评价</label>
               <VTextarea
-                placeholder={
-                  '热情开朗，性格外向，具有亲和力，个性积极主动，有良好的沟通技巧工作认真负责，勤奋好学上进，能吃苦能抗压，能独立完成一个项目。'
-                }
-                variant={'outlined'}
-                density={'compact'}
+                placeholder="热情开朗，性格外向，具有亲和力，个性积极主动，有良好的沟通技巧工作认真负责，勤奋好学上进，能吃苦能抗压，能独立完成一个项目。"
+                variant="outlined"
+                density="compact"
                 hideDetails
                 hideSpinButtons
                 clearable
@@ -414,19 +407,19 @@ export function BasicInfo() {
 
         {/* 当前状态、意向城市 */}
         <VRow>
-          <VCol cols={'12'} lg={'6'}>
+          <VCol cols="12" lg="6">
             <VRow>
               <VCol cols={12}>
                 <div>
-                  <label class='text-subtitle-2'>当前状态</label>
+                  <label class="text-subtitle-2">当前状态</label>
                   <VSelect
-                    variant={'outlined'}
+                    variant="outlined"
                     density={density.value}
                     rounded={false}
-                    clearIcon={'mdi-close-circle-outline'}
-                    placeholder={'当前状态'}
-                    itemValue={'value'}
-                    itemTitle={'label'}
+                    clearIcon="mdi-close-circle-outline"
+                    placeholder="当前状态"
+                    itemValue="value"
+                    itemTitle="label"
                     items={dutys.value}
                     clearable
                     hideDetails
@@ -441,28 +434,28 @@ export function BasicInfo() {
                             />
                           </VList>
                         )
-                      }
+                      },
                     }}
                   />
                 </div>
               </VCol>
             </VRow>
           </VCol>
-          <VCol cols={'12'} lg={'6'}>
+          <VCol cols="12" lg="6">
             <VRow>
               <VCol cols={12}>
                 <div>
-                  <label class='text-subtitle-2'>
+                  <label class="text-subtitle-2">
                     意向城市
-                    <span class='text-error'>（待更新）</span>
+                    <span class="text-error">（待更新）</span>
                   </label>
                   <VTextField
-                    variant={'outlined'}
+                    variant="outlined"
                     density={density.value}
                     rounded={false}
-                    clearIcon={'mdi-close-circle-outline'}
-                    placeholder={'意向城市（待更新）'}
-                    type={'number'}
+                    clearIcon="mdi-close-circle-outline"
+                    placeholder="意向城市（待更新）"
+                    type="number"
                     clearable
                     hideDetails
                     hideSpinButtons
@@ -475,19 +468,19 @@ export function BasicInfo() {
 
         {/* 期望职位、期望薪资 */}
         <VRow>
-          <VCol cols={'12'} lg={'6'}>
+          <VCol cols="12" lg="6">
             <VRow>
               <VCol cols={12}>
                 <div>
-                  <label class='text-subtitle-2'>期望城市</label>
+                  <label class="text-subtitle-2">期望城市</label>
                   <VSelect
-                    variant={'outlined'}
+                    variant="outlined"
                     density={density.value}
                     rounded={false}
-                    clearIcon={'mdi-close-circle-outline'}
-                    placeholder={'期望城市'}
-                    itemValue={'value'}
-                    itemTitle={'label'}
+                    clearIcon="mdi-close-circle-outline"
+                    placeholder="期望城市"
+                    itemValue="value"
+                    itemTitle="label"
                     items={dutys.value}
                     clearable
                     hideDetails
@@ -502,25 +495,25 @@ export function BasicInfo() {
                             />
                           </VList>
                         )
-                      }
+                      },
                     }}
                   />
                 </div>
               </VCol>
             </VRow>
           </VCol>
-          <VCol cols={'12'} lg={'6'}>
-            <VRow align={'end'} class={'position-relative'}>
+          <VCol cols="12" lg="6">
+            <VRow align="end" class="position-relative">
               <VCol>
                 <div>
-                  <label class='text-subtitle-2'>期望薪资</label>
+                  <label class="text-subtitle-2">期望薪资</label>
                   <VTextField
-                    variant={'outlined'}
+                    variant="outlined"
                     density={density.value}
                     rounded={false}
-                    clearIcon={'mdi-close-circle-outline'}
-                    placeholder={'最低薪资'}
-                    type={'number'}
+                    clearIcon="mdi-close-circle-outline"
+                    placeholder="最低薪资"
+                    type="number"
                     clearable
                     hideDetails
                     hideSpinButtons
@@ -530,12 +523,12 @@ export function BasicInfo() {
               <VCol>
                 <div>
                   <VTextField
-                    variant={'outlined'}
+                    variant="outlined"
                     density={density.value}
                     rounded={false}
-                    clearIcon={'mdi-close-circle-outline'}
-                    placeholder={'最高薪资'}
-                    type={'number'}
+                    clearIcon="mdi-close-circle-outline"
+                    placeholder="最高薪资"
+                    type="number"
                     clearable
                     hideDetails
                     hideSpinButtons

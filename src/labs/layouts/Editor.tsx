@@ -1,10 +1,8 @@
-import { renderSlot } from "vue"
-import { VApp, VAppBar, VBtn, VIcon, VMain, VNavigationDrawer } from "vuetify/components"
-import type { Density, FCProps, IUIState } from "~/types"
+import { renderSlot } from 'vue'
+import { VApp, VAppBar, VBtn, VIcon, VMain, VNavigationDrawer } from 'vuetify/components'
+import type { Density, FCProps } from '~/types'
 
-
-
-type AppBarProps = {
+interface AppBarProps {
   density: Density
 }
 function AppBar({ density }: AppBarProps) {
@@ -12,8 +10,8 @@ function AppBar({ density }: AppBarProps) {
     <VAppBar>
       <VBtn
         density={density}
-        to={'/'}
-        variant={'plain'}
+        to="/"
+        variant="plain"
       >
         <VIcon size={24} start>
           mdi-sort-variant
@@ -24,7 +22,7 @@ function AppBar({ density }: AppBarProps) {
   )
 }
 
-type DrawerProps = {
+interface DrawerProps {
   drawer: boolean
 }
 function Drawer({ drawer }: DrawerProps) {
@@ -54,7 +52,6 @@ export default defineComponent({
   setup(_, { slots }) {
     const { drawer, density } = storeToRefs(usePreferencesStore())
 
-
     return () => <Layout slots={slots} drawer={drawer.value} density={density.value} />
-  }
+  },
 })

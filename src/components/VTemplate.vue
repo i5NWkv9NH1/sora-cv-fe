@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { ITemplate } from "~/types";
+import type { ITemplate } from '~/types'
 
-type Props = {
+interface Props {
   item: Partial<ITemplate>
 }
 
@@ -10,12 +10,14 @@ const props = defineProps<Props>()
 
 <template>
   <VCard class="position-relative" width="100%" hover>
-    <div class="position-absolute pa-4" :style="{top: '0', right: '0'}">
+    <div class="position-absolute pa-4" :style="{ top: '0', right: '0' }">
       <VChip color="warning" rounded="lg" size="small">
         VIP
       </VChip>
     </div>
-    <VCardTitle class="font-weight-bold">{{ props.item.title }}</VCardTitle>
+    <VCardTitle class="font-weight-bold">
+      {{ props.item.title }}
+    </VCardTitle>
     <VCardSubtitle>{{ props.item.description }}</VCardSubtitle>
     <VCardText>
       <VImg :src="props.item.thumbnailUrl" class="rounded-lg" />

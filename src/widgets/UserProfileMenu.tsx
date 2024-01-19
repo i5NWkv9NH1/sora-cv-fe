@@ -3,9 +3,8 @@ import {
   VChip,
   VList,
   VListItem,
-  VMenu
+  VMenu,
 } from 'vuetify/lib/components/index.mjs'
-import { randomColor } from '~/helpers'
 
 export const UserProfileMenu = defineComponent({
   setup() {
@@ -17,46 +16,48 @@ export const UserProfileMenu = defineComponent({
       {
         title: '模板中心',
         path: '/creator/templates',
-        icon: 'mdi-database-outline'
+        icon: 'mdi-database-outline',
       },
       {
         title: '收藏夹',
         path: '/creator/favorites',
-        icon: 'mdi-heart-outline'
+        icon: 'mdi-heart-outline',
       },
       {
         title: '回收站',
         path: '/creator/recycle',
-        icon: 'mdi-trash-can-outline'
+        icon: 'mdi-trash-can-outline',
       },
       { title: '订单中心', path: '/creator/orders', icon: 'mdi-cart-minus' },
       { title: '个人设置', path: '/creator/profile', icon: 'mdi-cog-outline' },
-      { title: '帮助中心', path: '/', icon: 'mdi-lightbulb-question-outline' }
+      { title: '帮助中心', path: '/', icon: 'mdi-lightbulb-question-outline' },
     ])
 
     return () => (
       <VMenu
         offset={10}
-        transition={'slide-y-transition'}
+        transition="slide-y-transition"
         width={180}
         v-slots={{
           default: () => (
-            <VList density={'compact'} variant={'text'} nav>
-              <div class={'d-flex my-2'}>
+            <VList density="compact" variant="text" nav>
+              <div class="d-flex my-2">
                 <VChip
                   color={store.state.isVip ? '#fed7aa' : '#111827'}
                   variant={store.state.isVip ? 'elevated' : 'outlined'}
                   elevation={0}
                 >
-                  VIP: {store.state.isVip ? '超级会员' : '未开通'}
+                  VIP:
+                  {' '}
+                  {store.state.isVip ? '超级会员' : '未开通'}
                 </VChip>
               </div>
               <VListItem
-                title={'购买VIP'}
-                prependIcon={'mdi-currency-twd'}
-                to={'/vip'}
+                title="购买VIP"
+                prependIcon="mdi-currency-twd"
+                to="/vip"
               />
-              {list.value.map((item) => (
+              {list.value.map(item => (
                 <VListItem
                   to={item.path}
                   title={item.title}
@@ -66,23 +67,23 @@ export const UserProfileMenu = defineComponent({
               ))}
               {/* <VListItem onClick={store.logout} title={'退出'} /> */}
               <VListItem
-                title={'退出'}
-                prependIcon={'mdi-logout'}
+                title="退出"
+                prependIcon="mdi-logout"
                 onClick={store.logout}
               />
             </VList>
           ),
           activator: ({ isActive, props }) => (
             <VAvatar
-              class={'mr-4'}
+              class="mr-4"
               image={store.state.avatarUrl}
               {...props}
-              rounded={'xl'}
-              density={'compact'}
+              rounded="xl"
+              density="compact"
             />
-          )
+          ),
         }}
       />
     )
-  }
+  },
 })

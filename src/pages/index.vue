@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import { QueryFilter } from '~/refator'
-import { mockTemplateFilters, } from '~/mocks'
-import type { TemplateQuery, TempateQueryKey, TemplateFilter } from '~/mocks'
-
+import type { TemplateFilter, TemplateQuery } from '~/mocks'
 
 // * your data
 const filters = ref<TemplateFilter[]>()
 const query = ref<TemplateQuery>({
   category: 1,
   date: 1,
-  star: 1
+  star: 1,
 })
 watch(query, (newQuery) => {
   // * do updated
@@ -19,9 +17,7 @@ watch(query, (newQuery) => {
 <template>
   <VContainer>
     <QueryFilter />
-    <template v-for="(item) in filters" :key="item.id">
-
-    </template>
+    <template v-for="(item) in filters" :key="item.id" />
   </VContainer>
 </template>
 

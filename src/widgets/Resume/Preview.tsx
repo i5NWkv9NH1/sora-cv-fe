@@ -1,12 +1,12 @@
-import type { Component, SlotsType } from "vue"
-import { renderSlot } from "vue"
-import { VBtn, VCard, VCol, VContainer, VIcon, VRow, VSheet, VSkeletonLoader, VSlideXReverseTransition, VSlideXTransition, VSlideYTransition, VSpacer, VToolbar } from "vuetify/components"
-import { previewSizeOptionsData } from "~/data"
-import type { IUIState, PreviewOption, PreviewSize } from "~/types"
-import { ClientOnly } from "#components"
-import { SortableList } from "./Module"
+import type { Component, SlotsType } from 'vue'
+import { renderSlot } from 'vue'
+import { VBtn, VCard, VCol, VContainer, VIcon, VRow, VSheet, VSkeletonLoader, VSlideXTransition, VSpacer, VToolbar } from 'vuetify/components'
+import { SortableList } from './Module'
+import { previewSizeOptionsData } from '~/data'
+import type { IUIState, PreviewOption } from '~/types'
+import { ClientOnly } from '#components'
 import './Preview.scss'
-import { PickColorMenu } from "./Toolbar"
+import { PickColorMenu } from './Toolbar'
 
 //* A4
 export function A4Preview() {
@@ -28,10 +28,10 @@ export function A4Preview() {
 //* PHONE
 export function PhonePreview() {
   return (
-    <VRow justify={'center'}>
+    <VRow justify="center">
       <VCol cols={6}>
         <VCard rounded={false}>
-          {Array.from({ length: 20 }).map((_) => (
+          {Array.from({ length: 20 }).map(_ => (
             <h1>1</h1>
           ))}
         </VCard>
@@ -49,7 +49,7 @@ export const PreviewToolbar = defineComponent({
     const { previewSize, density } = storeToRefs(usePreferencesStore())
     const { updatePreviewSize } = usePreferencesStore()
     const toolbarDialogs = ref<Component[]>([
-      PickColorMenu
+      PickColorMenu,
     ])
 
     function Ok() {
@@ -57,15 +57,15 @@ export const PreviewToolbar = defineComponent({
         <VToolbar
           density={density.value}
         >
-          {previewSizeOptions.value!.map(item => {
+          {previewSizeOptions.value!.map((item) => {
             const isActive = computed(() => previewSize.value === item.value)
             return (
               <VBtn
-                class={'mr-2'}
+                class="mr-2"
                 key={item.id}
                 variant={isActive.value ? 'tonal' : 'flat'}
                 active={isActive.value}
-                //@ts-ignore
+                // @ts-expect-error
                 onClick={() => updatePreviewSize(item.value)}
               >
                 {item.icon && <VIcon start>{item.icon}</VIcon>}
@@ -82,7 +82,7 @@ export const PreviewToolbar = defineComponent({
     }
     function Loading() {
       return (
-        <VSkeletonLoader type={'chip@4'} />
+        <VSkeletonLoader type="chip@4" />
       )
     }
 
@@ -93,12 +93,12 @@ export const PreviewToolbar = defineComponent({
         default: return <Loading />
       }
     }
-  }
+  },
 })
 
 //* 预览容器
 //* 提供切换
-//TODO 增加动画
+// TODO 增加动画
 export const PreviewSizeWrapper = defineComponent({
   setup() {
     const { height, previewSize } = storeToRefs(usePreferencesStore())
@@ -108,12 +108,12 @@ export const PreviewSizeWrapper = defineComponent({
 
     const Wrapper = (_: any, { slots }: { slots: SlotsType }) => (
       <VSheet
-        class={'preview'}
+        class="preview"
         rounded={false}
         style={{
           overflow: 'scroll',
           height: height.value,
-          maxHeight: height.value
+          maxHeight: height.value,
         }}
         ref={previewEl}
       >
@@ -125,7 +125,7 @@ export const PreviewSizeWrapper = defineComponent({
       </VSheet>
     )
 
-    const Loading = () => <VSkeletonLoader type={'paragraph@6'} />
+    const Loading = () => <VSkeletonLoader type="paragraph@6" />
 
     return () => {
       switch (uiState.value) {
@@ -133,20 +133,24 @@ export const PreviewSizeWrapper = defineComponent({
         case 'ok':
           switch (previewSize.value) {
             case 'A4':
-              return <Wrapper>
-                <A4Preview />
-              </Wrapper>
+              return (
+                <Wrapper>
+                  <A4Preview />
+                </Wrapper>
+              )
             case 'PHONE':
-              return <Wrapper>
-                <PhonePreview />
-              </Wrapper>
+              return (
+                <Wrapper>
+                  <PhonePreview />
+                </Wrapper>
+              )
             default: <Wrapper>
               <A4Preview />
             </Wrapper>
           }
       }
     }
-  }
+  },
 })
 
 //* 整体容器
@@ -157,5 +161,4 @@ export function ResumePreview() {
       <PreviewSizeWrapper />
     </>
   )
-
 }

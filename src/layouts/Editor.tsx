@@ -6,23 +6,23 @@ import {
   VBtn,
   VIcon,
   VMain,
-  VNavigationDrawer
+  VNavigationDrawer,
 } from 'vuetify/components'
-import type { Density, FCProps, IUIState } from '~/types'
+import type { FCProps } from '~/types'
 
-type AppBarProps = {
+interface AppBarProps {
   drawer: Ref<boolean>
 }
 function AppBar({ drawer }: AppBarProps) {
   return (
     <VAppBar>
       <VAppBarNavIcon
-        //@ts-ignore
+        // @ts-expect-error
         onClick={() => {
           drawer.value = !drawer.value
         }}
       />
-      <VBtn to={'/'} variant={'plain'}>
+      <VBtn to="/" variant="plain">
         <VIcon size={24} start>
           mdi-sort-variant
         </VIcon>
@@ -32,7 +32,7 @@ function AppBar({ drawer }: AppBarProps) {
   )
 }
 
-type DrawerProps = {
+interface DrawerProps {
   drawer: Ref<boolean>
 }
 function Drawer({ drawer }: DrawerProps) {
@@ -55,5 +55,5 @@ export default defineComponent({
     const { drawer } = storeToRefs(usePreferencesStore())
 
     return () => <Layout slots={slots} drawer={drawer} />
-  }
+  },
 })

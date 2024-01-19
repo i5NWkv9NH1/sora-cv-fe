@@ -1,8 +1,5 @@
 import { defineStore } from 'pinia'
-import { useTheme } from 'vuetify/lib/framework.mjs'
-import type { PreviewOption, PreviewSize, Density, DensityMode, Size, SizeMode, Theme, ThemeMode } from '~/types'
-
-
+import type { Density, DensityMode, PreviewSize, Size, SizeMode, Theme, ThemeMode } from '~/types'
 
 export const usePreferencesStore = defineStore(
   'preferences',
@@ -12,7 +9,7 @@ export const usePreferencesStore = defineStore(
       message: '',
       delay: 1000,
       color: 'primary',
-      location: 'top center' as any
+      location: 'top center' as any,
     })
     const drawer = ref<boolean>(false)
     const density = ref<Density>('compact')
@@ -58,7 +55,6 @@ export const usePreferencesStore = defineStore(
 
     const previewSize = ref<PreviewSize>('A4')
 
-
     function toggleDrawer() {
       drawer.value = !drawer.value
     }
@@ -70,12 +66,11 @@ export const usePreferencesStore = defineStore(
       { message, color, delay } = {
         message: 'ok',
         color: 'primary',
-        delay: 2000
-      }
+        delay: 2000,
+      },
     ) {
-      if (!alert.value.status) {
+      if (!alert.value.status)
         alert.value.status = true
-      }
 
       alert.value.message = message
       alert.value.color = color
@@ -85,7 +80,7 @@ export const usePreferencesStore = defineStore(
   },
   {
     persist: {
-      debug: true
-    }
-  }
+      debug: true,
+    },
+  },
 )

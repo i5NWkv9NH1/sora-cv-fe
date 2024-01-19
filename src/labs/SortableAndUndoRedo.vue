@@ -1,33 +1,31 @@
 <script setup lang="ts">
-import Draggle from 'vuedraggable';
-import hljs from 'highlight.js';
-import 'highlight.js/styles/xcode.css'; // ここでデザインを変更
-import type { PropType } from 'vue';
+import Draggle from 'vuedraggable'
+import 'highlight.js/styles/xcode.css'
+
+// ここでデザインを変更
+import type { PropType } from 'vue'
 
 const props = defineProps({
   modelValue: {
     type: Array as PropType<Item[]>,
-    required: true
-  }
+    required: true,
+  },
 })
-const items = ref<Item[]>(props.modelValue)
 const emits = defineEmits([
-  'update:modelValue'
+  'update:modelValue',
 ])
-
-
+const items = ref<Item[]>(props.modelValue)
 const dragOptions = ref({
   animation: 400,
   group: 'draggable',
   disabled: false,
   ghostClass: 'ghost',
-});
-type Item = {
+})
+interface Item {
   id: string | number
   name: string
   color: string
 }
-
 
 // const { history, undo, redo, canRedo, canUndo } = useRefHistory(items, { deep: true })
 
@@ -46,8 +44,6 @@ watch(items, (value) => {
 // const highlightHistorys = computed(() =>
 //   items.value?.length !== 0 && hljs.highlightAuto(JSON.stringify(history.value, null, "\t"), ['JSON']).value
 // );
-
-
 </script>
 
 <template>
@@ -72,10 +68,12 @@ watch(items, (value) => {
           </VCol> -->
           <VCol>
             <VList>
-              <Draggle v-model="items" item-key="id" key="draggable" v-bind="dragOptions">
+              <Draggle key="draggable" v-model="items" item-key="id" v-bind="dragOptions">
                 <template #item="{ element }: { element: Item }">
-                  <VListItem :title="element.name" :key="element.id" :active="true" :color="element.color"
-                    prepend-icon="mdi-sort-variant" class="item" />
+                  <VListItem
+                    :key="element.id" :title="element.name" :active="true" :color="element.color"
+                    prepend-icon="mdi-sort-variant" class="item"
+                  />
                 </template>
               </Draggle>
             </VList>

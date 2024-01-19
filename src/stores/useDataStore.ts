@@ -6,29 +6,29 @@ import type { AI, ColorMode, FAQ, IOrder, ITemplate, IUIState, Intro, PreviewSiz
 //* fake data
 import { faqsData, indexPageData, vipsData } from '~/data'
 
-export type EditorPageState = {
-  uiState: IUIState,
+export interface EditorPageState {
+  uiState: IUIState
   template: ITemplate | null | undefined
   picker: {
     color: string
     mode: ColorMode
-  },
+  }
   modules: any[]
   previewSize: PreviewSize
-  selectedTemplateId: ITemplate['id'] | undefined,
+  selectedTemplateId: ITemplate['id'] | undefined
   stepper: {
     status: boolean
     current: number
-  },
+  }
   resume: {
     name: string
   }
 }
-export type VIPPageState = {
+export interface VIPPageState {
   vips: VIP[]
   faqs: FAQ[]
 }
-export type IndexPageState = {
+export interface IndexPageState {
   logo: string
   thumbnailUrl: string
   title: string
@@ -50,7 +50,7 @@ export const useDataStore = defineStore(
           createdAt: '2024-01-16 15:30:37',
           pay: 1,
           price: 18.0,
-          status: 1
+          status: 1,
         },
         {
           id: 'RC2024011610052102',
@@ -58,7 +58,7 @@ export const useDataStore = defineStore(
           createdAt: '2024-01-16 15:30:37',
           pay: 1,
           price: 18.0,
-          status: 2
+          status: 2,
         },
         {
           id: 'RC2024011610052103',
@@ -66,7 +66,7 @@ export const useDataStore = defineStore(
           createdAt: '2024-01-16 15:30:37',
           pay: 2,
           price: 18.0,
-          status: 3
+          status: 3,
         },
         {
           id: 'RC2024011610052104',
@@ -74,11 +74,11 @@ export const useDataStore = defineStore(
           createdAt: '2024-01-16 15:30:37',
           pay: 2,
           price: 18.0,
-          status: 2
-        }
+          status: 2,
+        },
       ] as IOrder[],
       defaultTemplate: transformField(templateListData[0]),
-      templateList: transformFields(templateListData)
+      templateList: transformFields(templateListData),
     })
     const indexPageState = reactive<IndexPageState>({
       logo: indexPageData.logo,
@@ -92,7 +92,7 @@ export const useDataStore = defineStore(
     })
     const vipPageState = reactive<VIPPageState>({
       vips: vipsData,
-      faqs: faqsData
+      faqs: faqsData,
     })
     const creatorState = reactive({
       resumes: [],
@@ -111,11 +111,11 @@ export const useDataStore = defineStore(
       selectedTemplateId: undefined,
       stepper: {
         status: false,
-        current: 1
+        current: 1,
       },
       resume: {
-        name: '简约Nice的求职简历'
-      }
+        name: '简约Nice的求职简历',
+      },
     })
 
     function updateUiState(value: IUIState) {
@@ -128,12 +128,12 @@ export const useDataStore = defineStore(
       vipPageState,
       editor,
       editorPageState: editor,
-      updateUiState
+      updateUiState,
     }
   },
   {
     persist: {
-      debug: true
-    }
-  }
+      debug: true,
+    },
+  },
 )

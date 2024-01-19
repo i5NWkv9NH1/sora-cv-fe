@@ -20,12 +20,12 @@ export interface Template {
 }
 
 export type TempateQueryKey = 'category' | 'date' | 'star'
-export type TemplateQuery = {
+export interface TemplateQuery {
   category: number
   date: number
   star: number
 }
-export type TemplateFilter = {
+export interface TemplateFilter {
   id: string | number
   title: string
   key: TempateQueryKey

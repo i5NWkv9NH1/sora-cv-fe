@@ -1,10 +1,10 @@
-import { type SlotsType, renderSlot } from 'vue'
-import type { JSXComponent } from 'vue'
+import type { JSXComponent, type SlotsType } from 'vue'
+
 export * from './vuetify'
 
 export type IUIState = 'ok' | 'loading' | 'empty' | 'error'
 
-export type IArticle = {
+export interface IArticle {
   id: string | number
   title: string
   subtitle: string
@@ -17,7 +17,7 @@ export type IArticle = {
   thumbnailUrl: string
 }
 
-export type ITag = {
+export interface ITag {
   id: string | number
   name: string
   path: string
@@ -36,7 +36,7 @@ export type ITag = {
 }
 export type ICategory = ITag
 
-export type ITemplate = {
+export interface ITemplate {
   id: string | number
   title: string
   subtitle: string
@@ -75,7 +75,7 @@ export type ITemplate = {
   tags: ICategory[]
 }
 
-export type ISubscribe = {
+export interface ISubscribe {
   id: string | number
   name: string
   price: string | number
@@ -83,7 +83,7 @@ export type ISubscribe = {
   type: string
 }
 
-export type IOrder = {
+export interface IOrder {
   id: string | number
   name: string | number
   createdAt: string
@@ -92,7 +92,7 @@ export type IOrder = {
   status: number
 }
 
-export type IUser = {
+export interface IUser {
   id: string | number
   username: string
   name: string
@@ -105,31 +105,31 @@ export type IUser = {
 }
 
 export type PreviewSize = 'A4' | 'PHONE'
-export type PreviewOption = {
+export interface PreviewOption {
   id: number
   label: string
   value: 'A4' | 'PHONE'
   icon: string
 }
-export type ResumeTab = {
+export interface ResumeTab {
   id: number | string
   name: string
   icon: string
   value: number | string
   key: string
 }
-export type ResumeWindow = {
+export interface ResumeWindow {
   value: number
   key: number | string
   component: JSXComponent
 }
 
-//! form
-export type SkillItem = {
+// ! form
+export interface SkillItem {
   name: string
   description: string
 }
-export type EducationItem = {
+export interface EducationItem {
   id: number
   school: string
   major: string
@@ -141,7 +141,7 @@ export type EducationItem = {
   schoolTimeTo: string
   experienceDesc: string
 }
-export type ProjectItem = {
+export interface ProjectItem {
   id: number
   name: string
   role: string
@@ -151,7 +151,7 @@ export type ProjectItem = {
   to: string
   experienceDesc: string
 }
-export type WorkItem = {
+export interface WorkItem {
   id: number
   company: string
   job: string
@@ -162,14 +162,14 @@ export type WorkItem = {
   experienceDesc: string
 }
 export type OtherItemType = 'preItemsKey' | 'language'
-export type OtherItem = {
+export interface OtherItem {
   preItemsKey: OtherItemType
   isTagItem: boolean
   label: string
   value: string | string[]
 }
 
-export type IResume = {
+export interface IResume {
   id: string | number
   name: string
   thumbnailUrl: string
@@ -182,7 +182,7 @@ export type IResume = {
     educationName: string
     softwaveSkillsName: string
     projectName: string
-    //? 经历
+    // ? 经历
     experienceName: string
     otherName: string
   }
@@ -200,16 +200,16 @@ export type IResume = {
     height: number
     weight: number
     marital: number
-    //? 个人状态
+    // ? 个人状态
     status: number
-    //? 评价
+    // ? 评价
     evalaute: string
-    //? 社交媒体
+    // ? 社交媒体
     social: {
       linkedin: string
       wechat: string
     }
-    //? 期望
+    // ? 期望
     purpose: {
       city: string
       job: string
@@ -227,7 +227,7 @@ export type IResume = {
   }
 }
 
-export type VIP = {
+export interface VIP {
   id: string | number
   title: string
   price: string | number
@@ -237,26 +237,26 @@ export type VIP = {
   value: number
 }
 
-export type FAQ = {
+export interface FAQ {
   id: string | number
   title: string
   content: string
 }
 
-export type Intro = {
+export interface Intro {
   title: string
   subtitle: string
   thumbnailUrl: string
   color: string
 }
 
-export type AI = {
+export interface AI {
   id: string | number
   name: string
   thumbnailUrl: string
   description: string
 }
 
-export type FCProps = {
+export interface FCProps {
   slots: SlotsType
 }

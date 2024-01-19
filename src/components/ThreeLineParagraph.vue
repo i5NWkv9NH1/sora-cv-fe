@@ -1,5 +1,5 @@
 <script setup lang="tsx">
-type Props = {
+interface Props {
   title: string
   subtitle: string
   caption: string
@@ -14,16 +14,15 @@ const props = withDefaults(defineProps<Props>(), {
   caption: '节省简历制作的时间，帮助您更好的介绍自己，获得梦想的职位。',
   center: false,
   gap: 4,
-  width: '100%'
+  width: '100%',
 })
 const classes = computed(() => ['headline', 'mb-10', `gap-${props.gap}`, { 'text-center': props.center }])
 const styles = computed(() => {
   return {
     gap: `${props.gap}rem`,
-    width: props.width
+    width: props.width,
   }
 })
-
 </script>
 
 <template>
@@ -32,9 +31,13 @@ const styles = computed(() => {
       <div class="prepend my-4">
         <slot name="prepend" />
       </div>
-      <div class='text-h3 font-weight-bold  my-4'>{{ title }}</div>
-      <div class='text-h3'>{{ subtitle }}</div>
-      <div class='text-subtitle-1 my-4'>
+      <div class="text-h3 font-weight-bold  my-4">
+        {{ title }}
+      </div>
+      <div class="text-h3">
+        {{ subtitle }}
+      </div>
+      <div class="text-subtitle-1 my-4">
         {{ caption }}
       </div>
     </div>
@@ -44,4 +47,3 @@ const styles = computed(() => {
     </div>
   </div>
 </template>
-

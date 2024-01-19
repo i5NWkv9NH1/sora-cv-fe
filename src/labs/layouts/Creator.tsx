@@ -1,8 +1,7 @@
 import type { SlotsType } from 'vue'
 import { renderSlot } from 'vue'
-import { VApp, VDivider, VList, VListItem, VListSubheader, VMain, VNavigationDrawer, VSnackbar } from 'vuetify/components'
+import { VApp, VList, VListItem, VListSubheader, VMain, VNavigationDrawer, VSnackbar } from 'vuetify/components'
 import { creatorLayoutData } from '~/data'
-
 
 function Drawer() {
   const items = ref(creatorLayoutData.items)
@@ -32,17 +31,17 @@ function Drawer() {
 
         append: () => (
           <VList
-            density={'compact'}
+            density="compact"
             nav
           >
             <VListItem
-              prependIcon={'mdi-lightbulb-question-outline'}
-              title={'帮助中心'}
-              to={'/'}
+              prependIcon="mdi-lightbulb-question-outline"
+              title="帮助中心"
+              to="/"
               exact
             />
           </VList>
-        )
+        ),
       }}
     />
   )
@@ -62,7 +61,6 @@ function GlobalMessage() {
   )
 }
 
-
 function Layout(slots: SlotsType) {
   return (
     <VApp>
@@ -75,11 +73,8 @@ function Layout(slots: SlotsType) {
   )
 }
 
-
-
-
 export default defineComponent({
   setup(_, { slots }) {
     return () => <Layout />
-  }
+  },
 })

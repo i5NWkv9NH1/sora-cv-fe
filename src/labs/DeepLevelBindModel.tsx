@@ -4,15 +4,14 @@
 
 import { VBtn, VCard, VContainer, VDialog } from 'vuetify/components'
 
-
 // ! 获取Props需要定义在内部，无法使用 <T> 去获取
 // ! 如 defineComponent<T>
 export const Child = defineComponent({
   props: {
     modelValue: {
       require: true,
-      type: Boolean
-    }
+      type: Boolean,
+    },
   },
   emits: ['update:modelValue'],
   setup(props, { slots, emit }) {
@@ -22,7 +21,7 @@ export const Child = defineComponent({
     watch(props, (value) => {
       console.log('父组件更新传进来的props', value)
       console.log('更新子组件的状态')
-      //! 当父组件更改props时，更新内部的值
+      // ! 当父组件更改props时，更新内部的值
       dialog.value = props.modelValue
     })
 
@@ -32,27 +31,25 @@ export const Child = defineComponent({
       emit('update:modelValue', value)
     })
 
-
-
     return () => (
       <VDialog
         v-model={dialog.value}
       >
-        <VContainer class={'fill-height'}>
-          <VCard class={'fill-height fill-width'}>
+        <VContainer class="fill-height">
+          <VCard class="fill-height fill-width">
             <VBtn
               block
-              //@ts-ignore
-              onClick={() => { dialog.value = false }}>
+              // @ts-expect-error
+              onClick={() => { dialog.value = false }}
+            >
               关闭
             </VBtn>
           </VCard>
         </VContainer>
       </VDialog>
     )
-  }
+  },
 })
-
 
 export const Parent = defineComponent({
   setup() {
@@ -63,17 +60,17 @@ export const Parent = defineComponent({
           v-model={dialog.value}
         />
         <VBtn
-          //@ts-ignore
+          // @ts-expect-error
           onClick={() => { dialog.value = true }}
         >
           打开
         </VBtn>
       </>
     )
-  }
+  },
 })
 
-//! 纯函数无法更新!!!
+// ! 纯函数无法更新!!!
 // export const Parent = () => {
 //   const dialog = ref(false)
 //   return (
