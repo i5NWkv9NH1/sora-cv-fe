@@ -12,6 +12,13 @@ export default defineNuxtConfig({
       meta: [],
     },
   },
+  components: {
+    dirs: [
+      // ! 全局组件，JSON 数据动态引入
+      { path: '~/components/Form', global: true, prefix: 'Form' },
+      { path: '~/components' },
+    ],
+  },
   css: ['~/assets/styles/main.scss'],
   experimental: {
     componentIslands: true,
@@ -41,6 +48,8 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
     '@vueuse/nuxt',
+    // * logger for vue in server side render
+    'nuxt3-winston-log',
   ],
   pinia: {
     storesDirs: ['src/stores/**'],

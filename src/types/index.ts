@@ -1,4 +1,4 @@
-import type { JSXComponent, type SlotsType } from 'vue'
+import type { JSXComponent, SlotsType } from 'vue'
 
 export * from './vuetify'
 
@@ -20,7 +20,6 @@ export interface IArticle {
 export interface ITag {
   id: string | number
   name: string
-  path: string
   seo: {
     title: string
     keyword: string
@@ -28,10 +27,7 @@ export interface ITag {
     sort: string | number
     createdAt: string
     updatedAt: string
-    wechat: {
-      appId: string
-    }
-    image: unknown
+    image?: unknown
   }
 }
 export type ICategory = ITag
@@ -45,6 +41,7 @@ export interface ITemplate {
   publishedAt: string | number
   createdAt: string | number
   publishedAtForamt: string
+  isVip: boolean
   sort: string | number
   style: string
   status: number
@@ -72,7 +69,7 @@ export interface ITemplate {
   styleCategory: ICategory[]
   experienceCategory: ICategory[]
   jobCategory: ICategory[]
-  tags: ICategory[]
+  tags: ITag[]
 }
 
 export interface ISubscribe {
@@ -230,11 +227,19 @@ export interface IResume {
 export interface VIP {
   id: string | number
   title: string
-  price: string | number
+  price: number
   type: number
+  payTime: string
   description: string
   order: number
   value: number
+}
+export interface PayType {
+  id: string | number
+  name: string
+  value: number
+  icon: string
+  color: string
 }
 
 export interface FAQ {

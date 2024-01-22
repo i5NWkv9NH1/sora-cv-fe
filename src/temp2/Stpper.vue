@@ -15,7 +15,6 @@ function StepperActions() {
     case 1:
       return (
         <>
-          {' '}
           <VSpacer />
           <Btn
             onClick={() => stepper.value = 2}
@@ -27,7 +26,6 @@ function StepperActions() {
     case 2:
       return (
         <>
-          {' '}
           <Btn onClick={() => { stepper.value = 1 }}>Prev</Btn>
           <VSpacer />
           <Btn onClick={reset}>确认</Btn>

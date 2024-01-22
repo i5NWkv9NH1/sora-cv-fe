@@ -3,31 +3,27 @@ import {
   VApp,
   VAppBar,
   VAppBarNavIcon,
-  VBtn,
-  VIcon,
   VMain,
   VNavigationDrawer,
 } from 'vuetify/components'
+import type { Density } from '~/mocks'
 import type { FCProps } from '~/types'
+import { ThemeSwitch } from '~/widgets'
 
 interface AppBarProps {
   drawer: Ref<boolean>
+  density: Density
 }
-function AppBar({ drawer }: AppBarProps) {
+function AppBar({ drawer, density }: AppBarProps) {
   return (
-    <VAppBar>
+    <VAppBar density={density}>
       <VAppBarNavIcon
         // @ts-expect-error
         onClick={() => {
           drawer.value = !drawer.value
         }}
       />
-      <VBtn to="/" variant="plain">
-        <VIcon size={24} start>
-          mdi-sort-variant
-        </VIcon>
-        创建
-      </VBtn>
+    <ThemeSwitch />
     </VAppBar>
   )
 }
@@ -36,14 +32,14 @@ interface DrawerProps {
   drawer: Ref<boolean>
 }
 function Drawer({ drawer }: DrawerProps) {
-  return <VNavigationDrawer v-model={drawer.value}>Drawer</VNavigationDrawer>
+  return <VNavigationDrawer v-model={drawer.value} location="right" temporary>Drawer</VNavigationDrawer>
 }
 
 type Props = FCProps & AppBarProps & DrawerProps
-function Layout({ slots, drawer }: Props) {
+function Layout({ slots, drawer, density }: Props) {
   return (
     <VApp>
-      <AppBar drawer={drawer} />
+      <AppBar drawer={drawer} density={density} />
       <Drawer drawer={drawer} />
       <VMain>{renderSlot(slots, 'default')}</VMain>
     </VApp>
@@ -53,7 +49,8 @@ function Layout({ slots, drawer }: Props) {
 export default defineComponent({
   setup(_, { slots }) {
     const { drawer } = storeToRefs(usePreferencesStore())
+    const { density, size } = useSettings()
 
-    return () => <Layout slots={slots} drawer={drawer} />
+    return () => <Layout slots={slots} drawer={drawer} density={density.value} />
   },
 })

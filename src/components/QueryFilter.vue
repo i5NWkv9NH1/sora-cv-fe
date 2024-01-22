@@ -1,5 +1,13 @@
 <!--
-  * Exmaple
+  TODO：优化 loading
+ -->
+
+<!--
+  * 可以给 button 禁用或者添加骨架屏
+-->
+
+<!--
+  * example
 import { QueryFilter } from '~/refator'
 import { mockTemplateFilters, } from '~/mocks'
 import type { TemplateQuery, TempateQueryKey, TemplateFilter } from '~/mocks'
@@ -25,7 +33,8 @@ watch(query, (newQuery) => {
 </template>
  -->
 <script setup lang="tsx">
-import type { TemplateCategory } from '~/mocks'
+import type { Category } from '~/mocks'
+import { mockQueryTags } from '~/mocks'
 import type { Variant } from '~/types'
 
 // const props = defineProps({
@@ -48,19 +57,21 @@ import type { Variant } from '~/types'
 
 interface Props {
   modelValue?: number
+  bottom?: number
   title?: string
-  items?: TemplateCategory[]
+  items?: Category[]
   variant?: Variant
+  // ? 数据加载时可禁用
+  disabled?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: 1,
-  title: '示例 - 标签',
-  items: () => [
-    { id: 1, name: '标签 1', value: 1, icon: '' },
-    { id: 2, name: '标签 2', value: 2, icon: '' },
-  ],
+  bottom: 4,
+  title: '标签：',
+  items: () => mockQueryTags,
   variant: 'text',
+  disabled: false,
 })
 const emits = defineEmits(['update:modelValue'])
 const selectedQuery = ref(props.modelValue)
@@ -68,28 +79,30 @@ watch(() => props.modelValue, (newModelValue) => {
   selectedQuery.value = newModelValue
 })
 watch(selectedQuery, (newQuery) => {
-  console.log(`更新查询值 :: ${props.title} :: ${selectedQuery.value}`)
   emits('update:modelValue', newQuery)
 })
-
-console.log(props)
 </script>
 
 <template>
-  <div>
-    <div class="text-subtitle-1 mb-4">
-      {{ title }}
-    </div>
-    <div class="d-flex">
-      <VBtn
-        v-for="query in items" :key="query.id" :active="selectedQuery === query.value"
-        :variant="variant" class="mr-2" @click="selectedQuery = query.value"
-      >
-        <VIcon v-if="query.icon">
-          {{ query.icon }}
-        </VIcon>
-        <span>{{ query.name }}</span>
-      </VBtn>
-    </div>
+  <div :class="[`mb-${props.bottom}`]">
+    <VRow align="baseline" no-gutters>
+      <VCol lg="1" sm="2" cols="12">
+        <div class="text-subtitle-1">
+          {{ props.title }}
+        </div>
+      </VCol>
+
+      <VCol lg="11" sm="10" cols="12">
+        <VBtn
+          v-for="query in items" :key="query.id" :active="selectedQuery === query.value" :variant="props.disabled ? 'outlined' : props.variant"
+          class="mr-2" @click="selectedQuery = query.value" :disabled="props.disabled"
+        >
+          <VIcon v-if="query.icon">
+            {{ query.icon }}
+          </VIcon>
+          <span>{{ query.name }}</span>
+        </VBtn>
+      </VCol>
+    </VRow>
   </div>
 </template>

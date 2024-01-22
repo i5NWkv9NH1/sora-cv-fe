@@ -61,7 +61,7 @@ function GlobalMessage() {
   )
 }
 
-function Layout(slots: SlotsType) {
+function Layout({ slots }: { slots: SlotsType }) {
   return (
     <VApp>
       <GlobalMessage />
@@ -75,6 +75,6 @@ function Layout(slots: SlotsType) {
 
 export default defineComponent({
   setup(_, { slots }) {
-    return () => <Layout />
+    return () => <Layout slots={slots} />
   },
 })

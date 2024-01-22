@@ -1,5 +1,4 @@
-import { templateListData } from '~/data'
-import type { ITemplate } from '~/types'
+import type { Article, Template } from '~/mocks'
 
 export async function delay(ms: number) {
   return new Promise((res, rej) => setTimeout(res, ms))
@@ -7,7 +6,7 @@ export async function delay(ms: number) {
 export function randomColor() {
   return Math.floor(Math.random() * 16777215).toString(16)
 }
-export function transformField(item: any): ITemplate {
+export function transformField(item: any): Template {
   const _json = JSON.parse(item.fanwenData)
   return {
     ...item,
@@ -39,12 +38,14 @@ export function transformField(item: any): ITemplate {
       view: item.goods_view,
       like: item.goods_sales,
     },
-    thumbnails: item.image.map((_item: any) => {
-      return {
-        id: _item.image_id,
-        src: _item.file_path,
-      }
-    }),
+    thumbnails: Array.isArray(item.image)
+      ? item.image.map((_item: any) => {
+        return {
+          id: _item.image_id,
+          src: _item.file_path,
+        }
+      })
+      : [],
     styleCategory: item.style_category.map((_tag: any) => {
       return {
         id: _tag.category_id,
@@ -121,10 +122,32 @@ export function transformField(item: any): ITemplate {
         },
       }
     }),
+    isVip: false,
   }
 }
-export function transformFields(item: any[]): ITemplate[] {
-  return templateListData
+export function transformFields(items: any[]): Template[] {
+  return items
     .filter(item => item.goods_id !== 10022)
     .map(item => transformField(item))
+}
+
+export function transformArticle(item: any): Article {
+  return {
+    id: item.article_id,
+    title: item.article_title,
+    content: item.article_content,
+    sort: item.article_sort,
+    status: item.article_status,
+    description: item.seo_desc,
+    thumbnailUrl: item.image.file_path,
+    seo: {
+      description: item.seo_desc,
+    },
+    stats: {
+      view: item.actual_views,
+      like: item.dian_zan,
+    },
+    publishedAt: item.view_time,
+    categories: null,
+  }
 }

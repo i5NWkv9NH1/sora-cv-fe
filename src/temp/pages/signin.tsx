@@ -31,7 +31,7 @@ export default defineComponent({
     const store = useUserStore()
 
     const image = ref(
-      'https://www.nicecv.cn/api/web/uploads/20230722150520f541c9245.jpg'
+
     )
     const qrcode = ref(
       'https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQGj8DwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyUV9TSDhPVC1lakcxSkpuQXhCMXEAAgQx16RlAwQ8AAAA'

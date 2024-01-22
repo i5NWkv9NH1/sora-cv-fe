@@ -1,11 +1,14 @@
-<script setup lang="tsx">
+<!--
+  * @description: 三行文字段落
+ -->
+<script setup lang="ts">
 interface Props {
-  title: string
-  subtitle: string
-  caption: string
-  center: boolean
-  gap: number
-  width: string
+  title?: string
+  subtitle?: string
+  caption?: string
+  center?: boolean
+  gap?: number
+  width?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
