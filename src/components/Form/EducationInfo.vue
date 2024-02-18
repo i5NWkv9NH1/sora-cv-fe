@@ -2,25 +2,68 @@
 import { v4 } from 'uuid'
 import Draggle from 'vuedraggable'
 import { removeItem } from '~/helpers'
-import { type Education, mockDegrees, mockEducationalBackgrounds, mockModifyEducationNamePresets, mockSchoolings } from '~/mocks'
 
-const { form } = useData()
+const { resume, presetEducationNames, backgrounds, schollings, degrees } = storeToRefs(useResumeStore())
+const form = resume.value.form.education
 
 const dialog = ref(false)
-const isEditing = ref(false)
+const isOpenForm = ref(false)
+const type = ref<'create' | 'edit'>('create')
 
-const name = ref('教育经历')
-const names = ref(mockModifyEducationNamePresets)
-// * 表单选择项目数据
-const educationalBackgrounds = ref(mockEducationalBackgrounds)
-const schollings = ref(mockSchoolings)
-const degrees = ref(mockDegrees)
 // * 编辑和新增的表单数据
-const initState: Education = { id: v4(), school: '', major: '', educationalBackgrounds: null, degree: null, schooling: null, college: '', city: '', startDate: null, endDate: null, description: `` }
-const item = reactive<Education>({ ...initState })
+const defaultState = computed(() => { return { id: v4(), school: '', major: '', background: null, degree: null, schooling: null, college: '', city: '', startDate: null, endDate: null, description: `` } })
+const item = reactive<any>({})
 function resetForm() {
-  Object.assign(item, { ...initState })
+  Object.assign(item, { ...defaultState.value })
 }
+function edit(_: any) {
+  type.value = 'edit'
+  item.id = _.id
+  item.school = _.school
+  item.major = _.major
+  item.background = _.background
+  item.degree = _.degree
+  item.schooling = _.schooling
+  item.college = _.college
+  item.college = _.college
+  item.startDate = _.startDate
+  item.endDate = _.endDate
+  item.description = _.description
+  isOpenForm.value = true
+}
+function remove(item: any) {
+  form.items = removeItem(form.items, item)
+  isOpenForm.value = false
+  resetForm()
+}
+function handleSave() {
+  const _item = form.items.find(_ => _.id === item.id)
+  switch (type.value) {
+    case 'create':
+      form.items.push({ ...item })
+      resetForm()
+      isOpenForm.value = false
+      return
+    case 'edit':
+      if (!_item)
+        return
+      _item.school = item.school
+      _item.major = item.major
+      _item.background = item.background
+      _item.degree = item.degree
+      _item.schooling = item.schooling
+      _item.college = item.college
+      _item.college = item.college
+      _item.startDate = item.startDate
+      _item.endDate = item.endDate
+      _item.description = item.description
+      isOpenForm.value = false
+      resetForm()
+      return
+  }
+}
+
+// * draggle
 const activeItem = ref<string | null>()
 const dragOptions = ref({
   animation: 400,
@@ -29,24 +72,11 @@ const dragOptions = ref({
   ghostClass: 'ghost',
 })
 function handleSelect({ oldIndex }: { oldIndex: number }) {
-  activeItem.value = form.educations[oldIndex].id
+  activeItem.value = form.items[oldIndex].id
 }
 function handleUnSelect(e: any) {
   activeItem.value = null
 }
-function handleSave() {
-  // * 添加项
-  // TODO: 添加验证
-  form.educations.push({ ...item })
-  resetForm()
-  isEditing.value = false
-}
-function remove(item: Education) {
-  form.educations = removeItem<Education>(form.educations, item)
-}
-function edit(item: Education) {
-}
-watch(form, () => console.log(form.educations), { deep: true })
 </script>
 
 <template>
@@ -64,11 +94,15 @@ watch(form, () => console.log(form.educations), { deep: true })
         md="12"
         sm="12"
       >
-        <VList class="py-0">
+        <VList
+          lines="three"
+          class="bg-transparent"
+        >
           <ModifiyModuleNameDialog
             v-model:modelValue="dialog"
-            v-model:name="name"
-            :items="names"
+            v-model:name="form.moduleName"
+            :items="presetEducationNames"
+            show-actions
           />
           <VListSubheader class="title">
             <p>列出你的教育经历，并不是所有经历都要写入，而需要选取该过程中的亮点</p>
@@ -77,7 +111,7 @@ watch(form, () => console.log(form.educations), { deep: true })
             @click="dialog = true"
             class="cursor-pointer"
           >
-            <span>{{ name }}</span>
+            <span>{{ form.moduleName }}</span>
             <VIcon end>
               mdi-square-edit-outline
             </VIcon>
@@ -85,19 +119,20 @@ watch(form, () => console.log(form.educations), { deep: true })
 
           <Draggle
             key="draggable"
-            v-model="form.educations"
+            v-model="form.items"
             item-key="id"
             v-bind="dragOptions"
             @choose="handleSelect"
             @unchoose="handleUnSelect"
+            class="pa-2"
           >
-            <template #item="{ element, index }: { element: Education; index: number }">
+            <template #item="{ element, index }">
               <VScrollYReverseTransition>
                 <VListItem
+                  elevation="4"
                   lines="three"
-                  variant="outlined"
                   rounded="lg"
-                  class="mt-4"
+                  class="bg-surface mt-4"
                   :active="activeItem === element.id"
                 >
                   <template #prepend>
@@ -105,13 +140,17 @@ watch(form, () => console.log(form.educations), { deep: true })
                   </template>
                   <VListItemTitle>{{ element.school }}</VListItemTitle>
                   <VListItemSubtitle>
-                    {{ element.major }} - {{ element.startDate }} - {{ element.endDate }}
+                    {{ element.major }} | {{ backgrounds.find(item => item.value === element.background)?.label }}
+                  </VListItemSubtitle>
+                  <VListItemSubtitle>
+                    {{ element.startDate.replaceAll('-', '/') }} - {{ element.endDate.replaceAll('-', '/') }}
                   </VListItemSubtitle>
                   <template #append>
                     <VBtn
                       variant="text"
                       class="mr-2"
                       color="primary"
+                      @click="edit(element)"
                       icon
                     >
                       <VIcon>mdi-pencil-outline</VIcon>
@@ -140,7 +179,7 @@ watch(form, () => console.log(form.educations), { deep: true })
         sm="12"
       >
         <!-- * 添加新的项 -->
-        <template v-if="isEditing">
+        <template v-if="isOpenForm">
           <VSheet>
             <VForm>
               <!-- * -->
@@ -211,8 +250,8 @@ watch(form, () => console.log(form.educations), { deep: true })
                       学历
                     </div>
                     <VSelect
-                      v-model="item.educationalBackgrounds"
-                      :items="educationalBackgrounds"
+                      v-model="item.background"
+                      :items="backgrounds"
                       item-value="value"
                       item-title="label"
                       density="compact"
@@ -307,12 +346,15 @@ watch(form, () => console.log(form.educations), { deep: true })
         </template>
         <template v-else>
           <VBtn
-            @click="isEditing = true"
+            @click="() => {
+              type = 'create'
+              isOpenForm = true;
+            }"
             class="my-4"
             block
             color="primary"
           >
-            添加新的{{ name }}
+            添加新的{{ form.moduleName }}
           </VBtn>
         </template>
       </VCol>

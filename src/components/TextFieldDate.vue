@@ -8,12 +8,11 @@ import { useDate } from 'vuetify'
 interface Props {
   color?: string
   // * YYYY-MM-DD
-  modelValue?: string | null
+  modelValue?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   color: 'primary',
-  modelValue: '2020-01-01',
 })
 
 const emits = defineEmits(['update:modelValue'])
@@ -25,12 +24,13 @@ const isMenuOpen = ref(false)
 const selectedDate = ref(adapter.parseISO(props.modelValue || adapter.toISO(new Date())))
 // * 重新解析为 iso
 const formattedDate = computed(() => {
-  return selectedDate.value ? adapter.toISO(selectedDate.value) : ''
+  return selectedDate.value ? adapter.toISO(selectedDate.value).replaceAll('-', '/') : ''
 })
 // * v-model
 watch(() => props.modelValue, newDate => selectedDate.value = adapter.parseISO(newDate!))
 // * 更新 props，重新解析为 iso
-watch(selectedDate, newDate => emits('update:modelValue', adapter.toISO(newDate)))
+// ! 当传入的props为null时候，立即触发更新给父组件
+watch(selectedDate, newDate => emits('update:modelValue', adapter.toISO(newDate)), { immediate: true })
 
 // * 使用此函数关闭日期 Menu
 function handleDateUpdate(value: any) {
@@ -40,15 +40,31 @@ function handleDateUpdate(value: any) {
 </script>
 
 <template>
-  <VMenu v-model="isMenuOpen" transition="slide-y-transition" :close-on-content-click="false">
+  <VMenu
+    v-model="isMenuOpen"
+    transition="slide-y-transition"
+    :close-on-content-click="false"
+  >
     <template #activator="args">
       <VTextField
-        v-bind="args.props" :model-value="formattedDate" readonly variant="outlined" density="compact"
-        placeholder="出生日期" hide-details
+        v-bind="args.props"
+        :model-value="formattedDate"
+        readonly
+        variant="outlined"
+        density="compact"
+        placeholder="出生日期"
+        hide-details
       />
     </template>
 
-    <VDatePicker :model-value="selectedDate" @update:model-value="handleDateUpdate" title="" :color="props.color" hide-header hide-weekdays>
+    <VDatePicker
+      :model-value="selectedDate"
+      @update:model-value="handleDateUpdate"
+      title=""
+      :color="props.color"
+      hide-header
+      hide-weekdays
+    >
       <template #header />
     </VDatePicker>
   </VMenu>

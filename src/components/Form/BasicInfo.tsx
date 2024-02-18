@@ -1,35 +1,25 @@
 /* eslint-disable ts/prefer-ts-expect-error */
-import { VAvatar, VBtn, VCol, VContainer, VForm, VIcon, VList, VListItem, VRow, VSelect, VTextField, VTextarea } from 'vuetify/components'
+import { VAvatar, VBtn, VCol, VContainer, VForm, VIcon, VRow, VSelect, VTextField, VTextarea } from 'vuetify/components'
 import { useDate } from 'vuetify'
 import { AvatarUploadDialog, TextFieldDate } from '#components'
-import { mockDutyData, mockGenderData, mockMaritalData, mockNationData } from '~/mocks'
 
 export default defineComponent({
   setup() {
-    const { user, form } = useData()
-    const { density } = useSettings()
-    const adapter = useDate()
-
     // * avatar dialog
     const avatarUploadDialog = ref(false)
 
-    //* 表格数据
-    // #region 表格数据
-    const gender = ref(mockGenderData)
-    const nations = ref(mockNationData)
-    const maritals = ref(mockMaritalData)
-    const dutys = ref(mockDutyData)
-    // const birthday = ref(new Date().toISOString())
-    const birthday = ref('2023-09-21')
+    const { density } = useSettings()
+    const { resume, genders, nations, maritals, dutys } = storeToRefs(useResumeStore())
+    const form = resume.value.form.basicInfo
 
-    watch(birthday, value => console.log('parent date', value))
+    const adapter = useDate()
 
     return () => (
       <VContainer fluid>
-        <AvatarUploadDialog v-model={avatarUploadDialog.value} src={user.avatarUrl} change={(src: string) => user.avatarUrl = src} />
+        <AvatarUploadDialog v-model={avatarUploadDialog.value} src={form.avatarUrl} change={(src: string) => form.avatarUrl = src} />
 
         <VForm>
-          {/* // * 两行两列、头像 */}
+          {/*  * 两行两列、头像 */}
 
           <VRow>
             <VCol cols={12} lg={6} md={6} sm={6}>
@@ -39,13 +29,13 @@ export default defineComponent({
                   <div>
                     <label class="text-subtitle-2">姓名</label>
                     <VTextField
-                      v-model={form.basic.name}
+                      v-model={form.name}
                       variant="outlined"
                       density={density.value}
                       rounded={false}
                       clearIcon="mdi-close-circle-outline"
                       placeholder="Jannarin"
-                      clearable
+                      // clearable
                       hideDetails
                     />
                   </div>
@@ -54,13 +44,13 @@ export default defineComponent({
                   <div>
                     <label class="text-subtitle-2">英文名</label>
                     <VTextField
-                      v-model={form.basic.enName}
+                      v-model={form.enName}
                       variant="outlined"
                       density={density.value}
                       rounded={false}
                       clearIcon="mdi-close-circle-outline"
                       placeholder="Jannarin"
-                      clearable
+                      // clearable
                       hideDetails
                     />
                   </div>
@@ -74,13 +64,13 @@ export default defineComponent({
                   <div>
                     <label class="text-subtitle-2">当前职位</label>
                     <VTextField
-                      v-model={form.basic.currentJob}
+                      v-model={form.currentJob}
                       variant="outlined"
                       density={density.value}
                       rounded={false}
                       clearIcon="mdi-close-circle-outline"
                       placeholder="首席执行官"
-                      clearable
+                      // clearable
                       hideDetails
                     />
                   </div>
@@ -95,10 +85,9 @@ export default defineComponent({
                 {/* <VCol cols={6} lg={12} md={12}> */}
                 <VCol cols={12}>
                   {/* TODO: add default avatar */}
-                  {user.avatarUrl ? (
+                  {form.avatarUrl ? (
                     <VAvatar
-                      image={user.avatarUrl}
-                      // size={128}
+                      image={form.avatarUrl}
                       size="100%"
                       density={density.value}
                       // @ts-ignore
@@ -130,7 +119,7 @@ export default defineComponent({
                     </VBtn>
                     <VBtn
                       // @ts-ignore
-                      onClick={() => { user.avatarUrl = '' }}
+                      onClick={() => { form.avatarUrl = '' }}
                       color="error"
                       variant="tonal"
                     >
@@ -167,13 +156,13 @@ export default defineComponent({
               <div>
                 <label class="text-subtitle-2">电话</label>
                 <VTextField
-                  v-model={form.basic.phone}
+                  v-model={form.phone}
                   variant="outlined"
                   density={density.value}
                   rounded={false}
                   clearIcon="mdi-close-circle-outline"
                   placeholder="Jannarin"
-                  clearable
+                  // clearable
                   hideDetails
                 />
               </div>
@@ -184,13 +173,13 @@ export default defineComponent({
                   <div>
                     <label class="text-subtitle-2">邮箱</label>
                     <VTextField
-                      v-model={form.basic.email}
+                      v-model={form.email}
                       variant="outlined"
                       density={density.value}
                       rounded={false}
                       clearIcon="mdi-close-circle-outline"
                       placeholder="Jannarin@mail.com"
-                      clearable
+                      // clearable
                       hideDetails
                     />
                   </div>
@@ -205,7 +194,7 @@ export default defineComponent({
               <div>
                 <label class="text-subtitle-2">出生日期</label>
                 <TextFieldDate
-                  v-model={form.basic.birthday}
+                  v-model={form.birthday}
                 />
               </div>
             </VCol>
@@ -215,7 +204,7 @@ export default defineComponent({
                   <div>
                     <label class="text-subtitle-2">性别</label>
                     <VSelect
-                      v-model={form.basic.gender}
+                      v-model={form.gender}
                       variant="outlined"
                       density={density.value}
                       rounded={false}
@@ -223,23 +212,24 @@ export default defineComponent({
                       placeholder="性别"
                       itemValue="value"
                       itemTitle="label"
-                      items={gender.value}
+                      items={genders.value}
                       class="text-subtitle-1"
-                      clearable
+                      eager
+                      // clearable
                       hideDetails
-                      v-slots={{
-                        item({ props, item }) {
-                          return (
-                            <VList density={density.value} nav>
-                              <VListItem
-                                title={item.title}
-                                value={item.value}
-                                {...props}
-                              />
-                            </VList>
-                          )
-                        },
-                      }}
+                      // v-slots={{
+                      //   item({ props, item }) {
+                      //     return (
+                      //       <VList density={density.value} nav>
+                      //         <VListItem
+                      //           title={item.title}
+                      //           value={item.value}
+                      //           {...props}
+                      //         />
+                      //       </VList>
+                      //     )
+                      //   },
+                      // }}
                     />
                   </div>
                 </VCol>
@@ -255,7 +245,7 @@ export default defineComponent({
                   <div>
                     <label class="text-subtitle-2">民族</label>
                     <VSelect
-                      v-model={form.basic.nation}
+                      v-model={form.nation}
                       variant="outlined"
                       density={density.value}
                       rounded={false}
@@ -264,21 +254,22 @@ export default defineComponent({
                       itemValue="value"
                       itemTitle="nation"
                       items={nations.value}
-                      clearable
+                      // clearable
+                      eager
                       hideDetails
-                      v-slots={{
-                        item({ props, item }) {
-                          return (
-                            <VList density={density.value} nav>
-                              <VListItem
-                                title={item.title}
-                                value={item.value}
-                                {...props}
-                              />
-                            </VList>
-                          )
-                        },
-                      }}
+                      // v-slots={{
+                      //   item({ props, item }) {
+                      //     return (
+                      //       <VList density={density.value} nav>
+                      //         <VListItem
+                      //           title={item.title}
+                      //           value={item.value}
+                      //           {...props}
+                      //         />
+                      //       </VList>
+                      //     )
+                      //   },
+                      // }}
                     />
                   </div>
                 </VCol>
@@ -290,14 +281,14 @@ export default defineComponent({
                   <div>
                     <label class="text-subtitle-2">身高（cm）</label>
                     <VTextField
-                      v-model={form.basic.height}
+                      v-model={form.height}
                       variant="outlined"
                       density={density.value}
                       rounded={false}
                       clearIcon="mdi-close-circle-outline"
                       placeholder="身高厘米"
                       type="number"
-                      clearable
+                      // clearable
                       hideDetails
                       hideSpinButtons
                     />
@@ -307,14 +298,14 @@ export default defineComponent({
                   <div>
                     <label class="text-subtitle-2">体重（cm）</label>
                     <VTextField
-                      v-model={form.basic.weight}
+                      v-model={form.weight}
                       variant="outlined"
                       density={density.value}
                       type="number"
                       rounded={false}
                       clearIcon="mdi-close-circle-outline"
                       placeholder="体重"
-                      clearable
+                      // clearable
                       hideDetails
                       hideSpinButtons
                     />
@@ -332,7 +323,7 @@ export default defineComponent({
                   <div>
                     <label class="text-subtitle-2">婚姻状况</label>
                     <VSelect
-                      v-model={form.basic.marital}
+                      v-model={form.marital}
                       variant="outlined"
                       density={density.value}
                       rounded={false}
@@ -341,21 +332,22 @@ export default defineComponent({
                       placeholder="婚姻状况"
                       itemTitle="label"
                       items={maritals.value}
-                      clearable
+                      // clearable
+                      eager
                       hideDetails
-                      v-slots={{
-                        item({ props, item }) {
-                          return (
-                            <VList density={density.value} nav>
-                              <VListItem
-                                title={item.title}
-                                value={item.value}
-                                {...props}
-                              />
-                            </VList>
-                          )
-                        },
-                      }}
+                      // v-slots={{
+                      //   item({ props, item }) {
+                      //     return (
+                      //       <VList density={density.value} nav>
+                      //         <VListItem
+                      //           title={item.title}
+                      //           value={item.value}
+                      //           {...props}
+                      //         />
+                      //       </VList>
+                      //     )
+                      //   },
+                      // }}
                     />
                   </div>
                 </VCol>
@@ -370,13 +362,13 @@ export default defineComponent({
                       <span class="text-error">（待更新）</span>
                     </label>
                     <VTextField
-                      v-model={form.basic.currentCity}
+                      v-model={form.currentCity}
                       variant="outlined"
                       density={density.value}
                       rounded={false}
                       clearIcon="mdi-close-circle-outline"
                       placeholder="现居城市（待更新）"
-                      clearable
+                      // clearable
                       hideDetails
                       hideSpinButtons
                     />
@@ -396,13 +388,13 @@ export default defineComponent({
                       微信号（Wechat）
                     </label>
                     <VTextField
-                      v-model={form.basic.wechat}
+                      v-model={form.wechat}
                       variant="outlined"
                       density={density.value}
                       rounded={false}
                       clearIcon="mdi-close-circle-outline"
                       placeholder="微信号"
-                      clearable
+                      // clearable
                       hideDetails
                     />
                   </div>
@@ -415,13 +407,13 @@ export default defineComponent({
                   <div>
                     <label class="text-subtitle-2">Linkedin</label>
                     <VTextField
-                      v-model={form.basic.linkein}
+                      v-model={form.linkein}
                       variant="outlined"
                       density={density.value}
                       rounded={false}
                       clearIcon="mdi-close-circle-outline"
                       placeholder="Linkedin"
-                      clearable
+                      // clearable
                       hideDetails
                     />
                   </div>
@@ -436,13 +428,13 @@ export default defineComponent({
               <div>
                 <label class="text-subtitle-2">自我评价</label>
                 <VTextarea
-                  v-model={form.basic.description}
+                  v-model={form.description}
                   placeholder="热情开朗，性格外向，具有亲和力，个性积极主动，有良好的沟通技巧工作认真负责，勤奋好学上进，能吃苦能抗压，能独立完成一个项目。"
                   variant="outlined"
                   density="compact"
                   hideDetails
                   hideSpinButtons
-                  clearable
+                  // clearable
                   clearIcon="mdi-close-circle-outline"
                 />
               </div>
@@ -457,7 +449,7 @@ export default defineComponent({
                   <div>
                     <label class="text-subtitle-2">当前状态</label>
                     <VSelect
-                      v-model={form.basic.duty}
+                      v-model={form.duty}
                       variant="outlined"
                       density={density.value}
                       rounded={false}
@@ -466,21 +458,22 @@ export default defineComponent({
                       itemValue="value"
                       itemTitle="label"
                       items={dutys.value}
-                      clearable
+                      // clearable
+                      eager
                       hideDetails
-                      v-slots={{
-                        item({ props, item }) {
-                          return (
-                            <VList density={density.value} nav>
-                              <VListItem
-                                title={item.title}
-                                value={item.value}
-                                {...props}
-                              />
-                            </VList>
-                          )
-                        },
-                      }}
+                      // v-slots={{
+                      //   item({ props, item }) {
+                      //     return (
+                      //       <VList density={density.value} nav>
+                      //         <VListItem
+                      //           title={item.title}
+                      //           value={item.value}
+                      //           {...props}
+                      //         />
+                      //       </VList>
+                      //     )
+                      //   },
+                      // }}
                     />
                   </div>
                 </VCol>
@@ -495,13 +488,13 @@ export default defineComponent({
                       <span class="text-error">（待更新）</span>
                     </label>
                     <VTextField
-                      v-model={form.basic.purposeCity}
+                      v-model={form.purposeCity}
                       variant="outlined"
                       density={density.value}
                       rounded={false}
                       clearIcon="mdi-close-circle-outline"
                       placeholder="意向城市（待更新）"
-                      clearable
+                      // clearable
                       hideDetails
                       hideSpinButtons
                     />
@@ -526,14 +519,14 @@ export default defineComponent({
                   <div>
                     <label class="text-subtitle-2">期望薪资</label>
                     <VTextField
-                      v-model={form.basic.purposeMinSalary}
+                      v-model={form.purposeMinSalary}
                       variant="outlined"
                       density={density.value}
                       rounded={false}
                       clearIcon="mdi-close-circle-outline"
                       placeholder="最低薪资"
                       type="number"
-                      clearable
+                      // clearable
                       hideDetails
                       hideSpinButtons
                     />
@@ -542,14 +535,14 @@ export default defineComponent({
                 <VCol>
                   <div>
                     <VTextField
-                      v-model={form.basic.purposeMaxSalary}
+                      v-model={form.purposeMaxSalary}
                       variant="outlined"
                       density={density.value}
                       rounded={false}
                       clearIcon="mdi-close-circle-outline"
                       placeholder="最高薪资"
                       type="number"
-                      clearable
+                      // clearable
                       hideDetails
                       hideSpinButtons
                     />

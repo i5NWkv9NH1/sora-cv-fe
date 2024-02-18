@@ -1,27 +1,18 @@
 <script setup lang="ts">
-import { mockResumeEditorTabs } from '~/mocks'
 import type { Density, ResumeEditorTab, Size } from '~/mocks'
 
 interface Props {
-  modelValue?: number | string
-  tabs?: ResumeEditorTab[]
-  density?: Density
-  size?: Size
-  loading?: boolean
-  windows?: any[]
-  tabIcon?: boolean
+  modelValue: number
+  tabs: ResumeEditorTab[]
+  density: Density
+  size: Size
+  loading: boolean
+  windows: any[]
+  tabIcon: boolean
 }
-const props = withDefaults(defineProps<Props>(), {
-  modelValue: mockResumeEditorTabs[0].value,
-  tabs: () => mockResumeEditorTabs,
-  density: 'default',
-  size: 'small',
-  loading: false,
-  windows: () => [1, 1, 1, 1, 1, 1],
-  tabIcon: false,
-})
+const props = (defineProps<Props>())
 const emits = defineEmits(['update:modelValue'])
-const tab = ref<number | string>(props.modelValue)
+const tab = ref<number>(props.modelValue)
 // * tab items
 watch(() => props.modelValue, () => tab.value = props.modelValue, { immediate: true })
 watch(tab, value => emits('update:modelValue', value))
@@ -79,6 +70,7 @@ const { isMobile } = useDevice()
     <VSheet
       :rounded="false"
       :style="styles"
+      color="transparent"
     >
       <VWindow v-model="tab">
         <!-- ! 注意item绑定值与tab的值相对应 -->
@@ -92,12 +84,9 @@ const { isMobile } = useDevice()
           <template v-if="props.loading">
             <VSkeletonLoader type="list-item@15" />
           </template>
-          <template v-else-if="item.component">
+          <template v-else>
             <!-- * 动态组件 -->
             <ResolveComponent :component="item.component" />
-          </template>
-          <template v-else>
-            <FormTest />
           </template>
         </VWindowItem>
       </VWindow>

@@ -23,6 +23,8 @@ export default antfu({
     'style/max-statements-per-line': 'off',
     'vue/no-unused-vars': 'off',
     'vue/valid-v-for': 'off',
+    'style/multiline-ternary': 'off',
+    'import/order': 'off',
     'no-empty': 'off',
   },
 })

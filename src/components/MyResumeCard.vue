@@ -1,36 +1,15 @@
-<!--
-  TODO: 添加List视图的高度
- -->
-
-<!-- * creator/index.vue 页面的模板组件 -->
-<!--
-    <VItemGroup v-model="selected" multiple >
-      <VRow>
-        <VItem v-for="template in templates" :value="template" v-slot="{ isSelected, toggle }">
-          <VCol cols="6">
-              <TemplateEditorCard :is-selected="isSelected" :toggle="toggle" />
-          </VCol>
-        </VItem>
-      </VRow>
-    </VItemGroup>
- -->
-
 <script setup lang="ts">
 import { delay } from '~/helpers'
-import { type Template, type ViewStyle, mockTemplates } from '~/mocks'
+import type { ViewStyle } from '~/mocks'
 
 interface Props {
-  item?: Template
+  item?: any
   toggle?: () => void
   isSelected?: boolean
   viewStyle?: ViewStyle
+  onDelete: (id: string) => void
 }
-const props = withDefaults(defineProps<Props>(), {
-  item: () => mockTemplates[0],
-  toggle: () => { },
-  isSelected: false,
-  viewStyle: 'Grid',
-})
+const props = defineProps<Props>()
 // * 选择状态
 // * 在选择状态下无法编辑
 const isDownloading = ref(false)
@@ -160,9 +139,6 @@ async function remove() { }
           lg="4"
           md="6"
         >
-          <!-- <VBtn @click="editable = true" :disabled="!!!title">
-            简历重命名
-          </VBtn> -->
           <VBtn
             @click="save"
             :disabled="props.isSelected || !!!title || isRenameLoading || isDownloading"
@@ -188,8 +164,6 @@ async function remove() { }
           #activator="arg"
           :activator-props="{ item: props.item, toggle: props.toggle }"
         >
-          <!-- * 选择状态下 更改图标  -->
-          <!-- ! 不解构 arg，有同命名的 props  -->
           <VBtn
             v-bind="arg.props"
             :active="props.isSelected"
@@ -209,8 +183,6 @@ async function remove() { }
           #activator="arg"
           :activator-props="{ item: props.item, toggle: props.toggle }"
         >
-          <!-- * 选择状态下 更改图标  -->
-          <!-- ! 不解构 arg，有同命名的 props  -->
           <VBtn
             v-bind="arg.props"
             :active="isDownloading"
@@ -230,13 +202,10 @@ async function remove() { }
           #activator="arg"
           :activator-props="{ item: props.item, toggle: props.toggle }"
         >
-          <!-- * 选择状态下 更改图标  -->
-          <!-- ! 不解构 arg，有同命名的 props  -->
           <VBtn
             v-bind="arg.props"
-            :active="isDownloading"
-            :disabled="isEditing || isSelected"
             color="error"
+            @click="props.onDelete(item.id)"
             icon
           >
             <VIcon>

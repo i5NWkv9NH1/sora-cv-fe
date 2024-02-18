@@ -1,30 +1,32 @@
-<!--
-  TODO 添加视图切换
-  TODO 添加分页
-  TODO 添加 UIState
- -->
 <script setup lang="ts">
 import { isEmpty } from 'lodash-es'
-import type { Template, ViewStyle } from '~/mocks'
-import { mockTemplates, mocksViewStyles } from '~/mocks'
+import { delay } from '~/helpers'
+import type { ViewStyle } from '~/mocks'
 
 definePageMeta({ layout: 'creator' })
+useSeoMeta({ title: '我的简历' })
 
 // * 视图
 const viewStyle = ref<ViewStyle>('Grid')
-const viewStyles = ref(mocksViewStyles)
-const uiState = ref('loading')
+const { viewStyles } = usePreferencesStore()
 
-// * 数据
-const selectedResumes = ref<Template[]>()
-// ? 先使用假数据
-const templates = ref<Template[]>(mockTemplates)
+const loading = ref(false)
+
+// * store
+const { findResumes, updateResumes, deleteResume } = useResumeStore()
+const { resumes } = storeToRefs(useResumeStore())
+const { toggleAlert } = usePreferencesStore()
+
+// * 选择
+const selectedResumes = ref<any[]>()
 function unSelectAll() {
   selectedResumes.value = []
 }
 function selectAll() {
-  selectedResumes.value = templates.value
+  selectedResumes.value = resumes.value
 }
+
+// #region Checkbox
 const checkbox = computed(() => {
   if (!selectedResumes.value || !selectedResumes.value.length) {
     return {
@@ -33,7 +35,7 @@ const checkbox = computed(() => {
       action: selectAll,
     }
   }
-  if (selectedResumes.value.length === templates.value.length) {
+  if (selectedResumes.value.length === resumes.value.length) {
     return {
       label: '取消选择全部',
       icon: 'mdi-checkbox-outline',
@@ -46,17 +48,12 @@ const checkbox = computed(() => {
     action: unSelectAll,
   }
 })
+// #endregion
+
 // * 切换视图时，取消所有选择
 watch(viewStyle, () => selectedResumes.value = [])
 
-// * 分页
-const currentPage = ref(1)
-const pageSize = ref(10)
-// * 分页请求
-async function fetchTemplates() { }
-// * 第一次请求 SSR
-useSeoMeta({ title: '我的简历' })
-
+// * 绑定按键
 const { control, a } = useMagicKeys()
 watchEffect(() => {
   if (control.value && a.value) {
@@ -66,9 +63,34 @@ watchEffect(() => {
       unSelectAll()
   }
 })
+
+// * 分页
+const currentPage = ref(1)
+const pageSize = ref(10)
+const totalPageSize = ref(3)
+// * 分页请求
+watch(currentPage, async () => {
+  console.log('api:: 分页请求')
+  loading.value = true
+  await delay(2000)
+  toggleAlert({ message: '请求成功', color: 'green', delay: 2000 })
+  loading.value = false
+})
+
+// * SSR
+// const { data } = await useFetch('', { query: { currentPage, pageSize }})
+// updateResumes([])
 </script>
 
 <template>
+  <!-- * Loading... -->
+  <VDialog
+    v-model="loading"
+    fullscreen
+  >
+    <VProgressCircular indeterminate />
+  </VDialog>
+
   <VContainer>
     <!-- * 视图选项 -->
     <VToolbar
@@ -135,6 +157,10 @@ watchEffect(() => {
     </VToolbar>
 
     <!-- * 分页 -->
+    <QueryPagination
+      v-model="currentPage"
+      :total-page-size="totalPageSize"
+    />
 
     <!-- * 数据  -->
     <VSlideXTransition>
@@ -145,8 +171,8 @@ watchEffect(() => {
         >
           <VRow>
             <VItem
-              v-for="template in templates"
-              :value="template"
+              v-for="resume in resumes"
+              :value="resume"
               v-slot="{ isSelected, toggle }"
             >
               <VCol
@@ -158,6 +184,8 @@ watchEffect(() => {
                 <MyResumeCard
                   :is-selected="isSelected"
                   :toggle="toggle"
+                  @delete="deleteResume"
+                  :item="resume"
                 />
               </VCol>
             </VItem>
@@ -171,14 +199,15 @@ watchEffect(() => {
         >
           <VRow>
             <VItem
-              v-for="template in templates"
-              :value="template"
+              v-for="resume in resumes"
+              :value="resume"
               v-slot="{ isSelected, toggle }"
             >
               <VCol cols="12">
                 <VerticalResumeListItem
                   :is-selected="isSelected"
                   :toggle="toggle"
+                  :item="resume"
                 />
               </VCol>
             </VItem>

@@ -3,7 +3,7 @@
  -->
 
 <script setup lang="ts">
-import { mockModifyModulePreset } from '~/mocks'
+import { isEmpty } from 'lodash-es'
 
 interface Props {
   modelValue?: boolean
@@ -12,13 +12,15 @@ interface Props {
   title?: string
   name?: string
   persistent?: boolean
+  showActions?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   modelValue: true,
-  items: () => mockModifyModulePreset,
+  items: () => [],
   title: '修改模块名称',
   name: '实习经历',
   persistent: false,
+  showActions: false,
 })
 const emits = defineEmits(['update:modelValue', 'update:name'])
 const dialog = ref<boolean>(props.modelValue)
@@ -44,8 +46,16 @@ function handleChangePreset(value: string) {
     :persistent="props.persistent"
   >
     <VContainer class="fill-height">
-      <VRow class="fill-width" justify="center">
-        <VCol cols="12" lg="6" md="8" sm="8">
+      <VRow
+        class="fill-width"
+        justify="center"
+      >
+        <VCol
+          cols="12"
+          lg="6"
+          md="8"
+          sm="8"
+        >
           <VCard>
             <VCardTitle>
               <div class="d-flex align-center">
@@ -54,7 +64,11 @@ function handleChangePreset(value: string) {
                 </VIcon>
                 <div>{{ props.title }}</div>
                 <VSpacer />
-                <VBtn @click="dialog = false" variant="text" icon>
+                <VBtn
+                  @click="dialog = false"
+                  variant="text"
+                  icon
+                >
                   <VIcon>mdi-close</VIcon>
                 </VBtn>
               </div>
@@ -62,21 +76,43 @@ function handleChangePreset(value: string) {
 
             <VCardText>
               <div>
-                <VTextField v-model="name" hide-details variant="outlined" clearable label="模块名" />
-                <div class="d-flex flex-wrap mt-4 gap-2">
-                  <VBtn v-for="preset in props.items" :key="preset.id" @click="handleChangePreset(preset.name)" :variant="name === preset.name ? 'tonal' : 'text'" :active="name === preset.name" :color="name === preset.name ? 'primary' : 'default'">
+                <VTextField
+                  v-model="name"
+                  hide-details
+                  variant="outlined"
+                  clearable
+                  label="模块名"
+                  hide-spin-buttons
+                />
+                <div
+                  class="d-flex flex-wrap mt-4 gap-2"
+                  v-if="!isEmpty(props.items)"
+                >
+                  <VBtn
+                    v-for="preset in props.items"
+                    :key="preset.id"
+                    @click="handleChangePreset(preset.name)"
+                    :variant="name === preset.name ? 'tonal' : 'text'"
+                    :active="name === preset.name"
+                    :color="name === preset.name ? 'primary' : 'default'"
+                  >
                     {{ preset.name }}
                   </VBtn>
                 </div>
               </div>
             </VCardText>
 
-            <!-- <VCardActions>
+            <VCardActions v-if="props.showActions">
               <VSpacer />
-              <VBtn @click="handleConfirm" color="primary" elevation="0" active>
-                确定
+              <VBtn
+                @click="handleConfirm"
+                color="primary"
+                elevation="0"
+                active
+              >
+                保存
               </VBtn>
-            </VCardActions> -->
+            </VCardActions>
           </VCard>
         </VCol>
       </VRow>

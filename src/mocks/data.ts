@@ -2,6 +2,111 @@ import { v4 as uuid, v4 } from 'uuid'
 import type { Article, Category, Fanwen, PayType, ResumeEditorTab, ResumePreviewSize, Template, TemplateFilter, VIP, ViewStyle } from './type'
 import { transformArticle, transformField, transformFields } from '~/helpers'
 
+export const mockResumes = [
+  {
+    id: uuid(),
+    name: '我的第一份简历',
+    description: '',
+    createdDate: '2020-01-02',
+    updatedDate: '2021-02-04',
+    shareUrl: '',
+    thumbnailUrl: 'https://www.nicecv.cn/api/web/uploads/20231121102916935e32518.jpg',
+    template: {
+      id: uuid(),
+    },
+    form: {
+      basicInfo: {
+        moduleName: '基本信息',
+        name: '林泽鑫',
+        avatarUrl: '2.png',
+        enName: 'sora',
+        currentJob: '前端开发工程师',
+        phone: '15697544151',
+        email: 'sora@bakken.com',
+        birthday: '1998-02-28',
+        gender: 1,
+        nation: 1,
+        height: 168,
+        weight: 60.4,
+        marital: 1,
+        currentCity: '广东省汕头市',
+        wechat: 'bravesnail98',
+        linkein: '',
+        description: '这个人很懒',
+        duty: 1,
+        purposeCity: '广东省广州市',
+        purposeMinSalary: 4500,
+        purposeMaxSalary: 5000,
+      },
+      education: {
+        moduleName: '教育经历',
+        items: [{ id: v4(), school: '潮汕职业技术学院', major: '软件信息与服务', background: 5, degree: 1, schooling: 1, college: '设计艺术学院', city: '厦门', startDate: '2016-09-01', endDate: '2019-06-30', description: `<p>荣誉奖项：优秀毕业生（专业前3%）、一等奖学金（2022，2023）。 主修课程：视觉传达设计方法、视觉传达设计创意、视觉传达设计应用、视觉传达设计传播。</p>` }, { id: v4(), school: '湛江科技学院', major: '计算机科学与技术', background: 5, degree: 1, schooling: 1, college: '设计艺术学院', city: '厦门', startDate: '2021-09-01', endDate: '2023-06-30', description: `<p>荣誉奖项：优秀毕业生（专业前3%）、一等奖学金（2022，2023）。 主修课程：视觉传达设计方法、视觉传达设计创意、视觉传达设计应用、视觉传达设计传播。</p>` }],
+      },
+      work: {
+        moduleName: '工作经历',
+        items: [
+          { id: v4(), company: '腾讯科技(深圳)有限公司', department: '电商设计部', job: '高级前端开发工程师 (短视频开发部)', city: '厦门', startDate: '2020-02-02', endDate: '2022-01-21', description: '1，带领团队完成了短视频项目从0到1的建设，攻克了延时、滤镜、动态贴纸等技术难题，提升了内部团队效率。2，优化了核心项目首屏性能，接入性能监控工具，提升了FP、FCP、FMP指标，整体性能提升 30%。3，优化了核心项目的打包构建体积，利用增量构建配合缓存总体节省70% 的 CDN 资源成本。4，搭建团队项目的脚手架，集成框架全家桶，单元测试、集成测试解决方案，内部平台CI/CD的对接，搭建NPM私服维护公司内部的通用包。 涉及项目：微视、HaboMalHunter、MLeaksFinder' },
+          { id: v4(), company: '阿里巴巴(中国)有限公司', department: '电商设计部', job: 'Web前端开发工程师 (用户体验设计中心)', city: '厦门', startDate: '2020-02-02', endDate: '2022-01-21', description: '1，使用 React 以及 Typescript 作为开发框架和语言，主导和开发项目基础组件库。使用 jest 以及 React Testing Library 实现单测覆盖率大于 90%。结合 Github Actions 完成CI/CD 以及自动发布至内部 NPM。 2，使用 vue3 进行内部管理系统的开发工作，在 vue-element-admin 上进行二次封装，解决复杂权限配置问题。 涉及项目：Nacos、北海 (Kraken)、PolarDB-X' },
+        ],
+      },
+      school: {
+        moduleName: '实践经历',
+        items: [
+          { id: uuid(), name: '新媒体微博运营', role: '副部长', department: '微博协会新媒体部门', city: '广州市', startDate: '2020-02-02', endDate: '2020-02-02', description: '1. 负责策划新浪博等官方账号的内容编辑与互动、提高影响力和关注度；策划新媒体传播方案，包括节日营销及校园营销等；做好与粉丝的互动回复等工作；跟踪微博推广效果，分析数据并反馈。 2. 加入学校微博协会后用两个月建立学校微博矩阵，通过团队运营，粉丝从2000变为9000+。' },
+        ],
+      },
+      skill: {
+        moduleName: '技能栏',
+        software: {
+          moduleName: '软件技能',
+          items: [
+            { id: uuid(), name: 'Adobe PhotoShop' },
+          ],
+        },
+        professional: {
+          moduleName: '专业技能',
+          items: [
+            { id: uuid(), name: '软件技能', description: '1.熟练使用Vue.js' },
+          ],
+        },
+      },
+      others: {
+        moduleName: '其它',
+        health: {
+          moduleName: '健康状况',
+          value: '健康',
+        },
+        language: {
+          moduleName: '语言水平',
+          items: [
+            { id: uuid(), name: '日语' },
+          ],
+        },
+        award: {
+          moduleName: '证书/获奖',
+          items: [
+            { id: uuid(), name: 'ACAA认证平面设计师' },
+          ],
+        },
+        hobby: {
+          moduleName: '兴趣/爱好',
+          value: '摄影，写作',
+        },
+        portfolio: {
+          moduleName: '作品集',
+          value: 'https://www.nicecv.cn/jiangxinwen',
+        },
+        custom: {
+          items: [
+            { id: uuid(), name: '自定义模块 1', description: '自定义模块 1' },
+            { id: uuid(), name: '自定义模块 2', description: '自定义模块 2' },
+          ],
+        },
+      },
+    },
+  },
+]
+
 export const mockResumeEditorTabs: ResumeEditorTab[] = [
   {
     id: uuid(),

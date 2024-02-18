@@ -1,9 +1,19 @@
 import { defineStore } from 'pinia'
+import { v4 } from 'uuid'
+import type { ViewStyle } from '~/mocks'
 import type { Density, DensityMode, PreviewSize, Size, SizeMode, Theme, ThemeMode } from '~/types'
 
 export const usePreferencesStore = defineStore(
   'preferences',
   () => {
+    // * creator
+    const viewStyles = ref(
+      [
+        { id: v4(), label: '网格视图', icon: 'mdi-format-list-bulleted', value: 'Grid' as ViewStyle },
+        { id: v4(), label: '列表视图', icon: 'mdi-grid-large', value: 'List' as ViewStyle },
+      ],
+    )
+
     const alert = ref({
       status: false,
       message: '',
@@ -76,7 +86,7 @@ export const usePreferencesStore = defineStore(
       alert.value.color = color
       alert.value.delay = delay
     }
-    return { alert, drawer, density, densityMode, size, sizeMode, theme, themeMode, height, toggleAlert, previewSize, updatePreviewSize, toggleDrawer, flat }
+    return { alert, drawer, density, densityMode, size, sizeMode, theme, themeMode, height, toggleAlert, previewSize, updatePreviewSize, toggleDrawer, flat, viewStyles }
   },
   {
     persist: {

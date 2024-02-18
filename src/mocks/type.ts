@@ -134,7 +134,7 @@ export interface ResumeEditorTab {
   icon: string
   key: string
   value: number | string
-  component?: string | null
+  component: string
 }
 
 export interface Education {
