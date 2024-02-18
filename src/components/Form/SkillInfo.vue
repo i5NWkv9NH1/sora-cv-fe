@@ -92,7 +92,7 @@ function handleSave() {
 
     <VRow class="fill-width" no-gutters>
       <VCol cols="12" lg="12" md="12" sm="12">
-        <VList class="py-0" density="compact" lines="three">
+        <VList class="py-0" density="compact" lines="one">
           <ModifiyModuleNameDialog v-model:modelValue="professionalDialog" v-model:name="professionalName" :items="[]" />
           <VListSubheader @click="professionalDialog = true" class="cursor-pointer">
             <span>{{ professionalName }}</span>
@@ -111,8 +111,6 @@ function handleSave() {
                   <VIcon>mdi-sort-variant</VIcon>
                 </template>
                 <VListItemTitle>校园A - 本科</VListItemTitle>
-                <VListItemSubtitle>厦门 - 2020/11/11 - 2023/11/11</VListItemSubtitle>
-                <VListItemSubtitle>厦门 - 2020/11/11 - 2023/11/11</VListItemSubtitle>
                 <template #append>
                   <VBtn variant="text" class="mr-2" color="primary" icon>
                     <VIcon>mdi-pencil-outline</VIcon>

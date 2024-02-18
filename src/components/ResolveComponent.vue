@@ -1,7 +1,3 @@
-<!--
-  TODO: add dynamic compoent
- -->
-
 <script setup lang="ts">
 // ! 需要解析的组件导入到这里
 // import { BasicInfo } from '#components'

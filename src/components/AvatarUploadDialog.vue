@@ -1,7 +1,6 @@
 <!--
   TODO: 添加响应式
  -->
-
 <script setup lang="ts">
 import { CircleStencil, Cropper, type CropperResult } from 'vue-advanced-cropper'
 import 'vue-advanced-cropper/dist/style.css'
@@ -9,19 +8,21 @@ import 'vue-advanced-cropper/dist/style.css'
 interface Props {
   modelValue?: boolean
   src?: string
+  change?: (src: string) => void
+  persistent?: boolean
 }
-const props = withDefaults(defineProps<Props>(), {
-  modelValue: false,
-  // src: '/1.png',
-  src: '1.png',
-})
-const emits = defineEmits(['update:modelValue', 'update:src'])
+const props = (defineProps<Props>())
+const emits = defineEmits(['update:modelValue'])
 const dialog = ref(props.modelValue)
 const copySrc = ref(props.src)
 watch(() => props.modelValue, () => dialog.value = props.modelValue)
 watch(() => props.src, () => copySrc.value = props.src)
-watch(dialog, () => emits('update:modelValue', dialog.value))
-watch(copySrc, () => emits('update:src', copySrc.value))
+watch(dialog, () => {
+  // * 如果取消更换
+  // * 替换为原来的图片
+  copySrc.value = props.src
+  emits('update:modelValue', dialog.value)
+})
 
 const fileEl = ref()
 const cropperEl = ref()
@@ -33,7 +34,7 @@ function handleOpenImage() {
 }
 function handleSelectImage(files: File[]) {
   if (files || files[0]) {
-    URL.revokeObjectURL(copySrc.value)
+    URL.revokeObjectURL(copySrc.value!)
     const blob = URL.createObjectURL(files[0])
     fileType.value = files[0].type
     copySrc.value = blob
@@ -45,11 +46,12 @@ function handleCrooperResult() {
   if (result.canvas) {
     const blob = result.canvas.toDataURL(fileType.value)
     // selectedImage.value.src = blob
-    // copySrc.value = blob
+    copySrc.value = blob
     // !! update data
     //* ... upload with api
     //* after reset
     dialog.value = false
+    props.change && props.change(blob)
   }
 }
 function handleCropperChange(e: CropperResult) {
@@ -57,13 +59,12 @@ function handleCropperChange(e: CropperResult) {
     const blob = e.canvas.toDataURL(fileType.value)
     // console.log(blob)
     // TODO: upload
-    return
   }
 }
 </script>
 
 <template>
-  <VDialog v-model="dialog" transition="slide-y-transition" fullscreen persistent>
+  <VDialog v-model="dialog" transition="slide-y-transition" fullscreen :persistent="props.persistent || false">
     <VFileInput class="d-none" ref="fileEl" @update:model-value="handleSelectImage" />
     <VContainer class="fill-height">
       <VRow justify="center" class="fill-width">

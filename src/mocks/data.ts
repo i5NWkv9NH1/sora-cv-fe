@@ -25,7 +25,7 @@ export const mockResumeEditorTabs: ResumeEditorTab[] = [
     icon: 'mdi-pencil-outline',
     value: 3,
     key: 'basicInfo',
-    component: null,
+    component: 'FormWorkInfo',
   },
   {
     id: uuid(),
@@ -33,7 +33,7 @@ export const mockResumeEditorTabs: ResumeEditorTab[] = [
     icon: 'mdi-pencil-outline',
     value: 4,
     key: 'basicInfo',
-    component: null,
+    component: 'FormSchoolInfo',
   },
   {
     id: uuid(),
@@ -41,7 +41,7 @@ export const mockResumeEditorTabs: ResumeEditorTab[] = [
     icon: 'mdi-pencil-outline',
     value: 5,
     key: 'basicInfo',
-    component: null,
+    component: 'FormSkillInfo',
   },
   {
     id: uuid(),
@@ -3464,241 +3464,356 @@ export const mockDutyData = [
 ]
 // ? 民族
 export const mockNationData = [
-  { code: '01', nation: '汉族' },
+  { code: '1', nation: '汉族', value: 1 },
   {
     code: '02',
     nation: '蒙古族',
+    value: 2,
   },
   {
     code: '03',
     nation: '回族',
+    value: 3,
   },
   {
     code: '04',
     nation: '藏族',
+    value: 4,
   },
   {
     code: '05',
     nation: '维吾尔族',
+    value: 5,
   },
   {
     code: '06',
     nation: '苗族',
+    value: 6,
   },
   {
     code: '07',
     nation: '彝族',
+    value: 7,
   },
   {
     code: '08',
     nation: '壮族',
+    value: 8,
   },
   {
     code: '09',
     nation: '布依族',
+    value: 9,
   },
   {
     code: '10',
     nation: '朝鲜族',
+    value: 10,
   },
   {
     code: '11',
     nation: '满族',
+    value: 11,
   },
   {
     code: '12',
     nation: '侗族',
+    value: 12,
   },
   {
     code: '13',
     nation: '瑶族',
+    value: 13,
   },
   {
     code: '14',
     nation: '白族',
+    value: 14,
   },
   {
     code: '15',
     nation: '土家族',
+    value: 15,
   },
   {
     code: '16',
     nation: '哈尼族',
+    value: 16,
   },
   {
     code: '17',
     nation: '哈萨克族',
+    value: 17,
   },
   {
     code: '18',
     nation: '傣族',
+    value: 18,
   },
   {
     code: '19',
     nation: '黎族',
+    value: 19,
   },
   {
     code: '20',
     nation: '傈僳族',
+    value: 20,
   },
   {
     code: '21',
     nation: '佤族',
+    value: 21,
   },
   {
     code: '22',
     nation: '畲族',
+    value: 22,
   },
   {
     code: '23',
     nation: '高山族',
+    value: 23,
   },
   {
     code: '24',
     nation: '拉祜族',
+    value: 24,
   },
   {
     code: '25',
     nation: '水族',
+    value: 25,
   },
   {
     code: '26',
     nation: '东乡族',
+    value: 26,
   },
   {
     code: '27',
     nation: '纳西族',
+    value: 27,
   },
   {
     code: '28',
     nation: '景颇族',
+    value: 28,
   },
   {
     code: '29',
     nation: '柯尔克孜族',
+    value: 29,
   },
   {
     code: '30',
     nation: '土族',
+    value: 30,
   },
   {
     code: '31',
     nation: '达斡尔族',
+    value: 31,
   },
   {
     code: '32',
     nation: '仫佬族',
+    value: 32,
   },
   {
     code: '33',
     nation: '羌族',
+    value: 33,
   },
   {
     code: '34',
     nation: '布朗族',
+    value: 34,
   },
   {
     code: '35',
     nation: '撒拉族',
+    value: 35,
   },
   {
     code: '36',
     nation: '毛难族',
+    value: 36,
   },
   {
     code: '37',
     nation: '仡佬族',
+    value: 37,
   },
   {
     code: '38',
     nation: '锡伯族',
+    value: 38,
   },
   {
     code: '39',
     nation: '阿昌族',
+    value: 39,
   },
   {
     code: '40',
     nation: '普米族',
+    value: 40,
   },
   {
     code: '41',
+    value: 41,
     nation: '塔吉克族',
   },
-  {
-    code: '42',
-    nation: '怒族',
-  },
+  { value: 42, code: '42', nation: '怒族' },
   {
     code: '43',
     nation: '乌孜别克族',
+    value: 43,
   },
   {
     code: '44',
     nation: '俄罗斯族',
+    value: 44,
   },
   {
     code: '45',
     nation: '鄂温克族',
+    value: 45,
   },
   {
     code: '46',
     nation: '崩龙族',
+    value: 46,
   },
   {
     code: '47',
     nation: '保安族',
+    value: 47,
   },
   {
     code: '48',
     nation: '裕固族',
+    value: 48,
   },
   {
     code: '49',
     nation: '京族',
+    value: 49,
   },
   {
     code: '50',
     nation: '塔塔尔族',
+    value: 50,
   },
   {
     code: '51',
     nation: '独龙族',
+    value: 51,
   },
   {
     code: '52',
     nation: '鄂伦春族',
+    value: 52,
   },
   {
     code: '53',
     nation: '赫哲族',
+    value: 53,
   },
   {
     code: '54',
     nation: '门巴族',
+    value: 54,
   },
   {
     code: '55',
     nation: '珞巴族',
+    value: 55,
   },
   {
     code: '56',
     nation: '基诺族',
+    value: 56,
   },
   {
     code: '97',
     nation: '其他',
+    value: 97,
   },
   {
     code: '98',
     nation: '外国血统',
+    value: 98,
   },
 ]
 
-export const mockModifyModulePreset = [
+export const mockModifyEducationNamePresets = [
+  { id: v4 (), name: '教育经历' },
+  { id: v4 (), name: '教育背景' },
+  { id: v4 (), name: '在校经历' },
+  { id: v4 (), name: '校园历练' },
+  { id: v4 (), name: '学习经历' },
+]
+export const mockModifyModulePreset = mockModifyEducationNamePresets
+export const mockModifyWorkNamePresets = [
   { id: v4 (), name: '工作经历' },
   { id: v4 (), name: '实习经历' },
   { id: v4 (), name: '兼职经历' },
   { id: v4 (), name: '实践经历' },
   { id: v4 (), name: '工作与实习经历' },
 ]
+
+export const mockSkillFormPresets = [
+  { id: v4(), name: 'Photoshop' },
+  { id: v4(), name: 'Figma' },
+  { id: v4(), name: 'Vue.js' },
+]
+export const mockLanguagesFormPresets = [
+  { id: v4(), name: '英语四级（CET-4）' },
+  { id: v4(), name: '英语六级（CET-6）' },
+  { id: v4(), name: '法语' },
+  { id: v4(), name: '德语' },
+]
+export const mockSkillsCertificatePresets = [
+  { id: v4(), name: 'Adobe中国认证设计师' },
+  { id: v4(), name: 'ACAA' },
+]
+
+// TODO: 添加专业组
+// * 学历
+export const mockEducationalBackgrounds = [
+  { id: v4(), label: '无', value: 0 },
+  { id: v4(), label: '初中', value: 1 },
+  { id: v4(), label: '中专', value: 2 },
+  { id: v4(), label: '高中', value: 3 },
+  { id: v4(), label: '大专', value: 4 },
+  { id: v4(), label: '本科', value: 5 },
+  { id: v4(), label: '研究生', value: 6 },
+]
+// * 学位
+export const mockDegrees = [
+  { id: v4(), label: '无', value: 0 },
+  { id: v4(), label: '学士', value: 1 },
+  { id: v4(), label: '硕士', value: 2 },
+  { id: v4(), label: '博士', value: 3 },
+]
+
+// * 学制
+export const mockSchoolings = [
+  { id: v4(), label: '全日制', value: 1 },
+  { id: v4(), label: '非全日制', value: 2 },
+]
+
+export const mockEducationItem = [
+  { id: v4(), school: '厦门理工学院', major: '视觉传达设计专业', educationalBackgrounds: 5, degree: 1, schooling: 1, college: '设计艺术学院', city: '厦门', startDate: '2024-01-10', endDate: '2024/01/30', description: `<p>荣誉奖项：优秀毕业生（专业前3%）、一等奖学金（2022，2023）。 主修课程：视觉传达设计方法、视觉传达设计创意、视觉传达设计应用、视觉传达设计传播。</p>` },
+  { id: v4(), school: '厦门理工学院', major: '视觉传达设计专业', educationalBackgrounds: 5, degree: 1, schooling: 1, college: '设计艺术学院', city: '厦门', startDate: '2024-01-10', endDate: '2024/01/30', description: `<p>荣誉奖项：优秀毕业生（专业前3%）、一等奖学金（2022，2023）。 主修课程：视觉传达设计方法、视觉传达设计创意、视觉传达设计应用、视觉传达设计传播。</p>` },
+  { id: v4(), school: '厦门理工学院', major: '视觉传达设计专业', educationalBackgrounds: 5, degree: 1, schooling: 1, college: '设计艺术学院', city: '厦门', startDate: '2024-01-10', endDate: '2024/01/30', description: `<p>荣誉奖项：优秀毕业生（专业前3%）、一等奖学金（2022，2023）。 主修课程：视觉传达设计方法、视觉传达设计创意、视觉传达设计应用、视觉传达设计传播。</p>` },
+]
+export const mockEducations = mockEducationItem
+export const mockWorkItem = [
+  { id: v4(), company: '厦门奈思科技有限公司', department: '电商设计部', job: 'ui设计实习生', city: '厦门', startDate: '2020-02-02', endDate: '2022-01-21', description: '<p>公司主营业务为线上电商，产品主要有陶瓷茶具与关联产品。本人负责线上产品视觉展示，首页和详情设计和修改。线下物料延展，部分节气海报绘制。</p>' },
+  { id: v4(), company: '厦门奈思科技有限公司', department: '电商设计部', job: 'ui设计实习生', city: '厦门', startDate: '2020-02-02', endDate: '2022-01-21', description: '<p>公司主营业务为线上电商，产品主要有陶瓷茶具与关联产品。本人负责线上产品视觉展示，首页和详情设计和修改。线下物料延展，部分节气海报绘制。</p>' },
+  { id: v4(), company: '厦门奈思科技有限公司', department: '电商设计部', job: 'ui设计实习生', city: '厦门', startDate: '2020-02-02', endDate: '2022-01-21', description: '<p>公司主营业务为线上电商，产品主要有陶瓷茶具与关联产品。本人负责线上产品视觉展示，首页和详情设计和修改。线下物料延展，部分节气海报绘制。</p>' },
+]
+export const mockWorks = mockWorkItem

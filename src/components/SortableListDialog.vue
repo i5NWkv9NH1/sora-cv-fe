@@ -39,7 +39,6 @@ const dragOptions = ref({
 })
 
 function handleSelect({ oldIndex }: { oldIndex: number }) {
-  // @ts-expect-error
   activeElement.value = copyItems.value[oldIndex]
 }
 function handleUnSelect(e: any) {

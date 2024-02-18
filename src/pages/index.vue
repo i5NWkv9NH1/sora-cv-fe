@@ -71,7 +71,7 @@ const { thumbnailUrl, intros, recommendTemplates, recommendAIs } = useData()
     <VSection>
       <VRow>
         <VCol v-for="ai in recommendAIs" :key="ai.id" cols="12" lg="4" md="4" sm="6">
-          <VCard width="100%" to="/ai/$item.id">
+          <VCard width="100%" :to="`/ai/${ai.id}`">
             <VCardText>
               <div
                 class="d-flex flex-column  align-center  pa-4 text-center"

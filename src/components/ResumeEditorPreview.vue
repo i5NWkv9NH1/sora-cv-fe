@@ -44,40 +44,42 @@ watch(copyItem, value => emits('update:items', value))
 
   <!-- * 工具栏 -->
   <VToolbar :density="props.density">
-    <!-- TODO: loading -->
-    <template v-if="props.loading">
-      loading...
-    </template>
-    <template v-else>
-      <VBtn
-        v-for="item in previewOptions" :key="item.id" class="mr-2"
-        :variant="previewSize === item.value ? 'tonal' : 'flat'" :active="previewSize === item.value"
-        @click="previewSize = item.value"
-      >
-        <VIcon v-if="item.icon" start>
-          {{ item.icon }}
-        </VIcon>
-        <span>{{ item.label }}</span>
-      </VBtn>
-      <VSpacer />
-      <!-- * dialog -->
-      <VBtn @click="sortableDialog = true" :active="sortableDialog">
-        <VIcon start>
-          mdi-sort-variant
-        </VIcon>
-        <span>修改模块位置</span>
-      </VBtn>
-      <!-- * menu -->
-      <PickColor v-model:color="color" />
+    <VSlideGroup show-arrows class="fill-width px-4">
+      <!-- TODO: loading -->
+      <template v-if="props.loading">
+        loading...
+      </template>
+      <template v-else>
+        <VBtn
+          v-for="item in previewOptions" :key="item.id" class="mr-2"
+          :variant="previewSize === item.value ? 'tonal' : 'flat'" :active="previewSize === item.value"
+          @click="previewSize = item.value"
+        >
+          <VIcon v-if="item.icon" start>
+            {{ item.icon }}
+          </VIcon>
+          <span>{{ item.label }}</span>
+        </VBtn>
+        <VSpacer />
+        <!-- * dialog -->
+        <VBtn @click="sortableDialog = true" :active="sortableDialog">
+          <VIcon start>
+            mdi-sort-variant
+          </VIcon>
+          <span>修改模块位置</span>
+        </VBtn>
+        <!-- * menu -->
+        <PickColor v-model:color="color" />
 
-      <!-- * dialog -->
-      <VBtn @click="$emit('update:selecteTemplateDialog', true)">
-        <VIcon start>
-          mdi-table
-        </VIcon>
-        <span>使用模板</span>
-      </VBtn>
-    </template>
+        <!-- * dialog -->
+        <VBtn @click="$emit('update:selecteTemplateDialog', true)">
+          <VIcon start>
+            mdi-table
+          </VIcon>
+          <span>使用模板</span>
+        </VBtn>
+      </template>
+    </VSlideGroup>
   </VToolbar>
   <!-- * 置顶 -->
   <VSheet :style="styles" :rounded="0">

@@ -136,3 +136,27 @@ export interface ResumeEditorTab {
   value: number | string
   component?: string | null
 }
+
+export interface Education {
+  id: string
+  school: string
+  major: string
+  educationalBackgrounds: number | null
+  degree: number | null
+  schooling: number | null
+  college: string
+  city: string
+  startDate: string | null
+  endDate: string | null
+  description: string
+}
+export interface Work {
+  id: string
+  company: string
+  department: string
+  job: string
+  city: string
+  startDate: string
+  endDate: string
+  description: string
+}

@@ -19,11 +19,15 @@
     "async-validator": "^4.2.5",
     "h3": "^1.10.0",
     "highlight.js": "^11.9.0",
+    "html2canvas": "^1.4.1",
+    "html2pdf.js": "^0.10.1",
+    "jspdf": "^2.5.1",
     "lodash-es": "^4.17.21",
     "nuxt3-winston-log": "^0.5.0",
     "pinia": "^2.1.7",
     "uuid": "^9.0.1",
     "vue-advanced-cropper": "^2.8.8",
+    "vue3-html2pdf": "^1.1.2",
     "vuedraggable": "next"
   },
   "devDependencies": {

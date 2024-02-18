@@ -1,22 +1,17 @@
 <script setup lang="ts">
-import { v4 } from 'uuid'
-
 const dialog = ref(false)
-const items = ref([
-  { id: v4(), color: 'red', title: 'A', value: 1 },
-  { id: v4(), color: 'yellow', title: 'B', value: 2 },
-  { id: v4(), color: 'blue', title: 'C', value: 3 },
-  { id: v4(), color: 'green', title: 'D', value: 4 },
-])
+const avatarUrl = ref('2.png')
 
-watch(items, () => { console.log('update items') })
+function handleUpdate(e: any) {
+  console.log(e)
+}
 </script>
 
 <template>
-  <VContainer>
-    <SortableListDialog v-model="dialog" v-model:items="items" />
-    <VBtn @click="dialog = true">
-      Refresh
+  <AvatarUploadDialog v-model="dialog" :src="avatarUrl" :change="handleUpdate" />
+  <VContainer class="pdf">
+    <VBtn @click="dialog = !dialog">
+      PDF DOWNLOAD
     </VBtn>
   </VContainer>
 </template>

@@ -11,20 +11,22 @@ interface Props {
   items?: any[]
   title?: string
   name?: string
+  persistent?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {
   modelValue: true,
   items: () => mockModifyModulePreset,
   title: '修改模块名称',
   name: '实习经历',
+  persistent: false,
 })
 const emits = defineEmits(['update:modelValue', 'update:name'])
 const dialog = ref<boolean>(props.modelValue)
 const name = ref<string>(props.name)
 watch(() => props.modelValue, () => dialog.value = props.modelValue)
 watch(() => props.name, () => name.value = props.name)
-watch(dialog, () => emits('update:modelValue', dialog.value))
-watch(name, () => emits('update:name', name.value))
+watch(dialog, value => emits('update:modelValue', value))
+watch(name, value => emits('update:name', value))
 
 function handleConfirm() {
   dialog.value = false
@@ -39,7 +41,7 @@ function handleChangePreset(value: string) {
     v-model="dialog"
     transition="slide-y-transition"
     fullscreen
-    persistent
+    :persistent="props.persistent"
   >
     <VContainer class="fill-height">
       <VRow class="fill-width" justify="center">
@@ -69,12 +71,12 @@ function handleChangePreset(value: string) {
               </div>
             </VCardText>
 
-            <VCardActions>
+            <!-- <VCardActions>
               <VSpacer />
               <VBtn @click="handleConfirm" color="primary" elevation="0" active>
                 确定
               </VBtn>
-            </VCardActions>
+            </VCardActions> -->
           </VCard>
         </VCol>
       </VRow>

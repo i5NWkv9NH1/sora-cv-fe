@@ -1,24 +1,12 @@
 <script setup lang="ts">
 import Draggle from 'vuedraggable'
-import { } from '~/mocks'
+import { mockWorkItem } from '~/mocks'
 
-const softwareDialog = ref(false)
-const professionalDialog = ref(false)
-const softwareName = ref('软件技能')
-const professionalName = ref('专业技能')
-
-const newSoftware = ref('')
-const softwares = ref<string[]>([
-  'Adobe',
-])
-
-const name = ref('校内实践')
+const dialog = ref(false)
+const name = ref('工作经历')
 const isEditing = ref(false)
 
-const items = ref([
-  { id: '1', name: '' },
-  { id: '1', name: '' },
-])
+const items = ref(mockWorkItem)
 // * 表单选择项目数据
 // * 编辑和新增的表单数据
 const form = {
@@ -31,22 +19,6 @@ const dragOptions = ref({
   disabled: false,
   ghostClass: 'ghost',
 })
-
-function handleGenerate() {
-  const exist = softwares.value.find(item => item === newSoftware.value)
-  if (exist) {
-    // * 当前已存在该标签
-    // * Hint 输入框
-    return
-  }
-  softwares.value.push(newSoftware.value)
-  newSoftware.value = ''
-}
-function handleRemoveSoftware(item: string) {
-  const index = softwares.value.indexOf(item)
-  if (index !== -1)
-    softwares.value.splice(index, 1)
-}
 
 function handleSelect({ oldIndex }: { oldIndex: number }) {
   activeItem.value = items.value[oldIndex]
@@ -61,44 +33,22 @@ function handleSave() {
 </script>
 
 <template>
-  <VContainer class="fill-height py-0" fluid>
-    <ModifiyModuleNameDialog v-model:modelValue="softwareDialog" v-model:name="softwareName" :items="[]" />
+  <VContainer class="fill-height" fluid>
     <VRow class="fill-width" no-gutters>
       <VCol cols="12" lg="12" md="12" sm="12">
-        <VList class="py-0">
-          <VListSubheader>列出你在学校中参与的实践项目、个人项目、或工作中参与的项目。</VListSubheader>
-          <VListSubheader>技能书写指南</VListSubheader>
-          <VListSubheader @click="softwareDialog = true" class="cursor-pointer">
-            <span>{{ softwareName }}</span>
+        <VList class="py-0" density="compact" lines="three">
+          <ModifiyModuleNameDialog v-model:modelValue="dialog" v-model:name="name" />
+          <VListSubheader>列出你认为最重要最近几年的工作经历，最新放在最前面，突出工作以及项目中的亮点。</VListSubheader>
+          <VListSubheader @click="dialog = true" class="cursor-pointer">
+            <span>{{ name }}</span>
             <VIcon end>
               mdi-square-edit-outline
             </VIcon>
           </VListSubheader>
-
-          <VListItem>
-            <VTextField v-model="newSoftware" density="compact" variant="outlined" hide-details placeholder="请输入软件名称，按回车生成标签" @keyup.enter="handleGenerate" />
-          </VListItem>
-          <VListItem>
-            <VChip v-for="item in softwares" :key="item" :text="item" class="mr-2 mb-2" @click="handleRemoveSoftware(item)">
-              <span>{{ item }}</span>
-              <VIcon end>
-                mdi-close
-              </VIcon>
-            </VChip>
-          </VListItem>
-        </VList>
-      </VCol>
-    </VRow>
-
-    <VRow class="fill-width" no-gutters>
-      <VCol cols="12" lg="12" md="12" sm="12">
-        <VList class="py-0" density="compact" lines="three">
-          <ModifiyModuleNameDialog v-model:modelValue="professionalDialog" v-model:name="professionalName" :items="[]" />
-          <VListSubheader @click="professionalDialog = true" class="cursor-pointer">
-            <span>{{ professionalName }}</span>
-            <VIcon end>
-              mdi-square-edit-outline
-            </VIcon>
+          <VListSubheader>
+            <NuxtLink to="/" class="text-primary">
+              经历书写指南
+            </NuxtLink>
           </VListSubheader>
 
           <Draggle
@@ -106,12 +56,11 @@ function handleSave() {
             @unchoose="handleUnSelect"
           >
             <template #item="{ element, index }: { element: any; index: number }">
-              <VListItem variant="outlined" rounded="lg" class="mt-4 cursor-move" :active="activeItem === element">
+              <VListItem variant="outlined" rounded="lg" class="mt-4" :active="activeItem === element">
                 <template #prepend>
                   <VIcon>mdi-sort-variant</VIcon>
                 </template>
-                <VListItemTitle>校园A - 本科</VListItemTitle>
-                <VListItemSubtitle>厦门 - 2020/11/11 - 2023/11/11</VListItemSubtitle>
+                <VListItemTitle>厦门奈思科技有限公司 - ui设计实习生</VListItemTitle>
                 <VListItemSubtitle>厦门 - 2020/11/11 - 2023/11/11</VListItemSubtitle>
                 <template #append>
                   <VBtn variant="text" class="mr-2" color="primary" icon>
@@ -138,7 +87,7 @@ function handleSave() {
                 <VCol cols="6">
                   <div>
                     <div class="text-subtitle-2">
-                      经历名称
+                      公司名称
                     </div>
                     <VTextField density="compact" variant="outlined" hide-details />
                   </div>
@@ -146,7 +95,7 @@ function handleSave() {
                 <VCol cols="6">
                   <div>
                     <div class="text-subtitle-2">
-                      你的角色
+                      职位名称
                     </div>
                     <VTextField density="compact" variant="outlined" hide-details />
                   </div>
@@ -200,7 +149,7 @@ function handleSave() {
                     </div>
                     <VTextarea
                       variant="outlined"
-                      placeholder="校园经历"
+                      placeholder="公司主营业务为线上电商，产品主要有陶瓷茶具与关联产品。本人负责线上产品视觉展示，首页和详情设计和修改。线下物料延展，部分节气海报绘制。"
                       rows="8"
                       clearable
                     />

@@ -151,3 +151,11 @@ export function transformArticle(item: any): Article {
     categories: null,
   }
 }
+
+export function removeItem<T>(arr: T[], item: T): T[] {
+  const index = arr.indexOf(item)
+  if (index > -1)
+    arr.splice(index, 1)
+
+  return arr
+}
