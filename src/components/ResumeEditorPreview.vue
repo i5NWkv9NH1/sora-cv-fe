@@ -40,66 +40,88 @@ watch(copyItem, value => emits('update:items', value))
 <template>
   <!-- * 添加 dialog -->
   <!-- <SortableListDialog v-model="sortableDialog" :items="modules" /> -->
-  <SortableListDialog v-model="sortableDialog" v-model:items="copyItem" />
+  <SortableListDialog
+    v-model="sortableDialog"
+    v-model:items="copyItem"
+  />
 
-  <!-- * 工具栏 -->
-  <VToolbar :density="props.density">
-    <VSlideGroup show-arrows class="fill-width px-4">
-      <!-- TODO: loading -->
-      <template v-if="props.loading">
-        loading...
-      </template>
-      <template v-else>
-        <VBtn
-          v-for="item in previewOptions" :key="item.id" class="mr-2"
-          :variant="previewSize === item.value ? 'tonal' : 'flat'" :active="previewSize === item.value"
-          @click="previewSize = item.value"
+  <div class="tools">
+    <!-- * 工具栏 -->
+    <template v-if="props.loading">
+      <VSkeletonLoader type="button@6" />
+    </template>
+    <template v-else>
+      <VToolbar :density="props.density">
+        <VSlideGroup
+          show-arrows
+          class="fill-width px-4"
         >
-          <VIcon v-if="item.icon" start>
-            {{ item.icon }}
-          </VIcon>
-          <span>{{ item.label }}</span>
-        </VBtn>
-        <VSpacer />
-        <!-- * dialog -->
-        <VBtn @click="sortableDialog = true" :active="sortableDialog">
-          <VIcon start>
-            mdi-sort-variant
-          </VIcon>
-          <span>修改模块位置</span>
-        </VBtn>
-        <!-- * menu -->
-        <PickColor v-model:color="color" />
+          <VBtn
+            v-for="item in previewOptions"
+            :key="item.id"
+            class="mr-2"
+            :variant="previewSize === item.value ? 'tonal' : 'flat'"
+            :active="previewSize === item.value"
+            @click="previewSize = item.value"
+          >
+            <VIcon
+              v-if="item.icon"
+              start
+            >
+              {{ item.icon }}
+            </VIcon>
+            <span>{{ item.label }}</span>
+          </VBtn>
+          <VSpacer />
+          <!-- * dialog -->
+          <VBtn
+            @click="sortableDialog = true"
+            :active="sortableDialog"
+          >
+            <VIcon start>
+              mdi-sort-variant
+            </VIcon>
+            <span>修改模块位置</span>
+          </VBtn>
+          <!-- * menu -->
+          <PickColor v-model:color="color" />
 
-        <!-- * dialog -->
-        <VBtn @click="$emit('update:selecteTemplateDialog', true)">
-          <VIcon start>
-            mdi-table
-          </VIcon>
-          <span>使用模板</span>
-        </VBtn>
-      </template>
-    </VSlideGroup>
-  </VToolbar>
-  <!-- * 置顶 -->
-  <VSheet :style="styles" :rounded="0">
-    <VContainer>
-      <!-- TODO: loading -->
-      <!-- * A4 -->
-      <template v-if="props.loading">
-        loading...
-      </template>
-      <template v-else>
-        <!-- TODO: transition -->
-        <template v-if="previewSize === 'A4'">
-          <VCard>A4</VCard>
+          <!-- * dialog -->
+          <VBtn @click="$emit('update:selecteTemplateDialog', true)">
+            <VIcon start>
+              mdi-table
+            </VIcon>
+            <span>使用模板</span>
+          </VBtn>
+          <!-- TODO: loading -->
+        </VSlideGroup>
+      </VToolbar>
+    </template>
+  </div>
+
+  <div class="content">
+    <VSheet
+      :style="styles"
+      :rounded="0"
+    >
+      <VContainer>
+        <!-- TODO: loading -->
+        <!-- * A4 -->
+        <template v-if="props.loading">
+          <VSkeletonLoader type="image@5" />
         </template>
-
-        <!-- * PHONE -->
         <template v-else>
-          <VCard>PHONE</VCard>
+          <!-- TODO: transition -->
+          <template v-if="previewSize === 'A4'">
+            <VCard>A4</VCard>
+          </template>
+
+          <!-- * PHONE -->
+          <template v-else>
+            <VCard>PHONE</VCard>
+          </template>
         </template>
-      </template>
-    </VContainer>
-  </VSheet>
+      </VContainer>
+    </VSheet>
+  </div>
 </template>

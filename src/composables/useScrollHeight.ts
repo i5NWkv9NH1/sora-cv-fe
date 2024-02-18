@@ -9,6 +9,8 @@ interface Options {
 // * 计算滚动高度
 // * compact -> 112
 export function useScrollHeight({ density, padding, fully }: Options) {
+  const { isMobile } = useDevice()
+
   const densityHeight = computed(() => {
     switch (density) {
       case 'default':
@@ -25,6 +27,8 @@ export function useScrollHeight({ density, padding, fully }: Options) {
   const styles = computed<StyleValue>(() => {
     // * 16 -> padding
     const value = (densityHeight.value * 2) + padding
+    if (isMobile.value)
+      return {}
     return {
       overflowY: 'scroll',
       maxHeight: `calc(100vh - ${value}px)`,

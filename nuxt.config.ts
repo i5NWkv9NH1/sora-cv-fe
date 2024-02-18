@@ -64,5 +64,5 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify'],
   },
-  devtools: { enabled: false },
+  devtools: { enabled: true },
 })

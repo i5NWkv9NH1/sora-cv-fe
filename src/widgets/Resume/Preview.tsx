@@ -146,7 +146,7 @@ export const PreviewSizeWrapper = defineComponent({
               )
             default: <Wrapper>
               <A4Preview />
-            </Wrapper>
+                     </Wrapper>
           }
       }
     }

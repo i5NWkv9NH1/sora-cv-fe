@@ -50,13 +50,33 @@ watch(form, () => console.log(form.educations), { deep: true })
 </script>
 
 <template>
-  <VContainer class="fill-height" fluid>
-    <VRow class="fill-width" no-gutters>
-      <VCol cols="12" lg="12" md="12" sm="12">
+  <VContainer
+    class="fill-height"
+    fluid
+  >
+    <VRow
+      class="fill-width"
+      no-gutters
+    >
+      <VCol
+        cols="12"
+        lg="12"
+        md="12"
+        sm="12"
+      >
         <VList class="py-0">
-          <ModifiyModuleNameDialog v-model:modelValue="dialog" v-model:name="name" :items="names" />
-          <VListSubheader>列出你的教育经历，并不是所有经历都要写入，而需要选取该过程中的亮点</VListSubheader>
-          <VListSubheader @click="dialog = true" class="cursor-pointer">
+          <ModifiyModuleNameDialog
+            v-model:modelValue="dialog"
+            v-model:name="name"
+            :items="names"
+          />
+          <VListSubheader class="title">
+            <p>列出你的教育经历，并不是所有经历都要写入，而需要选取该过程中的亮点</p>
+          </VListSubheader>
+          <VListSubheader
+            @click="dialog = true"
+            class="cursor-pointer"
+          >
             <span>{{ name }}</span>
             <VIcon end>
               mdi-square-edit-outline
@@ -64,12 +84,22 @@ watch(form, () => console.log(form.educations), { deep: true })
           </VListSubheader>
 
           <Draggle
-            key="draggable" v-model="form.educations" item-key="id" v-bind="dragOptions" @choose="handleSelect"
+            key="draggable"
+            v-model="form.educations"
+            item-key="id"
+            v-bind="dragOptions"
+            @choose="handleSelect"
             @unchoose="handleUnSelect"
           >
             <template #item="{ element, index }: { element: Education; index: number }">
               <VScrollYReverseTransition>
-                <VListItem lines="three" variant="outlined" rounded="lg" class="mt-4" :active="activeItem === element.id">
+                <VListItem
+                  lines="three"
+                  variant="outlined"
+                  rounded="lg"
+                  class="mt-4"
+                  :active="activeItem === element.id"
+                >
                   <template #prepend>
                     <VIcon>mdi-sort-variant</VIcon>
                   </template>
@@ -78,10 +108,20 @@ watch(form, () => console.log(form.educations), { deep: true })
                     {{ element.major }} - {{ element.startDate }} - {{ element.endDate }}
                   </VListItemSubtitle>
                   <template #append>
-                    <VBtn variant="text" class="mr-2" color="primary" icon>
+                    <VBtn
+                      variant="text"
+                      class="mr-2"
+                      color="primary"
+                      icon
+                    >
                       <VIcon>mdi-pencil-outline</VIcon>
                     </VBtn>
-                    <VBtn variant="text" color="warning" @click.stop="remove(element)" icon>
+                    <VBtn
+                      variant="text"
+                      color="warning"
+                      @click.stop="remove(element)"
+                      icon
+                    >
                       <VIcon>mdi-delete-outline</VIcon>
                     </VBtn>
                   </template>
@@ -93,7 +133,12 @@ watch(form, () => console.log(form.educations), { deep: true })
       </VCol>
     </VRow>
     <VRow class="fill-width">
-      <VCol cols="12" lg="12" md="12" sm="12">
+      <VCol
+        cols="12"
+        lg="12"
+        md="12"
+        sm="12"
+      >
         <!-- * 添加新的项 -->
         <template v-if="isEditing">
           <VSheet>
@@ -105,7 +150,12 @@ watch(form, () => console.log(form.educations), { deep: true })
                     <div class="text-subtitle-2">
                       学校
                     </div>
-                    <VTextField v-model="item.school" density="compact" variant="outlined" hide-details />
+                    <VTextField
+                      v-model="item.school"
+                      density="compact"
+                      variant="outlined"
+                      hide-details
+                    />
                   </div>
                 </VCol>
                 <VCol cols="6">
@@ -113,7 +163,12 @@ watch(form, () => console.log(form.educations), { deep: true })
                     <div class="text-subtitle-2">
                       城市
                     </div>
-                    <VTextField v-model="item.city" density="compact" variant="outlined" hide-details />
+                    <VTextField
+                      v-model="item.city"
+                      density="compact"
+                      variant="outlined"
+                      hide-details
+                    />
                   </div>
                 </VCol>
               </VRow>
@@ -125,7 +180,12 @@ watch(form, () => console.log(form.educations), { deep: true })
                     <div class="text-subtitle-2">
                       专业
                     </div>
-                    <VTextField v-model="item.major" density="compact" variant="outlined" hide-details />
+                    <VTextField
+                      v-model="item.major"
+                      density="compact"
+                      variant="outlined"
+                      hide-details
+                    />
                   </div>
                 </VCol>
                 <VCol cols="6">
@@ -133,7 +193,12 @@ watch(form, () => console.log(form.educations), { deep: true })
                     <div class="text-subtitle-2">
                       学院
                     </div>
-                    <VTextField v-model="item.college" density="compact" variant="outlined" hide-details />
+                    <VTextField
+                      v-model="item.college"
+                      density="compact"
+                      variant="outlined"
+                      hide-details
+                    />
                   </div>
                 </VCol>
               </VRow>
@@ -147,8 +212,12 @@ watch(form, () => console.log(form.educations), { deep: true })
                     </div>
                     <VSelect
                       v-model="item.educationalBackgrounds"
-                      :items="educationalBackgrounds" item-value="value" item-title="label" density="compact"
-                      variant="outlined" hide-details
+                      :items="educationalBackgrounds"
+                      item-value="value"
+                      item-title="label"
+                      density="compact"
+                      variant="outlined"
+                      hide-details
                     />
                   </div>
                 </VCol>
@@ -159,7 +228,11 @@ watch(form, () => console.log(form.educations), { deep: true })
                     </div>
                     <VSelect
                       v-model="item.degree"
-                      :items="degrees" item-value="value" item-title="label" density="compact" variant="outlined"
+                      :items="degrees"
+                      item-value="value"
+                      item-title="label"
+                      density="compact"
+                      variant="outlined"
                       hide-details
                     />
                   </div>
@@ -171,8 +244,12 @@ watch(form, () => console.log(form.educations), { deep: true })
                     </div>
                     <VSelect
                       v-model="item.schooling"
-                      :items="schollings" item-value="value" item-title="label" density="compact"
-                      variant="outlined" hide-details
+                      :items="schollings"
+                      item-value="value"
+                      item-title="label"
+                      density="compact"
+                      variant="outlined"
+                      hide-details
                     />
                   </div>
                 </VCol>
@@ -206,7 +283,8 @@ watch(form, () => console.log(form.educations), { deep: true })
                     <VTextarea
                       v-model="item.description"
                       variant="outlined"
-                      placeholder="荣誉奖项：优秀毕业生（专业前3%）、一等奖学金（2022，2023）。 主修课程：视觉传达设计方法、视觉传达设计创意、视觉传达设计应用、视觉传达设计传播。" rows="8"
+                      placeholder="荣誉奖项：优秀毕业生（专业前3%）、一等奖学金（2022，2023）。 主修课程：视觉传达设计方法、视觉传达设计创意、视觉传达设计应用、视觉传达设计传播。"
+                      rows="8"
                       clearable
                     />
                   </div>
@@ -215,7 +293,11 @@ watch(form, () => console.log(form.educations), { deep: true })
 
               <VRow no-gutters>
                 <VCol cols="6">
-                  <VBtn color="primary" @click="handleSave" block>
+                  <VBtn
+                    color="primary"
+                    @click="handleSave"
+                    block
+                  >
                     保存
                   </VBtn>
                 </VCol>
@@ -224,7 +306,12 @@ watch(form, () => console.log(form.educations), { deep: true })
           </VSheet>
         </template>
         <template v-else>
-          <VBtn @click="isEditing = true" class="my-4" block color="primary">
+          <VBtn
+            @click="isEditing = true"
+            class="my-4"
+            block
+            color="primary"
+          >
             添加新的{{ name }}
           </VBtn>
         </template>
@@ -232,3 +319,9 @@ watch(form, () => console.log(form.educations), { deep: true })
     </VRow>
   </VContainer>
 </template>
+
+<style  lang="scss">
+.title>.v-list-subheader__text {
+  white-space: normal;
+}
+</style>

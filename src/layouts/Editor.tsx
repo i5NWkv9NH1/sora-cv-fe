@@ -3,6 +3,8 @@ import {
   VApp,
   VAppBar,
   VAppBarNavIcon,
+  VBtn,
+  VIcon,
   VMain,
   VNavigationDrawer,
 } from 'vuetify/components'
@@ -17,13 +19,18 @@ interface AppBarProps {
 function AppBar({ drawer, density }: AppBarProps) {
   return (
     <VAppBar density={density}>
-      <VAppBarNavIcon
+    <VBtn variant="text" to="/creator">
+      <VIcon start>mdi-chevron-left</VIcon>
+      <span>返回我的简历</span>
+    </VBtn>
+
+    <ThemeSwitch size="small" />
+    <VAppBarNavIcon
         // @ts-expect-error
-        onClick={() => {
-          drawer.value = !drawer.value
-        }}
-      />
-    <ThemeSwitch />
+      onClick={() => {
+        drawer.value = !drawer.value
+      }}
+    />
     </VAppBar>
   )
 }

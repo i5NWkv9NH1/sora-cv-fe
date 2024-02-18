@@ -47,17 +47,28 @@ function handleUnSelect(e: any) {
 </script>
 
 <template>
-  <VDialog v-model="dialog" fullscreen>
+  <VDialog
+    v-model="dialog"
+    fullscreen
+  >
     <VContainer class="fill-height">
-      <VCard width="400" class="mx-auto">
+      <VCard
+        width="400"
+        class="mx-auto"
+      >
         <VCardTitle>
           <div class="d-flex align-center">
-            <VIcon start>
+            <!-- <VIcon start>
               mdi-format-list-bulleted
-            </VIcon>
+            </VIcon> -->
+            <BasicCardTitleSymbol />
             {{ props.title }}
             <VSpacer />
-            <VBtn variant="text" @click="dialog = false" icon>
+            <VBtn
+              variant="text"
+              @click="dialog = false"
+              icon
+            >
               <VIcon>mdi-close</VIcon>
             </VBtn>
           </div>
@@ -66,12 +77,22 @@ function handleUnSelect(e: any) {
           <!-- * icon: mdi-sort-variant -->
           <VList>
             <!-- ! 不要在里面写注释，会被当做 slot 渲染 😂 -->
-            <Draggle key="draggable" v-model="copyItems" item-key="id" v-bind="dragOptions" @choose="handleSelect" @unchoose="handleUnSelect">
+            <Draggle
+              key="draggable"
+              v-model="copyItems"
+              item-key="id"
+              v-bind="dragOptions"
+              @choose="handleSelect"
+              @unchoose="handleUnSelect"
+            >
               <!-- <VListItem :key="element.value" :title="element.title || element.name" prepend-icon="mdi-sort-variant" class="cursor-move" :active="element === activeElement" /> -->
               <template #item="{ element, index }: { element: any; index: number }">
                 <VListItem
-                  :key="element.value" :title="element.title || element.name" :prepend-icon="`mdi-numeric-${index + 1}`"
-                  class="cursor-move" :active="element === activeElement"
+                  :key="element.value"
+                  :title="element.title || element.name"
+                  :prepend-icon="`mdi-numeric-${index + 1}`"
+                  class="cursor-move"
+                  :active="element === activeElement"
                 />
               </template>
             </Draggle>

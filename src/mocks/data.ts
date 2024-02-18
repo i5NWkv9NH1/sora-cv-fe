@@ -21,7 +21,7 @@ export const mockResumeEditorTabs: ResumeEditorTab[] = [
   },
   {
     id: uuid(),
-    name: '实习经历',
+    name: '工作经历',
     icon: 'mdi-pencil-outline',
     value: 3,
     key: 'basicInfo',

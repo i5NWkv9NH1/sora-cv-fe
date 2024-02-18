@@ -13,5 +13,10 @@ const Comp = resolveComponent(props.component)
 </script>
 
 <template>
-  <component :is="Comp" />
+  <LazyClientOnly>
+    <component :is="Comp" />
+    <template #fallback>
+      <VSkeletonLoader type="list-item@20" />
+    </template>
+  </LazyClientOnly>
 </template>

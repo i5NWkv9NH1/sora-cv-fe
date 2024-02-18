@@ -38,10 +38,10 @@ function TextIntro() {
           <span>分类：</span>
           {template.value.jobCategory.map(category => (
             <span key={category.id}>
-{category.name}
-{' '}
-|
-{' '}
+              {category.name}
+              {' '}
+              |
+              {' '}
             </span>
           ))}
         </div>
@@ -49,10 +49,10 @@ function TextIntro() {
           <span>适用岗位：</span>
           {template.value.styleCategory.map(category => (
             <span key={category.id}>
-{category.name}
-{' '}
-|
-{' '}
+              {category.name}
+              {' '}
+              |
+              {' '}
             </span>
           ))}
         </div>
@@ -60,10 +60,10 @@ function TextIntro() {
           <span>适用经验：</span>
           {template.value.experienceCategory.map(category => (
             <span key={category.id}>
-{category.name}
-{' '}
-|
-{' '}
+              {category.name}
+              {' '}
+              |
+              {' '}
             </span>
           ))}
         </div>
@@ -149,33 +149,58 @@ useSeoMeta({ title: template.value.title })
 </script>
 
 <template>
-  <LazyClientOnly>
-    <VContainer class="fill-height gap-8">
-      <!-- * 模板介绍、轮播图 两列布局 -->
-      <VSection title="模板详情">
-        <VRow>
-          <VCol cols="12" lg="5" md="6" sm="4">
-            <TextIntro />
-          </VCol>
-          <VCol cols="12" lg="7" md="6" sm="8">
-            <Carousel />
-          </VCol>
-        </VRow>
-      </VSection>
-
-      <!-- * 推荐模板 -->
+  <VContainer class="fill-height gap-8">
+    <!-- * 模板介绍、轮播图 两列布局 -->
+    <VSection title="模板详情">
       <VRow>
-        <VCol v-for="item in recommendTemplates" :key="item.id" cols="12" lg="3" md="4" sm="4">
+        <VCol
+          cols="12"
+          lg="5"
+          md="6"
+          sm="4"
+        >
+          <TextIntro />
+        </VCol>
+        <VCol
+          cols="12"
+          lg="7"
+          md="6"
+          sm="8"
+        >
+          <Carousel />
+        </VCol>
+      </VRow>
+    </VSection>
+
+    <!-- * 推荐模板 -->
+    <VSection title="推荐模板">
+      <VRow>
+        <VCol
+          v-for="item in recommendTemplates"
+          :key="item.id"
+          cols="12"
+          lg="3"
+          md="4"
+          sm="4"
+        >
           <TemplateCard :item="item" />
         </VCol>
       </VRow>
+    </VSection>
 
-      <!-- * 推荐文章 -->
+    <!-- * 推荐文章 -->
+    <VSection title="推荐文章">
       <VRow>
-        <VCol v-for="article in articles" cols="12" lg="6" md="6" sm="6">
+        <VCol
+          v-for="article in articles"
+          cols="12"
+          lg="6"
+          md="6"
+          sm="6"
+        >
           <ArticleCard :item="article" />
         </VCol>
       </VRow>
-    </VContainer>
-  </LazyClientOnly>
+    </VSection>
+  </VContainer>
 </template>

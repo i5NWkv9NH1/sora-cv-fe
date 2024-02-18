@@ -1,4 +1,5 @@
-import { VAvatar, VCol, VContainer, VForm, VList, VListItem, VRow, VSelect, VTextField, VTextarea } from 'vuetify/components'
+/* eslint-disable ts/prefer-ts-expect-error */
+import { VAvatar, VBtn, VCol, VContainer, VForm, VIcon, VList, VListItem, VRow, VSelect, VTextField, VTextarea } from 'vuetify/components'
 import { useDate } from 'vuetify'
 import { AvatarUploadDialog, TextFieldDate } from '#components'
 import { mockDutyData, mockGenderData, mockMaritalData, mockNationData } from '~/mocks'
@@ -91,53 +92,71 @@ export default defineComponent({
 
             <VCol cols={12} lg={6} md={6} sm={6}>
               <VRow align="end">
-                <VCol cols={12} lg={12}>
-                  <VAvatar
-                    image={user.avatarUrl}
-                    size="100%"
-                    // size={128}
-                    density={density.value}
-                    // @ts-expect-error
-                    onClick={() => { avatarUploadDialog.value = true }}
-                  />
+                {/* <VCol cols={6} lg={12} md={12}> */}
+                <VCol cols={12}>
+                  {/* TODO: add default avatar */}
+                  {user.avatarUrl ? (
+                    <VAvatar
+                      image={user.avatarUrl}
+                      // size={128}
+                      size="100%"
+                      density={density.value}
+                      // @ts-ignore
+                      onClick={() => { avatarUploadDialog.value = true }}
+                    />
+                  ) : (
+                    <VAvatar
+                      size={128}
+                      color="primary"
+                      density={density.value}
+                      // @ts-ignore
+                      onClick={() => { avatarUploadDialog.value = true }}
+                    />
+                  )}
                 </VCol>
 
-                {/* <VCol cols={12} lg={7}>
-                <div
-                  class={'d-flex flex-wrap justify-start align-start'}
-                  style={{ gap: '1rem' }}
-                >
-                  <VBtn
-                    //@ts-ignore
-                    color={'teal'}
+                {/* TODO: responsive button */}
+                <VCol cols={6} lg={7}>
+                  <div
+                    class="d-flex justify-start align-start gap-4"
                   >
-                    上传照片
-                  </VBtn>
-                  <VBtn
-                    //@ts-ignore
-                    color={'warning'}
-                    variant={'tonal'}
-                  >
-                    删除照片
-                  </VBtn>
-                </div>
-              </VCol> */}
+                    <VBtn
+                      // @ts-ignore
+                      onClick={() => { avatarUploadDialog.value = true }}
+                      color="teal"
+                    >
+                      <VIcon>mdi-pencil</VIcon>
+                      <span>上传</span>
+                    </VBtn>
+                    <VBtn
+                      // @ts-ignore
+                      onClick={() => { user.avatarUrl = '' }}
+                      color="error"
+                      variant="tonal"
+                    >
+                      <VIcon>mdi-trash-can</VIcon>
+                      <span>删除</span>
+                    </VBtn>
+                  </div>
+                </VCol>
               </VRow>
 
-              {/* <VRow noGutters>
-              <VCol cols={12}>
-                <VBtn
-                  to={'/'}
-                  //@ts-ignore
-                  target='_blank'
-                  color={'warning'}
-                  variant={'plain'}
-                  class={'mt-2 pa-0'}
-                >
-                  简历照片应该是什么样？
-                </VBtn>
-              </VCol>
-            </VRow> */}
+              <VRow noGutters>
+                <VCol cols={12}>
+                  <VBtn
+                    to="/"
+                    // @ts-ignore
+                    target="_blank"
+                    color="warning"
+                    variant="plain"
+                    class="mt-2 pa-0"
+                    size="small"
+                  >
+                    <VIcon start>mdi-alert</VIcon>
+                    <span>简历照片应该是什么样？</span>
+                  </VBtn>
+                </VCol>
+              </VRow>
 
             </VCol>
           </VRow>
@@ -494,13 +513,13 @@ export default defineComponent({
 
           {/* 期望职位、期望薪资 */}
           <VRow>
-            <VCol cols="12" lg="6">
+            {/* <VCol cols="12" lg="6">
               <VRow>
                 <VCol cols={12}>
 
                 </VCol>
               </VRow>
-            </VCol>
+            </VCol> */}
             <VCol cols="12" lg="6">
               <VRow align="end" class="position-relative">
                 <VCol>

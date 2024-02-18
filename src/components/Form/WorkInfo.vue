@@ -33,40 +33,84 @@ function handleSave() {
 </script>
 
 <template>
-  <VContainer class="fill-height" fluid>
-    <VRow class="fill-width" no-gutters>
-      <VCol cols="12" lg="12" md="12" sm="12">
-        <VList class="py-0" density="compact" lines="three">
-          <ModifiyModuleNameDialog v-model:modelValue="dialog" v-model:name="name" />
-          <VListSubheader>列出你认为最重要最近几年的工作经历，最新放在最前面，突出工作以及项目中的亮点。</VListSubheader>
-          <VListSubheader @click="dialog = true" class="cursor-pointer">
+  <VContainer
+    class="fill-height"
+    fluid
+  >
+    <VRow
+      class="fill-width"
+      no-gutters
+    >
+      <VCol
+        cols="12"
+        lg="12"
+        md="12"
+        sm="12"
+      >
+        <VList
+          class="py-0"
+          density="compact"
+          lines="three"
+        >
+          <ModifiyModuleNameDialog
+            v-model:modelValue="dialog"
+            v-model:name="name"
+          />
+          <VListSubheader class="title">
+            列出你认为最重要最近几年的工作经历，最新放在最前面，突出工作以及项目中的亮点。
+          </VListSubheader>
+          <VListSubheader
+            @click="dialog = true"
+            class="cursor-pointer"
+          >
             <span>{{ name }}</span>
             <VIcon end>
               mdi-square-edit-outline
             </VIcon>
           </VListSubheader>
           <VListSubheader>
-            <NuxtLink to="/" class="text-primary">
+            <NuxtLink
+              to="/"
+              class="text-primary"
+            >
               经历书写指南
             </NuxtLink>
           </VListSubheader>
 
           <Draggle
-            key="draggable" v-model="items" item-key="id" v-bind="dragOptions" @choose="handleSelect"
+            key="draggable"
+            v-model="items"
+            item-key="id"
+            v-bind="dragOptions"
+            @choose="handleSelect"
             @unchoose="handleUnSelect"
           >
             <template #item="{ element, index }: { element: any; index: number }">
-              <VListItem variant="outlined" rounded="lg" class="mt-4" :active="activeItem === element">
+              <VListItem
+                variant="outlined"
+                rounded="lg"
+                class="mt-4"
+                :active="activeItem === element"
+              >
                 <template #prepend>
                   <VIcon>mdi-sort-variant</VIcon>
                 </template>
                 <VListItemTitle>厦门奈思科技有限公司 - ui设计实习生</VListItemTitle>
                 <VListItemSubtitle>厦门 - 2020/11/11 - 2023/11/11</VListItemSubtitle>
                 <template #append>
-                  <VBtn variant="text" class="mr-2" color="primary" icon>
+                  <VBtn
+                    variant="text"
+                    class="mr-2"
+                    color="primary"
+                    icon
+                  >
                     <VIcon>mdi-pencil-outline</VIcon>
                   </VBtn>
-                  <VBtn variant="text" color="warning" icon>
+                  <VBtn
+                    variant="text"
+                    color="warning"
+                    icon
+                  >
                     <VIcon>mdi-delete-outline</VIcon>
                   </VBtn>
                 </template>
@@ -77,7 +121,12 @@ function handleSave() {
       </VCol>
     </VRow>
     <VRow class="fill-width">
-      <VCol cols="12" lg="12" md="12" sm="12">
+      <VCol
+        cols="12"
+        lg="12"
+        md="12"
+        sm="12"
+      >
         <!-- * 添加新的项 -->
         <template v-if="isEditing">
           <VSheet>
@@ -89,7 +138,11 @@ function handleSave() {
                     <div class="text-subtitle-2">
                       公司名称
                     </div>
-                    <VTextField density="compact" variant="outlined" hide-details />
+                    <VTextField
+                      density="compact"
+                      variant="outlined"
+                      hide-details
+                    />
                   </div>
                 </VCol>
                 <VCol cols="6">
@@ -97,7 +150,11 @@ function handleSave() {
                     <div class="text-subtitle-2">
                       职位名称
                     </div>
-                    <VTextField density="compact" variant="outlined" hide-details />
+                    <VTextField
+                      density="compact"
+                      variant="outlined"
+                      hide-details
+                    />
                   </div>
                 </VCol>
               </VRow>
@@ -109,7 +166,11 @@ function handleSave() {
                     <div class="text-subtitle-2">
                       所在部门
                     </div>
-                    <VTextField density="compact" variant="outlined" hide-details />
+                    <VTextField
+                      density="compact"
+                      variant="outlined"
+                      hide-details
+                    />
                   </div>
                 </VCol>
                 <VCol cols="6">
@@ -117,7 +178,11 @@ function handleSave() {
                     <div class="text-subtitle-2">
                       所在城市
                     </div>
-                    <VTextField density="compact" variant="outlined" hide-details />
+                    <VTextField
+                      density="compact"
+                      variant="outlined"
+                      hide-details
+                    />
                   </div>
                 </VCol>
               </VRow>
@@ -159,7 +224,11 @@ function handleSave() {
 
               <VRow no-gutters>
                 <VCol cols="6">
-                  <VBtn color="primary" @click="handleSave" block>
+                  <VBtn
+                    color="primary"
+                    @click="handleSave"
+                    block
+                  >
                     保存
                   </VBtn>
                 </VCol>
@@ -168,7 +237,12 @@ function handleSave() {
           </VSheet>
         </template>
         <template v-else>
-          <VBtn @click="isEditing = true" class="my-4" block color="primary">
+          <VBtn
+            @click="isEditing = true"
+            class="my-4"
+            block
+            color="primary"
+          >
             添加新的{{ name }}
           </VBtn>
         </template>
@@ -176,3 +250,9 @@ function handleSave() {
     </VRow>
   </VContainer>
 </template>
+
+<style  lang="scss">
+.title>.v-list-subheader__text {
+  white-space: normal;
+}
+</style>

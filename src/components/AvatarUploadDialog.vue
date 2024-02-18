@@ -72,9 +72,7 @@ function handleCropperChange(e: CropperResult) {
           <VCard>
             <VCardTitle>
               <div class="d-flex align-center">
-                <VIcon start>
-                  mdi-message-image-outline
-                </VIcon>
+                <BasicCardTitleSymbol />
                 <div>修改头像</div>
                 <VSpacer />
                 <VBtn @click="dialog = false" variant="text" icon>

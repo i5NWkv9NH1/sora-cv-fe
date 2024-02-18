@@ -1,9 +1,16 @@
 import { VBtn, VIcon, VList, VListItem, VMenu } from 'vuetify/lib/components/index.mjs'
 import { useTheme } from 'vuetify/lib/framework.mjs'
+import type { Size } from '~/mocks'
 
 export const ThemeSwitch = defineComponent({
   name: 'ThemeSwitch',
-  setup() {
+  props: {
+    size: {
+      type: String as PropType<Size>,
+      default: 'default',
+    },
+  },
+  setup(props, _) {
     const vuetify = useTheme()
     function handle(value: 'light' | 'dark') {
       vuetify.global.name.value = value
@@ -13,8 +20,8 @@ export const ThemeSwitch = defineComponent({
         offset={10}
         transition="slide-y-transition"
         v-slots={{
-          activator: ({ props }) => (
-            <VBtn {...props} icon>
+          activator: args => (
+            <VBtn {...args.props} size={props.size} icon>
               <VIcon>mdi-theme-light-dark</VIcon>
             </VBtn>
           ),

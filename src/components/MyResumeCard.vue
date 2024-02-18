@@ -84,7 +84,10 @@ async function remove() { }
 </script>
 
 <template>
-  <VCard class="rainbow" :variant="props.isSelected || isDownloading ? 'tonal' : 'elevated'">
+  <VCard
+    class="rainbow"
+    :variant="props.isSelected || isDownloading ? 'tonal' : 'elevated'"
+  >
     <template v-if="props.isSelected || isEditing || isDownloading">
       <span class="top" /><span class="left" /><span class="right" /><span class="bottom" />
     </template>
@@ -93,14 +96,32 @@ async function remove() { }
       <VSlideYTransition mode="out-in">
         <!-- * 编辑状态下 -->
         <template v-if="isEditing">
-          <VForm ref="formEl" @submit.prevent="save">
+          <VForm
+            ref="formEl"
+            @submit.prevent="save"
+          >
             <VTextField
-              v-model="title" :rules="rules" variant="outlined" clearable autofocus color="primary"
-              density="compact" ref="inputEl" :loading="isRenameLoading" :disabled="isRenameLoading" hint="修改简历名字"
-              persistent-hint v-click-outside="handleClickOutside"
+              v-model="title"
+              :rules="rules"
+              variant="outlined"
+              clearable
+              autofocus
+              color="primary"
+              density="compact"
+              ref="inputEl"
+              :loading="isRenameLoading"
+              :disabled="isRenameLoading"
+              hint="修改简历名字"
+              persistent-hint
+              v-click-outside="handleClickOutside"
             >
               <template #append-inner>
-                <VBtn variant="text" @click="save" :disabled="!title" color="primary">
+                <VBtn
+                  variant="text"
+                  @click="save"
+                  :disabled="!title"
+                  color="primary"
+                >
                   保存
                 </VBtn>
               </template>
@@ -121,19 +142,39 @@ async function remove() { }
     <VCardText>
       <VRow>
         <!-- * 封面 -->
-        <VCol cols="12" lg="8" md="6">
+        <VCol
+          cols="12"
+          lg="8"
+          md="6"
+        >
           <!-- * 点击图片打开 放大dialog -->
-          <VImg :src="item.thumbnailUrl" transition="slide-y-transition" width="100%" />
+          <VImg
+            :src="item.thumbnailUrl"
+            transition="slide-y-transition"
+            width="100%"
+          />
         </VCol>
         <!-- * 操作列表 -->
-        <VCol cols="12" lg="4" md="6">
+        <VCol
+          cols="12"
+          lg="4"
+          md="6"
+        >
           <!-- <VBtn @click="editable = true" :disabled="!!!title">
             简历重命名
           </VBtn> -->
-          <VBtn @click="save" :disabled="props.isSelected || !!!title || isRenameLoading || isDownloading" variant="text">
+          <VBtn
+            @click="save"
+            :disabled="props.isSelected || !!!title || isRenameLoading || isDownloading"
+            variant="text"
+          >
             简历重命名
           </VBtn>
-          <VBtn :to="`/editor?resumeId=${props.item.id}`" class="mt-2" color="primary">
+          <VBtn
+            :to="`/editor?resumeId=${props.item.id}`"
+            class="mt-2"
+            variant="text"
+          >
             编辑该简历
           </VBtn>
         </VCol>
@@ -143,10 +184,19 @@ async function remove() { }
     <!-- * 下载和选择 -->
     <VCardActions>
       <VTooltip location="bottom center">
-        <template #activator="arg" :activator-props="{ item: props.item, toggle: props.toggle }">
+        <template
+          #activator="arg"
+          :activator-props="{ item: props.item, toggle: props.toggle }"
+        >
           <!-- * 选择状态下 更改图标  -->
           <!-- ! 不解构 arg，有同命名的 props  -->
-          <VBtn v-bind="arg.props" :active="props.isSelected" :disabled="isEditing || isDownloading" @click="toggle" icon>
+          <VBtn
+            v-bind="arg.props"
+            :active="props.isSelected"
+            :disabled="isEditing || isDownloading"
+            @click="toggle"
+            icon
+          >
             <VIcon>
               {{ props.isSelected ? 'mdi-checkbox-marked-outline' : 'mdi-checkbox-blank-outline' }}
             </VIcon>
@@ -155,16 +205,46 @@ async function remove() { }
         <span>选择该简历</span>
       </VTooltip>
       <VTooltip location="bottom center">
-        <template #activator="arg" :activator-props="{ item: props.item, toggle: props.toggle }">
+        <template
+          #activator="arg"
+          :activator-props="{ item: props.item, toggle: props.toggle }"
+        >
           <!-- * 选择状态下 更改图标  -->
           <!-- ! 不解构 arg，有同命名的 props  -->
-          <VBtn v-bind="arg.props" :active="isDownloading" :disabled="isEditing || isSelected" @click="download" icon>
+          <VBtn
+            v-bind="arg.props"
+            :active="isDownloading"
+            :disabled="isEditing || isSelected"
+            @click="download"
+            icon
+          >
             <VIcon>
               mdi-download-circle-outline
             </VIcon>
           </VBtn>
         </template>
         <span>下载该简历</span>
+      </VTooltip>
+      <VTooltip location="bottom center">
+        <template
+          #activator="arg"
+          :activator-props="{ item: props.item, toggle: props.toggle }"
+        >
+          <!-- * 选择状态下 更改图标  -->
+          <!-- ! 不解构 arg，有同命名的 props  -->
+          <VBtn
+            v-bind="arg.props"
+            :active="isDownloading"
+            :disabled="isEditing || isSelected"
+            color="error"
+            icon
+          >
+            <VIcon>
+              mdi-trash-can
+            </VIcon>
+          </VBtn>
+        </template>
+        <span>删除该简历</span>
       </VTooltip>
     </VCardActions>
   </VCard>

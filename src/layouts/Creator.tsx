@@ -1,7 +1,38 @@
 import type { SlotsType } from 'vue'
 import { renderSlot } from 'vue'
-import { VApp, VList, VListItem, VListSubheader, VMain, VNavigationDrawer, VSnackbar } from 'vuetify/components'
+import { VApp, VAppBar, VBtn, VChip, VList, VListItem, VListSubheader, VMain, VNavigationDrawer, VSnackbar, VSpacer } from 'vuetify/components'
 import { creatorLayoutData } from '~/data'
+import { ThemeSwitch } from '~/widgets'
+
+function AppBar() {
+  const { user } = useData()
+
+  return (
+    <VAppBar>
+      <VSpacer />
+      <ThemeSwitch />
+      <VList>
+        <VListItem
+          prependAvatar={user.avatarUrl}
+          v-slots={{
+            title: () => (
+              <>
+                <span class="mr-2">Sora</span>
+                <VChip color="warning" rounded="xl" density="compact">月会员</VChip>
+              </>
+            ),
+            subtitle: () => (
+              <>
+                <span class="mr-2">2024年3月19日到期</span>
+                <VBtn color="error" rounded="xl" density="compact" to="/vip" class="opacity-1 text-decoration-underline pa-0">去续费</VBtn>
+              </>
+            ),
+          }}
+        />
+      </VList>
+    </VAppBar>
+  )
+}
 
 function Drawer() {
   const items = ref(creatorLayoutData.items)
@@ -64,6 +95,7 @@ function GlobalMessage() {
 function Layout({ slots }: { slots: SlotsType }) {
   return (
     <VApp>
+      <AppBar />
       <GlobalMessage />
       <Drawer />
       <VMain>
