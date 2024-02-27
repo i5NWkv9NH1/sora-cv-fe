@@ -1,37 +1,36 @@
 import '@mdi/font/css/materialdesignicons.css'
 
 import { createVuetify } from 'vuetify'
-import { md3 } from 'vuetify/blueprints'
-//@ts-ignore
-import { VuetifyDateAdapter } from 'vuetify/lib/composables/date/adapters/vuetify.mjs'
 import * as directives from 'vuetify/directives'
-import 'vuetify/styles'
 
+// @ts-expect-error
+import { VuetifyDateAdapter } from 'vuetify/lib/composables/date/adapters/vuetify.mjs'
+import 'vuetify/styles'
 
 const defaults = {
   global: {
-    ripple: false
+    ripple: false,
   },
   VChip: {
-    rounded: 'lg'
+    rounded: 'lg',
   },
   VBtn: {
-    rounded: 'lg'
+    rounded: 'lg',
   },
   VCarousel: {
-    class: 'rounded-lg'
+    class: 'rounded-lg',
   },
   VCard: {
-    rounded: 'lg'
+    rounded: 'lg',
   },
   VSheet: {
-    rounded: 'lg'
+    rounded: 'lg',
   },
   VAvatar: {
-    rounded: 'lg'
+    rounded: 'lg',
   },
   VTab: {
-    rounded: 'lg'
+    rounded: 'lg',
   },
 }
 
@@ -44,8 +43,8 @@ export default defineNuxtPlugin((app) => {
     defaults,
     directives,
     date: {
-      adapter: VuetifyDateAdapter
-    }
+      adapter: VuetifyDateAdapter,
+    },
   })
   app.vueApp.use(vuetify)
 })

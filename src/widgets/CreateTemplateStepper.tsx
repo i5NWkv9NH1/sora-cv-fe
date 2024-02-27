@@ -2,7 +2,7 @@ import {
   VCard,
   VCardText,
   VWindow,
-  VWindowItem
+  VWindowItem,
 } from 'vuetify/lib/components/index.mjs'
 import { CreateTemplateStep1, CreateTemplateStep2 } from './Temporary'
 
@@ -11,7 +11,7 @@ export const CreateTemplateStepper = defineComponent({
     const step = ref(1)
     const stepperActions = ref([
       { id: 1, label: '下一步', icon: '', action: () => {} },
-      { id: 2, label: '返回', icon: '', action: () => {} }
+      { id: 2, label: '返回', icon: '', action: () => {} },
     ])
 
     return () => (
@@ -30,5 +30,5 @@ export const CreateTemplateStepper = defineComponent({
         <VCardActions></VCardActions>
       </VCard>
     )
-  }
+  },
 })

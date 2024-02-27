@@ -1,9 +1,10 @@
-import { renderSlot, type SlotsType } from "vue"
-import type { JSXComponent } from "vue"
+import type { JSXComponent, SlotsType } from 'vue'
+
+export * from './vuetify'
 
 export type IUIState = 'ok' | 'loading' | 'empty' | 'error'
 
-export type IArticle = {
+export interface IArticle {
   id: string | number
   title: string
   subtitle: string
@@ -16,10 +17,9 @@ export type IArticle = {
   thumbnailUrl: string
 }
 
-export type ITag = {
+export interface ITag {
   id: string | number
   name: string
-  path: string
   seo: {
     title: string
     keyword: string
@@ -27,15 +27,12 @@ export type ITag = {
     sort: string | number
     createdAt: string
     updatedAt: string
-    wechat: {
-      appId: string
-    },
-    image: unknown
+    image?: unknown
   }
 }
 export type ICategory = ITag
 
-export type ITemplate = {
+export interface ITemplate {
   id: string | number
   title: string
   subtitle: string
@@ -44,6 +41,7 @@ export type ITemplate = {
   publishedAt: string | number
   createdAt: string | number
   publishedAtForamt: string
+  isVip: boolean
   sort: string | number
   style: string
   status: number
@@ -71,10 +69,10 @@ export type ITemplate = {
   styleCategory: ICategory[]
   experienceCategory: ICategory[]
   jobCategory: ICategory[]
-  tags: ICategory[]
+  tags: ITag[]
 }
 
-export type ISubscribe = {
+export interface ISubscribe {
   id: string | number
   name: string
   price: string | number
@@ -82,7 +80,7 @@ export type ISubscribe = {
   type: string
 }
 
-export type IOrder = {
+export interface IOrder {
   id: string | number
   name: string | number
   createdAt: string
@@ -91,7 +89,7 @@ export type IOrder = {
   status: number
 }
 
-export type IUser = {
+export interface IUser {
   id: string | number
   username: string
   name: string
@@ -103,93 +101,77 @@ export type IUser = {
   isVip: boolean
 }
 
-
 export type PreviewSize = 'A4' | 'PHONE'
-export type PreviewOption = { id: number; label: string; value: 'A4' | 'PHONE'; icon: string }
-export type ResumeTab = {
-  id: number | string,
+export interface PreviewOption {
+  id: number
+  label: string
+  value: 'A4' | 'PHONE'
+  icon: string
+}
+export interface ResumeTab {
+  id: number | string
   name: string
   icon: string
   value: number | string
   key: string
 }
-export type ResumeWindow = {
+export interface ResumeWindow {
   value: number
   key: number | string
   component: JSXComponent
 }
-//! settings
-export type Size = 'x-small' | 'small' | 'default' | 'large' | 'x-large'
-export type Density = null | 'default' | 'comfortable' | 'compact';
-export type DensityMode = {
-  label: string
-  value: Density
-  icon?: string
-}
-export type SizeMode = {
-  label: string
-  value: Size
-}
-export type Theme = 'auto' | 'light' | 'dark'
-export type ThemeMode = {
-  label: string;
-  value: Theme
-  icon?: string
-}
 
-
-
-//! form
-export type SkillItem = {
+// ! form
+export interface SkillItem {
   name: string
   description: string
 }
-export type EducationItem = {
-  "id": number,
-  "school": string
-  "major": string
-  "degree": number,
-  "degreeType": number,
-  "college": string
-  "schoolCity": string
-  "schoolTimeFrom": string
-  "schoolTimeTo": string
-  "experienceDesc": string
+export interface EducationItem {
+  id: number
+  school: string
+  major: string
+  degree: number
+  degreeType: number
+  college: string
+  schoolCity: string
+  schoolTimeFrom: string
+  schoolTimeTo: string
+  experienceDesc: string
 }
-export type ProjectItem = {
-  "id": number,
-  "name": string
-  "role": string
-  "department": string
-  "city": string
-  "from": string
-  "to": string
-  "experienceDesc": string
+export interface ProjectItem {
+  id: number
+  name: string
+  role: string
+  department: string
+  city: string
+  from: string
+  to: string
+  experienceDesc: string
 }
-export type WorkItem = {
-  "id": number,
-  "company": string
-  "job": string
-  "department": string
-  "city": string
-  "workTimeFrom": string
-  "workTimeTo": string
-  "experienceDesc": string
+export interface WorkItem {
+  id: number
+  company: string
+  job: string
+  department: string
+  city: string
+  workTimeFrom: string
+  workTimeTo: string
+  experienceDesc: string
 }
-export type OtherItemType = 'preItemsKey' | "language"
-export type OtherItem = {
+export type OtherItemType = 'preItemsKey' | 'language'
+export interface OtherItem {
   preItemsKey: OtherItemType
   isTagItem: boolean
   label: string
   value: string | string[]
 }
 
-export type IResume = {
+export interface IResume {
   id: string | number
   name: string
   thumbnailUrl: string
   previewSize: PreviewSize
-  modules: string[],
+  modules: string[]
   theme: string
   themeColor: string
   fields: {
@@ -197,7 +179,7 @@ export type IResume = {
     educationName: string
     softwaveSkillsName: string
     projectName: string
-    //? 经历
+    // ? 经历
     experienceName: string
     otherName: string
   }
@@ -215,16 +197,16 @@ export type IResume = {
     height: number
     weight: number
     marital: number
-    //? 个人状态
+    // ? 个人状态
     status: number
-    //? 评价
+    // ? 评价
     evalaute: string
-    //? 社交媒体
+    // ? 社交媒体
     social: {
       linkedin: string
       wechat: string
     }
-    //? 期望
+    // ? 期望
     purpose: {
       city: string
       job: string
@@ -237,8 +219,49 @@ export type IResume = {
     others: OtherItem[]
     experiences: WorkItem[]
     educations: EducationItem[]
-    softwaveSkills: any[
-    ]
+    softwaveSkills: any[]
     skills: SkillItem[]
   }
+}
+
+export interface VIP {
+  id: string | number
+  title: string
+  price: number
+  type: number
+  payTime: string
+  description: string
+  order: number
+  value: number
+}
+export interface PayType {
+  id: string | number
+  name: string
+  value: number
+  icon: string
+  color: string
+}
+
+export interface FAQ {
+  id: string | number
+  title: string
+  content: string
+}
+
+export interface Intro {
+  title: string
+  subtitle: string
+  thumbnailUrl: string
+  color: string
+}
+
+export interface AI {
+  id: string | number
+  name: string
+  thumbnailUrl: string
+  description: string
+}
+
+export interface FCProps {
+  slots: SlotsType
 }

@@ -1,10 +1,9 @@
-import { VCard, VList, VListItem } from "vuetify/components"
-import { useSortable } from '@vueuse/integrations/useSortable'
+import { VCard, VList, VListItem } from 'vuetify/components'
 import Draggable from 'vuedraggable'
-import { TransitionGroup } from "vue"
+import { TransitionGroup } from 'vue'
 import './Module.scss'
 
-type DraggableSlots<T> = {
+interface DraggableSlots<T> {
   element: T
   index: number
 }
@@ -19,13 +18,13 @@ export const SortableList = defineComponent({
       { id: 5, name: 'Bakken', icon: 'mdi-heart', color: 'pinJannRink' },
     ])
 
-    const drag = ref(false);
+    const drag = ref(false)
     const dragOptions = ref({
       animation: 200,
       group: 'description',
       disabled: false,
       ghostClass: 'ghost',
-    });
+    })
 
     const listEl = ref()
     // const animation = 400
@@ -36,12 +35,10 @@ export const SortableList = defineComponent({
       console.log('update items...')
     })
 
-
     function handleDragStart() {
 
     }
     function handleDragEnd() { }
-
 
     return () => (
       <VCard>
@@ -59,21 +56,25 @@ export const SortableList = defineComponent({
         </VList> */}
         <VList>
           <TransitionGroup>
-            <Draggable v-model={items.value} item-key={'id'} key="draggable" {...dragOptions.value}
-              //@ts-ignore
+            <Draggable
+              v-model={items.value}
+              item-key="id"
+              key="draggable"
+              {...dragOptions.value}
+              // @ts-expect-error
               onStart={handleDragStart}
               onEnd={handleDragEnd}
-              //@ts-ignore
+              // @ts-expect-error
               animation={200}
               v-slots={{
                 item: ({ element, index }: DraggableSlots<any>) => {
-                  return <VListItem class={'sortable-item'} title={element.name} color={element.color} prependIcon={'mdi-sort-variant'} key={element.id} active />
-                }
+                  return <VListItem class="sortable-item" title={element.name} color={element.color} prependIcon="mdi-sort-variant" key={element.id} active />
+                },
               }}
             />
           </TransitionGroup>
         </VList>
       </VCard>
     )
-  }
+  },
 })

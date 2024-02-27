@@ -1,5 +1,4 @@
-import { templateListData } from '~/data'
-import type { ITemplate } from '~/types'
+import type { Article, Template } from '~/mocks'
 
 export async function delay(ms: number) {
   return new Promise((res, rej) => setTimeout(res, ms))
@@ -7,7 +6,7 @@ export async function delay(ms: number) {
 export function randomColor() {
   return Math.floor(Math.random() * 16777215).toString(16)
 }
-export function transformField(item: any): ITemplate {
+export function transformField(item: any): Template {
   const _json = JSON.parse(item.fanwenData)
   return {
     ...item,
@@ -24,11 +23,11 @@ export function transformField(item: any): ITemplate {
     status: item.goods_status.value,
     download: {
       url: '',
-      password: item.download_password
+      password: item.download_password,
     },
     file: {
       name: item.file_name,
-      quantity: item.file_quantity
+      quantity: item.file_quantity,
     },
     model: {
       content: item.fanwen,
@@ -37,14 +36,16 @@ export function transformField(item: any): ITemplate {
     },
     stats: {
       view: item.goods_view,
-      like: item.goods_sales
+      like: item.goods_sales,
     },
-    thumbnails: item.image.map((_item: any) => {
-      return {
-        id: _item.image_id,
-        src: _item.file_path
-      }
-    }),
+    thumbnails: Array.isArray(item.image)
+      ? item.image.map((_item: any) => {
+        return {
+          id: _item.image_id,
+          src: _item.file_path,
+        }
+      })
+      : [],
     styleCategory: item.style_category.map((_tag: any) => {
       return {
         id: _tag.category_id,
@@ -58,10 +59,10 @@ export function transformField(item: any): ITemplate {
           createdAt: _tag.create_time,
           updatedAt: _tag.update_time,
           wechat: {
-            appId: _tag.wxapp_id
+            appId: _tag.wxapp_id,
           },
-          image: _tag.image
-        }
+          image: _tag.image,
+        },
       }
     }),
     experienceCategory: item.profession_category.map((_tag: any) => {
@@ -77,10 +78,10 @@ export function transformField(item: any): ITemplate {
           createdAt: _tag.create_time,
           updatedAt: _tag.update_time,
           wechat: {
-            appId: _tag.wxapp_id
+            appId: _tag.wxapp_id,
           },
-          image: _tag.image
-        }
+          image: _tag.image,
+        },
       }
     }),
     jobCategory: item.job_category.map((_tag: any) => {
@@ -96,10 +97,10 @@ export function transformField(item: any): ITemplate {
           createdAt: _tag.create_time,
           updatedAt: _tag.update_time,
           wechat: {
-            appId: _tag.wxapp_id
+            appId: _tag.wxapp_id,
           },
-          image: _tag.image
-        }
+          image: _tag.image,
+        },
       }
     }),
     tags: item.style_category.map((_tag: any) => {
@@ -115,16 +116,46 @@ export function transformField(item: any): ITemplate {
           createdAt: _tag.create_time,
           updatedAt: _tag.update_time,
           wechat: {
-            appId: _tag.wxapp_id
+            appId: _tag.wxapp_id,
           },
-          image: _tag.image
-        }
+          image: _tag.image,
+        },
       }
     }),
+    isVip: false,
   }
 }
-export function transformFields(item: any[]): ITemplate[] {
-  return templateListData
-    .filter((item) => item.goods_id !== 10022)
+export function transformFields(items: any[]): Template[] {
+  return items
+    .filter(item => item.goods_id !== 10022)
     .map(item => transformField(item))
+}
+
+export function transformArticle(item: any): Article {
+  return {
+    id: item.article_id,
+    title: item.article_title,
+    content: item.article_content,
+    sort: item.article_sort,
+    status: item.article_status,
+    description: item.seo_desc,
+    thumbnailUrl: item.image.file_path,
+    seo: {
+      description: item.seo_desc,
+    },
+    stats: {
+      view: item.actual_views,
+      like: item.dian_zan,
+    },
+    publishedAt: item.view_time,
+    categories: null,
+  }
+}
+
+export function removeItem<T>(arr: T[], item: T): T[] {
+  const index = arr.indexOf(item)
+  if (index > -1)
+    arr.splice(index, 1)
+
+  return arr
 }

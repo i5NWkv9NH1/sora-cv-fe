@@ -1,18 +1,25 @@
 import { defineStore } from 'pinia'
-import { useTheme } from 'vuetify/lib/framework.mjs'
-import type { PreviewOption, PreviewSize, Density, DensityMode, Size, SizeMode, Theme, ThemeMode } from '~/types'
-
-
+import { v4 } from 'uuid'
+import type { ViewStyle } from '~/mocks'
+import type { Density, DensityMode, PreviewSize, Size, SizeMode, Theme, ThemeMode } from '~/types'
 
 export const usePreferencesStore = defineStore(
   'preferences',
   () => {
+    // * creator
+    const viewStyles = ref(
+      [
+        { id: v4(), label: '网格视图', icon: 'mdi-format-list-bulleted', value: 'Grid' as ViewStyle },
+        { id: v4(), label: '列表视图', icon: 'mdi-grid-large', value: 'List' as ViewStyle },
+      ],
+    )
+
     const alert = ref({
       status: false,
       message: '',
       delay: 1000,
       color: 'primary',
-      location: 'top center' as any
+      location: 'top center' as any,
     })
     const drawer = ref<boolean>(false)
     const density = ref<Density>('compact')
@@ -58,7 +65,6 @@ export const usePreferencesStore = defineStore(
 
     const previewSize = ref<PreviewSize>('A4')
 
-
     function toggleDrawer() {
       drawer.value = !drawer.value
     }
@@ -70,22 +76,21 @@ export const usePreferencesStore = defineStore(
       { message, color, delay } = {
         message: 'ok',
         color: 'primary',
-        delay: 2000
-      }
+        delay: 2000,
+      },
     ) {
-      if (!alert.value.status) {
+      if (!alert.value.status)
         alert.value.status = true
-      }
 
       alert.value.message = message
       alert.value.color = color
       alert.value.delay = delay
     }
-    return { alert, drawer, density, densityMode, size, sizeMode, theme, themeMode, height, toggleAlert, previewSize, updatePreviewSize, toggleDrawer, flat }
+    return { alert, drawer, density, densityMode, size, sizeMode, theme, themeMode, height, toggleAlert, previewSize, updatePreviewSize, toggleDrawer, flat, viewStyles }
   },
   {
     persist: {
-      debug: true
-    }
-  }
+      debug: true,
+    },
+  },
 )

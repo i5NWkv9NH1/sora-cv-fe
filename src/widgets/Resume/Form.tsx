@@ -1,22 +1,21 @@
-import { defineComponent, ref, renderSlot, type SlotsType, type StyleValue } from 'vue';
-import { VCol, VContainer, VRow, VSheet, VSkeletonLoader, VTab, VTabs, VTextField, VWindow, VWindowItem } from 'vuetify/components';
-import type { ResumeWindow, IUIState, ResumeTab } from '~/types';
-import { BasicInfo, Test } from './Tab';
-import { resumeTabs } from '~/data';
+import { defineComponent, ref, renderSlot } from 'vue'
+import type { Component, type SlotsType } from 'vue'
+import { VContainer, VSheet, VSkeletonLoader, VTab, VTabs, VTextField, VWindow, VWindowItem } from 'vuetify/components'
+import { BasicInfo, Test } from './Tab'
+import type { IUIState, ResumeTab, ResumeWindow } from '~/types'
+import { resumeTabs } from '~/data'
 import './Form.scss'
-import type { Component } from 'vue';
-
 
 //* 左栏表格容器
 export const ResumeForm = defineComponent({
   setup() {
-    //#region state
-    //TODO store
-    const appBarHeight = ref(64);
+    // #region state
+    // TODO store
+    const appBarHeight = ref(64)
     const { density, size } = storeToRefs(usePreferencesStore())
     //* tab
-    const current = ref(1);
-    const tabs = ref<ResumeTab[]>();
+    const current = ref(1)
+    const tabs = ref<ResumeTab[]>()
     const windows = ref<ResumeWindow[]>([
       { key: 1, value: 1, component: BasicInfo },
       { key: 2, value: 2, component: Test },
@@ -24,42 +23,39 @@ export const ResumeForm = defineComponent({
       { key: 4, value: 4, component: Test },
       { key: 5, value: 5, component: Test },
       { key: 6, value: 6, component: Test },
-    ]);
-    const uiState = ref<IUIState>('ok');
-    tabs.value = resumeTabs;
+    ])
+    const uiState = ref<IUIState>('ok')
+    tabs.value = resumeTabs
 
-    //#endregion
+    // #endregion
 
+    // #region api
 
-    //#region api
+    // #endregion
 
-    //#endregion
-
-
-    //#region widgets
+    // #region widgets
     function Tabs() {
       function Loading() {
         return (
-          <VSkeletonLoader type={'button@6'} />
-        );
+          <VSkeletonLoader type="button@6" />
+        )
       }
       function OK() {
-
         return (
           <VContainer
-            //? 对齐 header 的箭头
-            class={'pa-2'}
+            // ? 对齐 header 的箭头
+            class="pa-2"
           >
             {/* <VRow noGutters>
               <VCol cols={12}>
 
               </VCol>
             </VRow> */}
-            {/*//TODO add responvie tabs */}
+            {/* //TODO add responvie tabs */}
             <VTabs v-model={current.value} showArrows>
               {tabs.value!.map(tab => (
                 <VTab
-                  class={'mr-4'}
+                  class="mr-4"
                   value={tab.value}
                   key={tab.value}
                   icon={tab.icon ? tab.icon : false}
@@ -71,33 +67,32 @@ export const ResumeForm = defineComponent({
               ))}
             </VTabs>
           </VContainer>
-        );
+        )
       }
       switch (uiState.value) {
         case 'loading':
-          return <Loading />;
+          return <Loading />
         case 'ok':
-          return <OK />;
+          return <OK />
         default:
-          return <Loading />;
+          return <Loading />
       }
-
     }
 
     function Window() {
       const { height } = storeToRefs(usePreferencesStore())
       function Loading() {
-        return <VSkeletonLoader type={'paragraph@6'} />;
+        return <VSkeletonLoader type="paragraph@6" />
       }
       function OK() {
         return (
           <VSheet
-            class={'form'}
+            class="form"
             rounded={false}
             style={{
               overflow: 'scroll',
               height: height.value,
-              maxHeight: height.value
+              maxHeight: height.value,
             }}
           >
             <VWindow v-model={current.value}>
@@ -108,17 +103,17 @@ export const ResumeForm = defineComponent({
               ))}
             </VWindow>
           </VSheet>
-        );
+        )
       }
 
       switch (uiState.value) {
-        case 'loading': return <Loading />;
-        case 'ok': return <OK />;
-        default: return <Loading />;
+        case 'loading': return <Loading />
+        case 'ok': return <OK />
+        default: return <Loading />
       }
     }
 
-    //#endregion
+    // #endregion
     return () => (
       // <VSheet
       //   //* 添加 class 隐藏滚动条
@@ -132,30 +127,32 @@ export const ResumeForm = defineComponent({
         <Tabs />
         <Window />
       </>
-    );
-  }
-});
+    )
+  },
+})
 
 export function ResumeNameTextField() {
   const { editor } = storeToRefs(useDataStore())
   const { density } = storeToRefs(usePreferencesStore())
 
   const Wrapper: Component = (_: any, { slots }: { slots: SlotsType }) => (
-    <div class={'flex-4 mx-2'}>
+    <div class="flex-4 mx-2">
       {renderSlot(slots, 'default')}
     </div>
   )
 
-  const Loading = () => <VSkeletonLoader type={'paragraph'} />
-  const Ok = () => <VTextField
-    v-model={editor.value.resume.name}
-    density={density.value}
-    variant={'solo'}
-    hideSpinButtons
-    hideDetails
-    appendInnerIcon={'mdi-pencil-outline'}
-    singleLine
-  />
+  const Loading = () => <VSkeletonLoader type="paragraph" />
+  const Ok = () => (
+    <VTextField
+      v-model={editor.value.resume.name}
+      density={density.value}
+      variant="solo"
+      hideSpinButtons
+      hideDetails
+      appendInnerIcon="mdi-pencil-outline"
+      singleLine
+    />
+  )
 
   // switch (editor.value.uiState) {
   //   case 'loading':
@@ -165,7 +162,9 @@ export function ResumeNameTextField() {
   //   default:
   //     return <Wrapper><Loading /></Wrapper>
   // }
-  return <Wrapper>
-    <Ok />
-  </Wrapper>
+  return (
+    <Wrapper>
+      <Ok />
+    </Wrapper>
+  )
 }

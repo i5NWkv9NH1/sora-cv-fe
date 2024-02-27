@@ -13,7 +13,7 @@ export const useUserStore = defineStore(
       phoneNumebr: '',
       phone: false,
       wechat: true,
-      isVip: true
+      isVip: true,
     })
 
     function logout() {
@@ -25,7 +25,7 @@ export const useUserStore = defineStore(
   },
   {
     persist: {
-      debug: true
-    }
-  }
+      debug: true,
+    },
+  },
 )

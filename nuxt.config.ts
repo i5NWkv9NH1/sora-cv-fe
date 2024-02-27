@@ -6,33 +6,37 @@ export default defineNuxtConfig({
     head: {
       charset: 'utf-8',
       htmlAttrs: {
-        lang: 'zh-CN'
+        lang: 'zh-CN',
       },
-      titleTemplate: '%s - 奈思简历 NiceCV',
-      meta: []
-    }
+      titleTemplate: '%s | 奈思简历 NiceCV',
+      meta: [],
+    },
+  },
+  components: {
+    dirs: [
+      // ! 全局组件，JSON 数据动态引入
+      { path: '~/components/Form', global: true, prefix: 'Form' },
+      { path: '~/components' },
+    ],
   },
   css: ['~/assets/styles/main.scss'],
-  imports: {
-    dirs: []
-  },
   experimental: {
-    componentIslands: true
+    componentIslands: true,
   },
   routeRules: {
-    '/': {
-      prerender: true
-    },
+    // '/': {
+    //   prerender: true
+    // },
     '/api/**': {
-      cors: true
+      cors: true,
     },
-    '/editor/**': {
-      ssr: false
-    },
-    '/creator/**': {
-      ssr: false,
-      swr: 3600
-    }
+    // '/editor/**': {
+    //   ssr: false
+    // },
+    // '/creator/**': {
+    //   ssr: false,
+    //   swr: 3600
+    // }
   },
   modules: [
     (_options, nuxt) => {
@@ -41,22 +45,25 @@ export default defineNuxtConfig({
         config.plugins.push(vuetify({ autoImport: true }))
       })
     },
+    '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
-    '@vueuse/nuxt'
+    '@vueuse/nuxt',
+    // * logger for vue in server side render
+    'nuxt3-winston-log',
   ],
   pinia: {
-    storesDirs: ['src/stores/**']
+    storesDirs: ['src/stores/**'],
   },
   vite: {
     vue: {
       template: {
-        transformAssetUrls
-      }
-    }
+        transformAssetUrls,
+      },
+    },
   },
   build: {
-    transpile: ['vuetify']
+    transpile: ['vuetify'],
   },
-  devtools: { enabled: false }
+  devtools: { enabled: true },
 })
