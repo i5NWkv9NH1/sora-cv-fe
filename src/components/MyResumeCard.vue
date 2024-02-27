@@ -20,7 +20,7 @@ const formEl = ref()
 const inputEl = ref()
 const isRenameLoading = ref(false)
 const focused = ref(true)
-const title = ref(props.item.title)
+const title = ref(props.item.name || props.item.title)
 const rules = ref([
   (v: string) => !!v || '名字不能为空',
 ])

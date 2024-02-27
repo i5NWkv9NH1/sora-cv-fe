@@ -29,9 +29,9 @@ const emits = defineEmits(['update:selecteTemplateDialog', 'update:items'])
 const previewOptions = ref(mockResumePreviewOptions)
 const previewSize = ref<ResumePreviewSize>(previewOptions.value[0].value)
 const { styles } = useScrollHeight({ density: props.density, padding: 0, fully: true })
+const { color } = storeToRefs(useResumeStore())
 
 const sortableDialog = ref(false)
-const color = ref('#24292e')
 const copyItem = ref(props.items)
 watch(() => props.items, value => copyItem.value = props.items)
 watch(copyItem, value => emits('update:items', value))
@@ -111,15 +111,7 @@ watch(copyItem, value => emits('update:items', value))
           <VSkeletonLoader type="image@5" />
         </template>
         <template v-else>
-          <!-- TODO: transition -->
-          <template v-if="previewSize === 'A4'">
-            <VCard>A4</VCard>
-          </template>
-
-          <!-- * PHONE -->
-          <template v-else>
-            <VCard>PHONE</VCard>
-          </template>
+          <TemplateBasic />
         </template>
       </VContainer>
     </VSheet>

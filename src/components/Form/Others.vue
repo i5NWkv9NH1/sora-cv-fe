@@ -73,8 +73,6 @@ function removeAward(item: any) {
   form.award.items = removeItem(form.award.items, item)
   award.value = ''
 }
-const hobby = ref('')
-const portfolio = ref('')
 
 // * 编辑和新增的表单数据
 const defaultState = computed(() => { return { id: v4(), name: '', description: `` } })
@@ -171,7 +169,7 @@ function handleUnSelect(e: any) {
 
           <VListItem rounded="lg">
             <VTextField
-              v-model="health"
+              v-model="form.health.value"
               density="compact"
               variant="outlined"
               hide-details
@@ -306,7 +304,7 @@ function handleUnSelect(e: any) {
 
           <VListItem rounded="lg">
             <VTextField
-              v-model="hobby"
+              v-model="form.hobby.value"
               density="compact"
               variant="outlined"
               hide-details
@@ -341,7 +339,7 @@ function handleUnSelect(e: any) {
 
           <VListItem rounded="lg">
             <VTextField
-              v-model="portfolio"
+              v-model="form.portfolio.value"
               density="compact"
               variant="outlined"
               hide-details

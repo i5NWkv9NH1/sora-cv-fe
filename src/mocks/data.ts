@@ -6,6 +6,7 @@ export const mockResumes = [
   {
     id: uuid(),
     name: '我的第一份简历',
+    title: '我的第一份简历',
     description: '',
     createdDate: '2020-01-02',
     updatedDate: '2021-02-04',
@@ -154,7 +155,7 @@ export const mockResumeEditorTabs: ResumeEditorTab[] = [
     icon: 'mdi-pencil-outline',
     value: 6,
     key: 'basicInfo',
-    component: null,
+    component: 'null',
   },
 ]
 export const mockResumePreviewOptions = [

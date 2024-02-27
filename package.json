@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "@sora-cv/fe",
   "type": "module",
   "private": true,
   "scripts": {
@@ -33,6 +33,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.3",
     "@biomejs/biome": "^1.5.1",
+    "@nuxtjs/tailwindcss": "^6.11.4",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "@types/highlight.js": "^10.1.0",
     "@types/lodash-es": "^4.17.12",
