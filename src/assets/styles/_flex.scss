@@ -1,8 +1,0 @@
-$flex: 10;
-
-@for $i from 1 through $flex {
-  .flex-#{$i} {
-    // flex: (100% / $i);
-    width: calc(100%/$i);
-  }
-}
