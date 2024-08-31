@@ -90,10 +90,14 @@ function handleUnSelect(e: any) {
                 <VListItem
                   :key="element.value"
                   :title="element.title || element.name"
-                  :prepend-icon="`mdi-numeric-${index + 1}`"
                   class="cursor-move"
                   :active="element === activeElement"
-                />
+                >
+                  <template #prepend>
+                    <VIcon :icon="`mdi-numeric-${index + 1}`" start />
+                    <VIcon icon="mdi-sort-variant" />
+                  </template>
+                </VListItem>
               </template>
             </Draggle>
           </VList>
