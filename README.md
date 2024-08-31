@@ -1,3 +1,5 @@
+## Deprecated
+
 ## Screenhots
 ![](https://s2.loli.net/2024/08/31/IqOMlvVhk6L8yFz.png)
 ![](https://s2.loli.net/2024/08/31/fqUMy2u6VFjWeOC.png)
